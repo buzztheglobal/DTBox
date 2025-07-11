@@ -1,0 +1,24 @@
+/* src/components/color_picker/color_picker.css */
+
+.color-tool .color-preview {
+  font-size: 1.2rem;
+  padding: 10px 16px;
+  background: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  display: inline-flex;
+}
+
+.color-tool .copy-icon {
+  cursor: pointer;
+  color: #333;
+}
+
+.color-tool .copy-icon:hover {
+  color: #4b42d5;
+}
+
+.saved-colors h5 {
+  font-weight: 600;
+  margin-bottom: 16px;
+}

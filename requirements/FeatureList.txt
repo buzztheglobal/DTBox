@@ -1,0 +1,15 @@
+Category chips to toggle selection (i.e., deselect on second click),
+Chips converted to ToggleButtonGroup,
+Persistent dark/light gradient chip variants in a theme file.
+
+-- AgeCalculator
+// 3. Future Extensions
+// - Add time inputs for precise hour/minute calculation
+// - Support Time Zones via Luxon's `setZone()`
+// - Add localization using i18n (e.g., date format DD/MM/YYYY vs MM/DD/YYYY)
+// - Custom calendar support (Julian, etc.) if needed
+// - Responsive layout using Material UI or Bootstrap
+
+// 4. Use this component inside your App.js or routing file
+// import AgeCalculator from './components/AgeCalculator';
+// Then use <AgeCalculator />

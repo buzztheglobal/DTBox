@@ -1,0 +1,146 @@
+/* BMI_Indicator.css */
+
+.bmi-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  max-width: 500px;
+  margin: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', sans-serif;
+  border: 1px solid #e5e7eb; /* Tailwind's gray-200 equivalent */
+}
+
+.bmi-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #333;
+  letter-spacing: -0.5px;
+}
+
+.bmi-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.bmi-toggle .glassy-button.active {
+  background: linear-gradient(135deg, #780206, #061161);
+  color: white;
+  width: 50%;
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(108, 99, 255, 0.3);
+}
+
+.bmi-inputs label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.bmi-inputs input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.bmi-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.bmi-result {
+  text-align: center;
+  background: #e6f0ff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  border: 1px solid #cfe0ff;
+  transition: all 0.4s ease;
+}
+
+.bmi-result span {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1e40af;
+}
+
+.bmi-message {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.bmi-info {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.bmi-info h4 {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.bmi-info .disclaimer {
+  margin-top: 1rem;
+  color: red;
+  font-weight: 600;
+}
+
+.bmi-button {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: linear-gradient(135deg, #780206, #061161);
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(108, 99, 255, 0.3);
+}
+
+.bmi-button:hover {
+  box-shadow: 0 6px 12px rgba(108, 99, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.bmi-result-visible {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.bmi-result-hidden {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
