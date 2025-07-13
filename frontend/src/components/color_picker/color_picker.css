@@ -1,24 +1,39 @@
-/* src/components/color_picker/color_picker.css */
-
-.color-tool .color-preview {
-  font-size: 1.2rem;
-  padding: 10px 16px;
-  background: #f1f1f1;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  display: inline-flex;
+.color-picker-container {
+  padding: 20px;
+  background: var(--bs-light);
+  border-radius: 12px;
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+  box-shadow: 0 0 10px #ccc;
 }
 
-.color-tool .copy-icon {
+.color-options {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.color-box.selected {
+  border: 3px solid #333;
+}
+
+.color-info {
+  margin-top: 20px;
+  font-size: 1.1rem;
+}
+
+.color-box {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  border-radius: 12px;
   cursor: pointer;
-  color: #333;
+  border: 2px solid transparent;
 }
 
-.color-tool .copy-icon:hover {
-  color: #4b42d5;
-}
-
-.saved-colors h5 {
-  font-weight: 600;
-  margin-bottom: 16px;
+.color-box:hover {
+  border: 2px solid #333;
 }

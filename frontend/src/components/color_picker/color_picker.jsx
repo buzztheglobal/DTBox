@@ -1,100 +1,58 @@
-// src/components/color_picker/color_picker.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import './color_picker.css';
-import '../../../App.css';
-import { SketchPicker } from 'react-color';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { Tooltip, Button } from '@mui/material';
 
-const ColorPicker = () => {
-  const [selectedColor, setSelectedColor] = useState('#EDF25C');
-  const [savedColors, setSavedColors] = useState([]);
+const predefinedColors = [
+  { name: 'Lavender', hex: '#E6E6FA' },
+  { name: 'Mint', hex: '#98FF98' },
+  { name: 'Coral', hex: '#FF7F50' },
+  { name: 'Sky Blue', hex: '#87CEEB' },
+  { name: 'Sunset', hex: '#FFD580' }
+];
 
-  useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem('savedColors')) || [];
-    setSavedColors(saved);
-  }, []);
+function ColorPicker() {
+  const [selectedColor, setSelectedColor] = useState(null);
 
-  const saveColor = () => {
-    const newColor = {
-      hex: selectedColor,
-      savedAt: new Date().toISOString(),
-    };
-    const updated = [newColor, ...savedColors];
-    setSavedColors(updated);
-    localStorage.setItem('savedColors', JSON.stringify(updated));
-  };
+  const handleColorSelect = async (color) => {
+    setSelectedColor(color);
 
-  const deleteColor = (index) => {
-    const updated = savedColors.filter((_, i) => i !== index);
-    setSavedColors(updated);
-    localStorage.setItem('savedColors', JSON.stringify(updated));
-  };
-
-  const copyColor = (hex) => {
-    navigator.clipboard.writeText(hex);
-    alert(`Copied: ${hex}`);
+    try {
+      await axios.post('/api/logs', {
+        type: 'click',
+        category: 'color-picker',
+        search: color.name,
+        count: 1
+      });
+      console.log(`✅ Logged: ${color.name}`);
+    } catch (err) {
+      console.error('❌ Failed to log color selection', err);
+    }
   };
 
   return (
-    <div className="color-tool container mt-4">
-      <h3 className="text-center mb-3">🎨 Color Picker Tool</h3>
-      <div className="text-center">
-        <SketchPicker
-          color={selectedColor}
-          onChangeComplete={(color) => setSelectedColor(color.hex)}
-        />
-        <div className="color-preview mt-3 d-flex align-items-center justify-content-center gap-2">
-          <span>{selectedColor}</span>
-          <Tooltip title="Copy HEX">
-            <ContentCopyIcon onClick={() => copyColor(selectedColor)} className="copy-icon" />
-          </Tooltip>
-        </div>
-        <Button className="glassy-button mt-3" onClick={saveColor}>
-          Save to Favorites
-        </Button>
+    <div className="color-box" style={{ backgroundColor: color.toLowerCase() }}>
+      <h2>🎨 Pick a Color</h2>
+      <div className="color-options">
+        {predefinedColors.map((color) => (
+          <div
+            key={color.name}
+            className={`color-box ${selectedColor?.name === color.name ? 'selected' : ''}`}
+            style={{ backgroundColor: color.hex }}
+            title={color.name}
+            onClick={() => handleColorSelect(color)}
+          />
+        ))}
       </div>
 
-      {savedColors.length > 0 && (
-        <div className="saved-colors mt-5">
-          <h5>💾 Saved Colors</h5>
-          <div className="row mt-3">
-            {savedColors.map((color, index) => (
-              <div className="col-sm-6 col-md-4 col-lg-3 mb-4" key={index}>
-                <div className="card tool-card">
-                  <div
-                    className="card-img-top"
-                    style={{
-                      backgroundColor: color.hex,
-                      height: '100px',
-                      borderRadius: '1rem 1rem 0 0',
-                    }}
-                  />
-                  <div className="card-body text-center">
-                    <h6 className="card-title">{color.hex}</h6>
-                    <Button
-                      size="small"
-                      onClick={() => copyColor(color.hex)}
-                      className="me-2"
-                    >
-                      Copy
-                    </Button>
-                    <Button
-                      size="small"
-                      color="error"
-                      onClick={() => deleteColor(index)}
-                    >
-                      Delete
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+      {selectedColor && (
+        <div className="color-info">
+          <p>
+            <strong>Selected:</strong> {selectedColor.name} ({selectedColor.hex})
+          </p>
         </div>
       )}
     </div>
   );
-};
+}
 
 export default ColorPicker;

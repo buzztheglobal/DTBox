@@ -13,3 +13,17 @@ Persistent dark/light gradient chip variants in a theme file.
 // 4. Use this component inside your App.js or routing file
 // import AgeCalculator from './components/AgeCalculator';
 // Then use <AgeCalculator />
+
+- to implement selection
+1. save logs to a PostgreSQL table
+    - Awesome — let’s implement full logging to PostgreSQL from your React SPA via:
+
+- for log section #to be implemented
+Add filters/sort to fetch logs via GET /api/logs?
+Limit log growth (pagination or delete old entries)?
+Auto-create logs for errors using a React Error Boundary?
+
+--admin pages for  #to be implemented
+. GET /api/menuitems — get all items
+. POST /api/menuitems — add a new menu item
+. DELETE /api/menuitems/:id — delete a menu item
