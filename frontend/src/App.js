@@ -2,7 +2,8 @@
 import React, { useEffect } from "react";
 import { Routes, Route, useLocation, BrowserRouter as Router } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
-import ColorPickerPage from './pages/tools/ColorPickerPage';
+import { initGA, logPageView } from "./services/analytics";
+
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -10,7 +11,7 @@ import Signup from "./pages/Signup";
 import Navbar from "./components/Navbar";
 import AgeCalculatorPage from './pages/tools/AgeCalculatorPage';
 import BMI_Indicator from './pages/tools/BMI_Indicator';
-import { initGA, logPageView } from "./services/analytics";
+import ColorPickerPage from './pages/tools/ColorPickerPage';
  
 function App() {
   const location = useLocation();
@@ -34,7 +35,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/age-calculator" element={<AgeCalculatorPage />} />
         <Route path="/bmi-calculator" element={<BMI_Indicator />} />
-        <Route path="/tools/color-picker" element={<ColorPickerPage />} />
+        <Route path="/color-picker" element={<ColorPickerPage />} />
 
       </Routes>
     </>

@@ -40,4 +40,10 @@ const ColorPickerPage = () => {
   );
 };
 
+// const ColorPickerPage = () => {
+//   return <div>🎨 Color Picker Tool Coming Soon!</div>;
+// };
+
 export default ColorPickerPage;
+// This code defines a simple color picker page using React and Material-UI.
+// It includes a button for each color, and clicking a button logs the selected color to the

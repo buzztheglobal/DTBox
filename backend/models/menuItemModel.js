@@ -2,6 +2,7 @@
 
 const pool = require("../config/db");
 
+console.log("✅ menuItemModel.js IN");
 
 const createMenuItemsTable = async () => {
   try {
