@@ -45,16 +45,6 @@ git remote add origin https://github.com/buzztheglobal/DailyToolBox
 
 Phase 1: https://g.co/gemini/share/aa37a0914942
 
-
-# installs #
-pip install django
-pip install firebase-admin
-
-pip install djangorestframework
-pip install django-cors-headers
-pip install psycopg2-binary
-
-
 npm install react@18.2.0 react-dom@18.2.0
 npm install @mui/material@5.15.19 @mui/icons-material@5.15.18
 npm install @emotion/react@11.11.4 @emotion/styled@11.11.5
