@@ -97,10 +97,6 @@ const ColorPickerPanel = () => {
       <Box sx={{ display: 'flex', flexWrap: 'wrap', width: '100%', alignItems: 'stretch' }}>
         <Box sx={{ width: '50%', paddingRight: 1, display: 'flex', flexDirection: 'column' }}>
           <Typography variant="h6" gutterBottom>Color Picker</Typography>
-          <label htmlFor="upload-image" className="upload-label">
-            <UploadIcon sx={{ mr: 1 }} /> Upload Image
-          </label>
-          <input id="upload-image" type="file" accept="image/*" onChange={handleImageUpload} className="upload-input" />
           <div className="canvas-container">
             <canvas
               ref={canvasRef}
@@ -114,6 +110,10 @@ const ColorPickerPanel = () => {
               style={{ display: zoomColor ? 'block' : 'none' }}
             />
           </div>
+          <label htmlFor="upload-image" className="upload-label">
+            <UploadIcon sx={{ mr: 1 }} /> Upload Image
+          </label>
+          <input id="upload-image" type="file" accept="image/*" onChange={handleImageUpload} className="upload-input" />
         </Box>
         <Box sx={{ width: '50%', paddingLeft: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <ColorPreview color={color} sx={{ border: '1px solid #000000ff', borderRadius: '8px', p: 1 }} />

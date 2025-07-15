@@ -1,0 +1,51 @@
+/* Wrapper for the entire tool */
+.converter-wrapper {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #f5c7c7 0%, #c7c9f5 100%);
+    border-radius: 12px;
+    max-width: 100%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    margin-top: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #222;
+}
+
+/* Add hover effect like other tool cards */
+/* .converter-wrapper:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+} */
+
+/* Result output box */
+.result-box {
+    margin-top: 1.5rem;
+    background: linear-gradient(135deg, #f5c7c7 0%, #c7c9f5 100%);
+}
+
+/* Dark mode compatibility */
+.dark-mode .converter-wrapper {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    color: #ffffff;
+}
+
+.dark-mode .result-box input {
+    background-color: #2c2c2c;
+    color: #fff;
+    border: 1px solid #444;
+}
+
+/* Style the convert button like .tool-card button */
+.converter-wrapper button {
+    border-radius: 8px;
+    backdrop-filter: blur(6px);
+    background: linear-gradient(135deg, #780206, #061161);
+    color: #fff;
+    font-weight: 500;
+    text-transform: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.converter-wrapper button:hover {
+    background: linear-gradient(135deg, #780206, #061161);
+}
