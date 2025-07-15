@@ -27,3 +27,7 @@ Auto-create logs for errors using a React Error Boundary?
 . GET /api/menuitems — get all items
 . POST /api/menuitems — add a new menu item
 . DELETE /api/menuitems/:id — delete a menu item
+
+Add 404 page support (<Route path="*"...)?
+Add ScrollToTop behavior on route change?
+Convert to Layout pattern for shared Navbar/Footer?

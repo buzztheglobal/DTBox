@@ -1,43 +1,70 @@
-/* src/components/color_picker/color_picker.css */
 .color-picker-container {
-  padding: 2rem;
-  max-width: 900px;
-  margin: auto;
-  text-align: center;
-}
-
-.color-picker-canvas {
-  border: 2px dashed #ccc;
-  margin-top: 1rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f5c7c7 0%, #c7c9f5 100%);
+  border-radius: 12px;
   max-width: 100%;
-  max-height: 600px;
-  cursor: crosshair;
-}
-
-/* color_picker.css */
-.magnifier {
-  pointer-events: none;
-  position: absolute;
-  z-index: 1000;
-}
-
-canvas {
-  image-rendering: pixelated;
 }
 
 .canvas-container {
   position: relative;
-  max-width: 100%;
+  margin-top: 10px;
+  border: 1px solid #ddd;
   overflow: hidden;
+  max-width: 100%;
+
+  background: linear-gradient(135deg, #f5c7c7 0%, #c7c9f5 100%);
 }
 
 .magnifier {
   position: absolute;
-  width: 50px;
-  height: 50px;
+  width: 15px;
+  height: 15px;
   border: 2px solid #fff;
   border-radius: 50%;
   pointer-events: none;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+
+.color-title {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.tool-button {
+  border-radius: 8px;
+  backdrop-filter: blur(6px);
+  background: linear-gradient(135deg, #780206, #061161);
+  color: #fff;
+  font-weight: 500;
+  text-transform: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.tool-button:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+.upload-label {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 8px;
+  backdrop-filter: blur(6px);
+  background: linear-gradient(135deg, #780206, #061161);
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: none;
+  margin-bottom: 12px;
+}
+
+.upload-label:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+.upload-input {
   display: none;
 }

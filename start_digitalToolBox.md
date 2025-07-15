@@ -14,7 +14,7 @@ PS C:\Users\gupta\Documents\DailyToolbox> cd .\frontend\
 PS C:\Users\gupta\Documents\DailyToolbox\frontend> npm start
 
 # git REPO #
-git hub Repo:  https://github.com/buzztheglobal/DailyToolbox
+# git hub Repo:  https://github.com/buzztheglobal/DTBox.git
 # #
 -------------------
 ##Create a Virtual Environment#
@@ -36,12 +36,12 @@ PS C:\Users\gupta\Documents\DailyToolbox\frontend> npm run dev
 
 http://localhost:5173/
 
-# git commands # https://github.com/buzztheglobal/YourDailyToolBox
+# git commands # https://github.com/buzztheglobal/DTBox.git
 git add .
-git commit -m "dependencies installed"
+git commit -m "Advanced Color Picker"
 git push origin main
 
-git remote add origin https://github.com/buzztheglobal/DailyToolBox
+git remote add origin https://github.com/buzztheglobal/DTBox
 
 Phase 1: https://g.co/gemini/share/aa37a0914942
 

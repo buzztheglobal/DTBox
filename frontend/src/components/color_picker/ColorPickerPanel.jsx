@@ -1,6 +1,9 @@
+// src/components/color_picker/ColorPickerPanel.jsx
 import React, { useState, useRef, useEffect } from 'react';
-import { Box, Button, Typography, Grid, TextField } from '@mui/material';
-import ColorPreview, { hexToRgb, rgbToHsl } from './ColorPreview'; // Ensure correct import
+import { Box, Button, Typography, Grid, TextField, IconButton, Tooltip } from '@mui/material';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import UploadIcon from '@mui/icons-material/Upload';
+import ColorPreview, { hexToRgb, rgbToHsl } from './ColorPreview';
 import './color_picker.css';
 
 const ColorPickerPanel = () => {
@@ -8,7 +11,6 @@ const ColorPickerPanel = () => {
   const [zoomColor, setZoomColor] = useState(null);
   const [recentColors, setRecentColors] = useState([]);
   const canvasRef = useRef(null);
-  const imageRef = useRef(null);
   const magnifierRef = useRef(null);
 
   useEffect(() => {
@@ -20,7 +22,7 @@ const ColorPickerPanel = () => {
       canvas.height = 300;
       ctx.drawImage(img, 0, 0, 400, 300);
     };
-    img.src = '../../../public/color-palette.png'; // Replace with actual image upload logic
+    img.src = process.env.PUBLIC_URL + '/color-palette.png';
   }, []);
 
   const handleImageUpload = (event) => {
@@ -61,8 +63,8 @@ const ColorPickerPanel = () => {
       const hex = rgbToHex(pixel[0], pixel[1], pixel[2]);
       setZoomColor(hex);
       const magnifier = magnifierRef.current;
-      magnifier.style.left = `${event.clientX + 10}px`;
-      magnifier.style.top = `${event.clientY + 10}px`;
+      magnifier.style.left = `${event.clientX}px`;
+      magnifier.style.top = `${event.clientY}px`;
       magnifier.style.backgroundColor = hex;
     }
   };
@@ -78,61 +80,82 @@ const ColorPickerPanel = () => {
     });
   };
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(color);
+  const copyToClipboard = (value) => {
+    navigator.clipboard.writeText(value);
   };
 
-  // Fallback function to handle undefined hexToRgb/rgbToHsl
   const safeHexToRgb = hex => hexToRgb ? hexToRgb(hex) : { r: 0, g: 0, b: 0 };
   const safeRgbToHsl = (r, g, b) => rgbToHsl ? rgbToHsl(r, g, b) : { h: 0, s: 0, l: 0 };
+  const rgb = safeHexToRgb(color);
+  const hsl = safeRgbToHsl(rgb.r, rgb.g, rgb.b);
 
   return (
-    <Box sx={{ p: 2 }}>
-      <Typography variant="h4" gutterBottom>Advanced Color Picker</Typography>
-      {/* <Typography variant="h5" gutterBottom>Color Picker</Typography> */}
-      <input type="file" accept="image/*" onChange={handleImageUpload} style={{ marginBottom: '10px' }} />
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={8}>
+    <Box className="color-picker-container">
+      <Typography variant="h5" gutterBottom className="color-title">
+        🎨 Advanced Color Picker
+      </Typography>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', width: '100%', alignItems: 'stretch' }}>
+        <Box sx={{ width: '50%', paddingRight: 1, display: 'flex', flexDirection: 'column' }}>
+          <Typography variant="h6" gutterBottom>Color Picker</Typography>
+          <label htmlFor="upload-image" className="upload-label">
+            <UploadIcon sx={{ mr: 1 }} /> Upload Image
+          </label>
+          <input id="upload-image" type="file" accept="image/*" onChange={handleImageUpload} className="upload-input" />
+
           <div className="canvas-container">
             <canvas
               ref={canvasRef}
               onClick={handleCanvasClick}
               onMouseMove={handleMouseMove}
-              style={{ border: '1px solid #ccc', cursor: 'crosshair', maxWidth: '100%' }}
+              style={{ cursor: 'crosshair' }}
             />
             <div
               ref={magnifierRef}
-              style={{
-                position: 'absolute',
-                width: '50px',
-                height: '50px',
-                border: '2px solid #fff',
-                borderRadius: '50%',
-                pointerEvents: 'none',
-                display: zoomColor ? 'block' : 'none',
-                boxShadow: '0 0 10px rgba(0,0,0,0.5)',
-              }}
+              className="magnifier"
+              style={{ display: zoomColor ? 'block' : 'none' }}
             />
           </div>
-        </Grid>
-        <Grid item xs={12} md={4}>
+        </Box>
+
+        <Box sx={{ width: '50%', paddingLeft: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <ColorPreview color={color} />
-          <TextField label="HEX" value={color} fullWidth margin="normal" />
-          <TextField label="RGB" value={`${safeHexToRgb(color).r}, ${safeHexToRgb(color).g}, ${safeHexToRgb(color).b}`} fullWidth margin="normal" />
-          <TextField label="HSL" value={`${Math.round(safeRgbToHsl(safeHexToRgb(color).r, safeHexToRgb(color).g, safeHexToRgb(color).b).h)}, ${Math.round(safeRgbToHsl(safeHexToRgb(color).r, safeHexToRgb(color).g, safeHexToRgb(color).b).s)}%, ${Math.round(safeRgbToHsl(safeHexToRgb(color).r, safeHexToRgb(color).g, safeHexToRgb(color).b).l)}%`} fullWidth margin="normal" />
-          <Button variant="contained" color="success" onClick={copyToClipboard} fullWidth sx={{ mt: 2 }}>COPY HEX</Button>
-        </Grid>
-      </Grid>
-      <Box sx={{ mt: 2 }}>
-        <Typography variant="h6" gutterBottom>Recent Colors</Typography>
-        <Box sx={{ display: 'flex', gap: '10px' }}>
-          {recentColors.map((c, i) => (
-            <Box
-              key={i}
-              sx={{ width: '30px', height: '30px', backgroundColor: c, cursor: 'pointer' }}
-              onClick={() => setColor(c)}
-            />
+          {['HEX', 'RGB', 'HSL'].map((label) => (
+            <Box key={label} sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              <TextField
+                label={label}
+                value={
+                  label === 'HEX' ? color :
+                  label === 'RGB' ? `${rgb.r}, ${rgb.g}, ${rgb.b}` :
+                  `${Math.round(hsl.h)}, ${Math.round(hsl.s)}%, ${Math.round(hsl.l)}%`
+                }
+                fullWidth
+              />
+              <Tooltip title={`Copy ${label}`}><IconButton onClick={() => copyToClipboard(
+                label === 'HEX' ? color :
+                label === 'RGB' ? `${rgb.r}, ${rgb.g}, ${rgb.b}` :
+                `${Math.round(hsl.h)}, ${Math.round(hsl.s)}%, ${Math.round(hsl.l)}%`
+              )}><ContentCopyIcon /></IconButton></Tooltip>
+            </Box>
           ))}
+
+          <Button variant="contained" color="success" onClick={() => copyToClipboard(color)} fullWidth>
+            COPY HEX
+          </Button>
+
+          <Box sx={{ mt: 3 }}>
+            <Typography variant="subtitle1" gutterBottom>
+              Recent Colors
+            </Typography>
+            <Box sx={{ display: 'flex', gap: '8px' }}>
+              {recentColors.map((c, i) => (
+                <Box
+                  key={i}
+                  sx={{ width: '30px', height: '30px', backgroundColor: c, cursor: 'pointer', border: '1px solid #ccc' }}
+                  onClick={() => setColor(c)}
+                />
+              ))}
+            </Box>
+          </Box>
         </Box>
       </Box>
     </Box>
@@ -140,3 +163,4 @@ const ColorPickerPanel = () => {
 };
 
 export default ColorPickerPanel;
+// src/components/color_picker/ColorPickerPanel.jsx
