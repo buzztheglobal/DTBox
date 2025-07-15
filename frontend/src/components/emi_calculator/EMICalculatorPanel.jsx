@@ -1,6 +1,6 @@
 // src/components/emi_calculator/EMICalculatorPanel.jsx
 import React, { useState, useEffect } from 'react';
-import { Box, TextField, MenuItem, Typography, Slider, ToggleButton, ToggleButtonGroup, Button } from '@mui/material';
+import { Box, TextField, Typography, Slider, ToggleButton, ToggleButtonGroup, Button, Stack, Fade } from '@mui/material';
 import EMIResultCard from './EMIResultCard';
 import './emi_calculator.css';
 
@@ -44,6 +44,17 @@ const EMICalculatorPanel = () => {
     }
   }, [loanAmount, interestRate, tenure, tenureUnit, showResult]);
 
+  const handleReset = () => {
+    setShowResult(false);
+    setTimeout(() => {
+      setLoanAmount(2500000);
+      setInterestRate(6.75);
+      setTenure(10);
+      setTenureUnit('years');
+      setResult(null);
+    }, 300);
+  };
+
   return (
     <Box sx={{ display: 'flex', flexDirection: 'row', width: '100%', flexWrap: 'wrap' }}>
       <Box sx={{ flex: 1, minWidth: '300px', padding: '2rem' }}>
@@ -67,8 +78,8 @@ const EMICalculatorPanel = () => {
           onChange={handleUnitChange}
           sx={{ my: 2 }}
         >
-          <ToggleButton className="emi-button" value="years">Years</ToggleButton>
-          <ToggleButton className="emi-button" value="months">Months</ToggleButton>
+          <ToggleButton value="years">Yr</ToggleButton>
+          <ToggleButton value="months">Mo</ToggleButton>
         </ToggleButtonGroup>
 
         <TextField
@@ -89,18 +100,32 @@ const EMICalculatorPanel = () => {
           onChange={(e) => setInterestRate(Number(e.target.value))}
         />
 
-        <Button
-          variant="contained"
-          fullWidth
-          className="emi-button"
-          sx={{ mt: 3 }}
-          onClick={() => setShowResult(true)}
-        >
-          Calculate
-        </Button>
+        <Stack direction="row" spacing={2} sx={{ mt: 3 }}>
+          <Button
+            variant="contained"
+            fullWidth
+            className="glassy-button"
+            onClick={() => setShowResult(true)}
+          >
+            Calculate
+          </Button>
+
+          <Button
+            variant="outlined"
+            fullWidth
+            color="secondary"
+            onClick={handleReset}
+          >
+            Reset
+          </Button>
+        </Stack>
       </Box>
 
-      {showResult && result && <EMIResultCard result={result} />}
+      <Fade in={showResult} timeout={400} unmountOnExit>
+        <Box sx={{ flex: 1, minWidth: '300px' }}>
+          {result && <EMIResultCard result={result} />}
+        </Box>
+      </Fade>
     </Box>
   );
 };
