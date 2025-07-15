@@ -13,3 +13,31 @@
   max-height: 600px;
   cursor: crosshair;
 }
+
+/* color_picker.css */
+.magnifier {
+  pointer-events: none;
+  position: absolute;
+  z-index: 1000;
+}
+
+canvas {
+  image-rendering: pixelated;
+}
+
+.canvas-container {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.magnifier {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  display: none;
+}

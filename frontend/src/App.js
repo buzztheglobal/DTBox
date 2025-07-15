@@ -1,9 +1,8 @@
 // src/App.js
 import React, { useEffect } from "react";
-import { Routes, Route, useLocation, BrowserRouter as Router } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
 import { initGA, logPageView } from "./services/analytics";
-
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -12,7 +11,7 @@ import Navbar from "./components/Navbar";
 import AgeCalculatorPage from './pages/tools/AgeCalculatorPage';
 import BMI_Indicator from './pages/tools/BMI_Indicator';
 import ColorPickerPage from './pages/tools/ColorPickerPage';
- 
+
 function App() {
   const location = useLocation();
 
@@ -36,10 +35,12 @@ function App() {
         <Route path="/age-calculator" element={<AgeCalculatorPage />} />
         <Route path="/bmi-calculator" element={<BMI_Indicator />} />
         <Route path="/color-picker" element={<ColorPickerPage />} />
-
       </Routes>
     </>
   );
 }
 
 export default App;
+
+// src/App.js
+// This file sets up the main application structure, including routing and analytics initialization.
