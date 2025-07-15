@@ -46,25 +46,25 @@
   transform: scale(1.02);
 }
 
+.upload-input {
+  display: none;
+}
+
 .upload-label {
-  display: inline-block;
-  padding: 10px 20px;
-  border-radius: 8px;
-  backdrop-filter: blur(6px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  margin-bottom: 12px;
   background: linear-gradient(135deg, #780206, #061161);
-  color: white;
+  color: #fff;
+  border-radius: 8px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
-  text-transform: none;
-  margin-bottom: 12px;
 }
 
 .upload-label:hover {
   opacity: 0.9;
   transform: scale(1.02);
-}
-
-.upload-input {
-  display: none;
 }

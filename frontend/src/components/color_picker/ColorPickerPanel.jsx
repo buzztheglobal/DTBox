@@ -101,7 +101,6 @@ const ColorPickerPanel = () => {
             <UploadIcon sx={{ mr: 1 }} /> Upload Image
           </label>
           <input id="upload-image" type="file" accept="image/*" onChange={handleImageUpload} className="upload-input" />
-
           <div className="canvas-container">
             <canvas
               ref={canvasRef}
@@ -116,9 +115,8 @@ const ColorPickerPanel = () => {
             />
           </div>
         </Box>
-
         <Box sx={{ width: '50%', paddingLeft: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-          <ColorPreview color={color} sx={{ border: '1px solid #061161', borderRadius: '8px', p: 1 }} />
+          <ColorPreview color={color} sx={{ border: '1px solid #000000ff', borderRadius: '8px', p: 1 }} />
           {['HEX', 'RGB', 'HSL'].map((label) => (
             <Box key={label} sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <TextField
@@ -138,7 +136,7 @@ const ColorPickerPanel = () => {
             </Box>
           ))}
 
-          <Button variant="contained" color="success" onClick={() => copyToClipboard(color)} fullWidth>
+          <Button variant="contained" className="tool-button" sx={{ color: '#fff' }} onClick={() => copyToClipboard(color)} fullWidth>
             COPY HEX
           </Button>
 
@@ -163,3 +161,4 @@ const ColorPickerPanel = () => {
 };
 
 export default ColorPickerPanel;
+// src/styles/globalStyles.js
