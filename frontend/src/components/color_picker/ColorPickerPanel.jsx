@@ -118,7 +118,7 @@ const ColorPickerPanel = () => {
         </Box>
 
         <Box sx={{ width: '50%', paddingLeft: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-          <ColorPreview color={color} />
+          <ColorPreview color={color} sx={{ border: '1px solid #061161', borderRadius: '8px', p: 1 }} />
           {['HEX', 'RGB', 'HSL'].map((label) => (
             <Box key={label} sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <TextField
@@ -163,4 +163,3 @@ const ColorPickerPanel = () => {
 };
 
 export default ColorPickerPanel;
-// src/components/color_picker/ColorPickerPanel.jsx
