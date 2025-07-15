@@ -31,7 +31,6 @@
 .emi-result {
   padding: 1rem;
   background: linear-gradient(135deg, #f5c7c7 0%, #c7c9f5 100%);
-  border-radius: 10px;
   margin-top: 1rem;
 }
 
@@ -40,7 +39,7 @@
   margin-bottom: 8px;
 }
 
-.tool-button {
+.emi-button {
     border-radius: 8px;
     backdrop-filter: blur(6px);
     background: linear-gradient(135deg, #780206, #061161);

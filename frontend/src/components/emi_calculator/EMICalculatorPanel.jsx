@@ -1,5 +1,5 @@
 // src/components/emi_calculator/EMICalculatorPanel.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, TextField, MenuItem, Typography, Slider, ToggleButton, ToggleButtonGroup, Button } from '@mui/material';
 import EMIResultCard from './EMIResultCard';
 import './emi_calculator.css';
@@ -11,6 +11,7 @@ const EMICalculatorPanel = () => {
   const [tenure, setTenure] = useState(10); // default in years
   const [tenureUnit, setTenureUnit] = useState('years');
   const [showResult, setShowResult] = useState(false);
+  const [result, setResult] = useState(null);
 
   const handleUnitChange = (event, newUnit) => {
     if (newUnit !== null) setTenureUnit(newUnit);
@@ -36,7 +37,12 @@ const EMICalculatorPanel = () => {
     };
   };
 
-  const result = showResult ? calculateEMI() : null;
+  useEffect(() => {
+    if (showResult) {
+      const calc = calculateEMI();
+      setResult(calc);
+    }
+  }, [loanAmount, interestRate, tenure, tenureUnit, showResult]);
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'row', width: '100%', flexWrap: 'wrap' }}>
@@ -61,8 +67,8 @@ const EMICalculatorPanel = () => {
           onChange={handleUnitChange}
           sx={{ my: 2 }}
         >
-          <ToggleButton className="tool-button" value="years">Year</ToggleButton>
-          <ToggleButton className="tool-button" value="months">Months</ToggleButton>
+          <ToggleButton className="emi-button" value="years">Years</ToggleButton>
+          <ToggleButton className="emi-button" value="months">Months</ToggleButton>
         </ToggleButtonGroup>
 
         <TextField
@@ -86,7 +92,7 @@ const EMICalculatorPanel = () => {
         <Button
           variant="contained"
           fullWidth
-          className="tool-button"
+          className="emi-button"
           sx={{ mt: 3 }}
           onClick={() => setShowResult(true)}
         >
@@ -94,7 +100,7 @@ const EMICalculatorPanel = () => {
         </Button>
       </Box>
 
-      {showResult && <EMIResultCard result={result} />}
+      {showResult && result && <EMIResultCard result={result} />}
     </Box>
   );
 };
