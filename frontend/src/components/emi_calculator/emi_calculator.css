@@ -1,0 +1,51 @@
+/* emi_calculator.css */
+.emi-panel {
+  padding: 2rem;
+  background: linear-gradient(135deg, #f5c7c7 0%, #c7c9f5 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+}
+
+.emi-header {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    font-family: 'Inter', sans-serif;
+    color: #222;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.emi-card {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed #eee;
+    font-size: 1rem;
+    color: #000000;
+}
+
+.emi-result {
+  padding: 1rem;
+  background: linear-gradient(135deg, #f5c7c7 0%, #c7c9f5 100%);
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+
+.emi-label {
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.tool-button {
+    border-radius: 8px;
+    backdrop-filter: blur(6px);
+    background: linear-gradient(135deg, #780206, #061161);
+    color: #fff;
+    font-weight: 500;
+    text-transform: none;
+    transition: all 0.2s ease-in-out;
+}

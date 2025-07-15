@@ -38,7 +38,7 @@ http://localhost:5173/
 
 # git commands # https://github.com/buzztheglobal/DTBox.git
 git add .
-git commit -m "Advanced Color Picker"
+git commit -m "EMI Calculator Page"
 git push origin main
 
 git remote add origin https://github.com/buzztheglobal/DTBox
@@ -56,3 +56,4 @@ Remove-Item -Force .\package-lock.json
 
 npm cache clean --force
 npm ls react
+npm install chart.js react-chartjs-2

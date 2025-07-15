@@ -13,7 +13,7 @@ import AgeCalculatorPage from './pages/tools/AgeCalculatorPage';
 import BMI_Indicator from './pages/tools/BMI_Indicator';
 import ColorPickerPage from './pages/tools/ColorPickerPage';
 import DataStorageConverterPage from './pages/tools/DataStorageConverterPage';
-
+import EMICalculatorPage from './pages/tools/EMICalculatorPage';
 function App() {
   const location = useLocation();
 
@@ -39,6 +39,8 @@ function App() {
           <Route path="/bmi-calculator" element={<BMI_Indicator />} />
           <Route path="/color-picker" element={<ColorPickerPage />} />
           <Route path="/data-storage-converter" element={<DataStorageConverterPage />} />
+          <Route path="/emi-calculator" element={<EMICalculatorPage />} />
+          {/* Add more routes as needed */}
         </Routes>
       </ErrorBoundary>
     </>

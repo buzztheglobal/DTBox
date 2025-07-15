@@ -31,3 +31,15 @@ Auto-create logs for errors using a React Error Boundary?
 Add 404 page support (<Route path="*"...)?
 Add ScrollToTop behavior on route change?
 Convert to Layout pattern for shared Navbar/Footer?
+
+for color picker
+https://htmlcolorcodes.com/color-chart/ 
+1. add 
+. Flat Design Color Chart
+. Material Design Color Chart
+. Web Safe Color Chart
+
+for EMI Calculator
+. A Pie chart visualization (Principal vs Interest)?
+. Copy-to-clipboard or PDF download of EMI results?
+. Prepayment simulation?
