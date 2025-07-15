@@ -116,7 +116,7 @@ const ColorPickerPanel = () => {
           <input id="upload-image" type="file" accept="image/*" onChange={handleImageUpload} className="upload-input" />
         </Box>
         <Box sx={{ width: '50%', paddingLeft: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-          <ColorPreview color={color} sx={{ border: '1px solid #000000ff', borderRadius: '8px', p: 1 }} />
+          <ColorPreview color={color} sx={{ border: '1px solid #000000', borderRadius: '8px', p: 1 }} />
           {['HEX', 'RGB', 'HSL'].map((label) => (
             <Box key={label} sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <TextField
