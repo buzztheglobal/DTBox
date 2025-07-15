@@ -78,7 +78,7 @@ const EMICalculatorPanel = () => {
           onChange={handleUnitChange}
           sx={{ my: 2 }}
         >
-          <ToggleButton value="years">Yr</ToggleButton>
+          <ToggleButton value="years">Years</ToggleButton>
           <ToggleButton value="months">Mo</ToggleButton>
         </ToggleButtonGroup>
 
