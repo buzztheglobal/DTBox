@@ -1,19 +1,37 @@
-import React, { useState } from 'react';
-import { Grid, Typography, TextField, Card, Button } from '@mui/material';
+// Filename: src/components/unit_converter/UnitConverter.jsx
+
+import React, { useState, useMemo } from 'react';
+import {
+  Typography, Grid, Card, TextField, Button, useTheme
+} from '@mui/material';
 import UnitSelect from './UnitSelect';
-import { cardBoxStyle, pageTitleStyle, toolButtonStyle } from '../../styles/globalStyles';
+import UnitGroupFilter from './UnitGroupFilter';
 import {
   getCategories,
   getUnitsForCategory,
   convertValue,
+  categoryGroupMap
 } from './unitConversionUtils';
+import {
+  cardBoxStyle,
+  pageTitleStyle,
+  toolButtonStyle,
+} from '../../styles/globalStyles';
 
 const UnitConverter = () => {
-  const [category, setCategory] = useState('Length');
-  const [fromUnit, setFromUnit] = useState('meter');
-  const [toUnit, setToUnit] = useState('kilometer');
+  const theme = useTheme();
+  const themeMode = theme.palette.mode || 'light';
+
+  const [unitGroup, setUnitGroup] = useState('Metric');
+  const filteredCategories = categoryGroupMap[unitGroup];
+
+  const [category, setCategory] = useState(filteredCategories[0]);
+  const [fromUnit, setFromUnit] = useState(getUnitsForCategory(category)[0]);
+  const [toUnit, setToUnit] = useState(getUnitsForCategory(category)[1]);
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
+
+  const unitOptions = useMemo(() => getUnitsForCategory(category), [category]);
 
   const handleConvert = () => {
     setOutput(convertValue(category, fromUnit, toUnit, input));
@@ -24,26 +42,44 @@ const UnitConverter = () => {
     setOutput('');
   };
 
-  const categories = getCategories();
-  const unitOptions = getUnitsForCategory(category);
+  const handleGroupChange = (group) => {
+    const firstCategory = categoryGroupMap[group][0];
+    const firstUnits = getUnitsForCategory(firstCategory);
+    setUnitGroup(group);
+    setCategory(firstCategory);
+    setFromUnit(firstUnits[0]);
+    setToUnit(firstUnits[1] || firstUnits[0]);
+    setInput('');
+    setOutput('');
+  };
 
   return (
     <Card sx={cardBoxStyle}>
       <Typography variant="h5" sx={pageTitleStyle}>
         Unit Converter
       </Typography>
+
+      <UnitGroupFilter
+        selectedGroup={unitGroup}
+        onChange={handleGroupChange}
+        themeMode={themeMode}
+      />
+
       <UnitSelect
         label="Category"
-        units={categories}
+        units={filteredCategories}
         selectedUnit={category}
         onChange={(e) => {
           const selected = e.target.value;
-          setCategory(selected);
           const units = getUnitsForCategory(selected);
+          setCategory(selected);
           setFromUnit(units[0]);
           setToUnit(units[1] || units[0]);
+          setInput('');
+          setOutput('');
         }}
       />
+
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <UnitSelect
@@ -61,6 +97,7 @@ const UnitConverter = () => {
             type="number"
           />
         </Grid>
+
         <Grid item xs={12} md={6}>
           <UnitSelect
             label="To"
@@ -77,6 +114,7 @@ const UnitConverter = () => {
           />
         </Grid>
       </Grid>
+
       <Grid container spacing={2} sx={{ mt: 2 }}>
         <Grid item>
           <Button onClick={handleConvert} sx={toolButtonStyle}>
