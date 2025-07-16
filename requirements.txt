@@ -1,259 +1,34 @@
-implement the business functionality for JSON formatters are tools that take raw JSON data and format it into a human-readable structure, often with proper indentation and line breaks. Below, I’ll outline various combinations of features, settings, and approaches commonly found in JSON formatters, along with their purposes. These combinations cater to different use cases, such as debugging, editing, or sharing JSON data.
+implement the business functionality A Pregnancy Due Date Calculator is a tool designed to estimate the expected delivery date for a pregnant woman based on key input data. Below is a list of business functionalities for such a calculator, covering its core features, user interaction, and potential integrations:
 
-Combinations for JSON Formatter Features and Settings
-Basic Formatting (Indentation and Line Breaks)
-Purpose: Converts minified or unformatted JSON into a readable structure.
-Settings:
-Indentation: 2 spaces, 4 spaces, or tabs.
-Line breaks: Added after each object/array element.
-Example Input:
-json
-
-Collapse
-
-Wrap
-
-Copy
-{"name":"John","age":30,"city":"New York"}
-Example Output (2-space indent):
-json
-
-Collapse
-
-Wrap
-
-Copy
-{
-  "name": "John",
-  "age": 30,
-  "city": "New York"
-}
-Use Case: Developers debugging JSON responses from APIs.
-Minification (Remove Whitespace)
-Purpose: Compresses JSON by removing all unnecessary whitespace for storage or transmission.
-Settings:
-Remove all spaces, tabs, and line breaks.
-Example Input:
-json
-
-Collapse
-
-Wrap
-
-Copy
-{
-  "name": "John",
-  "age": 30,
-  "city": "New York"
-}
-Example Output:
-json
-
-Collapse
-
-Wrap
-
-Copy
-{"name":"John","age":30,"city":"New York"}
-Use Case: Reducing file size for API payloads or storage.
-Syntax Highlighting
-Purpose: Color-codes JSON elements (keys, values, strings, numbers, etc.) for better readability.
-Settings:
-Colors for keys, strings, numbers, booleans, and null values.
-Customizable themes (light, dark, or high-contrast).
-Example:
-Keys in blue, strings in green, numbers in purple, booleans in red.
-Use Case: Developers reading complex JSON in editors or online tools.
-Error Detection and Validation
-Purpose: Identifies syntax errors in JSON and highlights them.
-Settings:
-Show error messages with line numbers.
-Highlight invalid sections (e.g., missing commas or brackets).
-Example Input with Error:
-json
-
-Collapse
-
-Wrap
-
-Copy
-{
-  "name": "John"
-  "age": 30
-}
-Output: Error message: "Missing comma before 'age' on line 2."
-Use Case: Debugging malformed JSON during development.
-Tree View or Collapsible Structure
-Purpose: Displays JSON as an interactive tree for navigating nested objects/arrays.
-Settings:
-Expand/collapse nodes.
-Show data types (e.g., object, array, string).
-Example:
-JSON: {"user":{"name":"John","details":{"age":30}}}
-Tree View:
-text
-
-Collapse
-
-Wrap
-
-Copy
-- user (Object)
-  - name: "John" (String)
-  - details (Object)
-    - age: 30 (Number)
-Use Case: Exploring large, nested JSON datasets.
-Sorting Keys
-Purpose: Alphabetically sorts JSON keys for consistency.
-Settings:
-Enable/disable key sorting.
-Recursive sorting for nested objects.
-Example Input:
-json
-
-Collapse
-
-Wrap
-
-Copy
-{"city":"New York","name":"John","age":30}
-Example Output:
-json
-
-Collapse
-
-Wrap
-
-Copy
-{
-  "age": 30,
-  "city": "New York",
-  "name": "John"
-}
-Use Case: Standardizing JSON for comparison or documentation.
-Custom Indentation Levels
-Purpose: Allows users to specify indentation size for formatting.
-Settings:
-Options: 2 spaces, 4 spaces, 8 spaces, tabs, or custom (e.g., 3 spaces).
-Example (4-space indent):
-json
-
-Collapse
-
-Wrap
-
-Copy
-{
-    "name": "John",
-    "age": 30
-}
-Use Case: Matching team or project-specific formatting standards.
-Copy to Clipboard
-Purpose: Easily copy formatted or minified JSON.
-Settings:
-Copy as formatted JSON or minified JSON.
-Include/exclude formatting metadata.
-Use Case: Sharing JSON snippets in emails or code reviews.
-File Input/Output
-Purpose: Import JSON from files and export formatted JSON.
-Settings:
-Supported formats: .json, .txt.
-Export options: Save as .json file or copy to clipboard.
-Use Case: Working with large JSON files offline.
-Pretty Print with Custom Delimiters
-Purpose: Customize delimiters or formatting style for specific use cases.
-Settings:
-Use custom brackets or separators (e.g., | instead of ,).
-Add trailing commas (where valid in some parsers).
-Example:
-Input: {"name":"John","age":30}
-Output with trailing commas:
-json
-
-Collapse
-
-Wrap
-
-Copy
-{
-  "name": "John",
-  "age": 30,
-}
-Use Case: Compatibility with specific JSON parsers or legacy systems.
-Integration with Editors/APIs
-Purpose: Use JSON formatter within code editors or via API for automation.
-Settings:
-Plugins for VS Code, Sublime Text, or IntelliJ.
-API endpoints for formatting (e.g., POST raw JSON, receive formatted JSON).
-Use Case: Automating JSON formatting in CI/CD pipelines or IDEs.
-Escape/Unescape Special Characters
-Purpose: Handle special characters (e.g., quotes, backslashes) in JSON strings.
-Settings:
-Escape: Convert " to \".
-Unescape: Convert \" to ".
-Example:
-Input: {"text":"Line\nBreak"}
-Escaped Output: {"text":"Line\\nBreak"}
-Use Case: Preparing JSON for specific environments or parsers.
-Theme Customization
-Purpose: Adjust the visual style of the formatter interface.
-Settings:
-Light, dark, or custom themes.
-Font size and family adjustments.
-Use Case: Improving accessibility or user preference in tools.
-Comparison Mode
-Purpose: Compare two JSON objects for differences.
-Settings:
-Highlight added, removed, or changed keys/values.
-Side-by-side or inline diff view.
-Example:
-JSON 1: {"name":"John","age":30}
-JSON 2: {"name":"John","age":31}
-Output: Highlight age changed from 30 to 31.
-Use Case: Debugging API changes or version control.
-Online vs. Offline Mode
-Purpose: Use formatter in different environments.
-Settings:
-Online: Web-based tools (e.g., jsonformatter.org).
-Offline: Local tools or CLI (e.g., jq or Python’s json module).
-Use Case: Working in environments with/without internet access.
-Popular JSON Formatter Tools
-Here are some tools that implement various combinations of the above features:
-
-Online Tools:
-JSON Formatter & Validator (jsonformatter.org): Formatting, validation, tree view, and minification.
-JSONLint: Validation and basic formatting.
-JSON Pretty Print (jsonprettyprint.com): Simple formatting and syntax highlighting.
-CLI Tools:
-jq: Powerful for formatting, filtering, and transforming JSON.
-Python json.tool: Built-in module for formatting JSON via command line.
-bash
-
-Collapse
-
-Wrap
-
-Run
-
-Copy
-echo '{"name":"John","age":30}' | python -m json.tool
-Editor Plugins:
-VS Code: Built-in JSON formatting or extensions like “Prettier”.
-Sublime Text: Plugins like “Pretty JSON”.
-Example Workflow
-Input Raw JSON: Paste unformatted JSON into a tool.
-Validate: Check for syntax errors.
-Format: Apply 2-space indentation and syntax highlighting.
-Explore: Use tree view to navigate nested data.
-Export: Copy formatted JSON or save as a file.
-Notes
-Most formatters support a subset of these features, so choose based on your needs (e.g., simple formatting vs. advanced validation).
-For automation, CLI tools like jq or APIs are ideal.
-If you need specific recommendations or help with a particular JSON formatter tool, let me know, and I can provide tailored guidance or analyze a tool’s features via web search or X posts if needed.
-
-folder structure to be followed.
-
-http://localhost:3000/text-case-converter
+Input Collection:
+Allow users to input the first day of their last menstrual period (LMP) or the date of conception.
+Provide an option to select the average length of the menstrual cycle (e.g., 28 days, adjustable for variations).
+Include fields for additional details, such as ovulation date, if known, for higher accuracy.
+Due Date Calculation:
+Calculate the estimated due date (EDD) using standard medical formulas (e.g., Naegele’s Rule: LMP + 280 days, adjusted for cycle length).
+Provide the estimated conception date, gestational age, and trimester milestones.
+Account for variations in cycle length or irregular periods to refine the estimate.
+Result Display:
+Show the estimated due date prominently, along with the current gestational week and trimester.
+Provide a timeline or calendar view highlighting key pregnancy milestones (e.g., end of first trimester, viability, full-term).
+Display the remaining weeks/days until the due date.
+Personalization:
+Allow users to save their due date for future reference (e.g., via account creation or local storage).
+Offer customization options, such as notifications for upcoming milestones or checkups.
+Support multiple languages and regional date formats for broader accessibility.
+Educational Content:
+Provide information on what to expect at different stages of pregnancy (e.g., fetal development, maternal changes).
+Include tips for prenatal care, nutrition, and health based on the current gestational week.
+Link to credible resources or articles for further reading.
+User Interface and Experience:
+Ensure a simple, intuitive interface with clear input fields and minimal steps to get results.
+Optimize for mobile and desktop use, with responsive design.
+Include visual aids like progress bars or fetal development images to enhance engagement.
+Additional Features:
+Offer a printable report summarizing the due date, gestational age, and key milestones.
+Provide a countdown feature to track days/weeks remaining until the due date.
+Include a “share” option to send results via email or social media (e.g., for expectant parents to share with family).
+sample: http://localhost:3000/json-formatter
 
 frontend/
 └── src/
@@ -273,8 +48,15 @@ generate complete code files using tech stack mentioned above, and make sure cod
 . Example Passwords for Common Combinations
 . Notes
 
+using 
+1. React.js (v18+), Bootstrap 5.3, Material-UI (MUI v5+)
+2. Node.js (v20.19.3) + Express (future)
+3. PostgreSQL + pgAdmin; app.css to be used is attached for reference. 
+
+Frontend: React.js (v18+), Bootstrap 5.3, Material-UI (v5+)
+Backend: Node.js (v20.19.3) + Express (for future use)
+Database: PostgreSQL + pgAdmin
 
 refer attached app.css, and globalStyles.js to create and use css
 
-
- localhost URL: http://localhost:3000/text-case-converter
+localhost URL: http://localhost:3000/Pregnancy-Due-Date-Calculator

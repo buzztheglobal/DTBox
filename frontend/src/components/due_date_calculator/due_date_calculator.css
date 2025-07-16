@@ -1,0 +1,66 @@
+/* due_date_calculator.css */
+
+/* Container for the calculator */
+.pregnancy-calculator-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Heading styles */
+.pregnancy-calculator-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #061161;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Form field spacing */
+.pregnancy-form-field {
+  margin-bottom: 1.2rem;
+}
+
+/* Result box */
+.pregnancy-result-box {
+  background-color: #e3f2fd;
+  border-left: 5px solid #1976d2;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-top: 2rem;
+}
+
+/* Result text */
+.pregnancy-result-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+/* Button */
+.pregnancy-submit-btn {
+  background-color: #1976d2;
+  color: #ffffff;
+  padding: 0.75rem;
+  font-weight: bold;
+  border-radius: 8px;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.pregnancy-submit-btn:hover {
+  background-color: #145ea8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .pregnancy-calculator-container {
+    padding: 1rem;
+  }
+
+  .pregnancy-calculator-title {
+    font-size: 1.5rem;
+  }
+}

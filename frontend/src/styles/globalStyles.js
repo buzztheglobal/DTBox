@@ -87,3 +87,23 @@ export const chipStyle = {
   m: 0.5,
   fontSize: "0.85rem",
 };
+
+// Filename: globalStyles.js
+export const formBoxStyle = {
+  p: 2,
+  border: '1px solid #ccc',
+  borderRadius: 2,
+  backgroundColor: '#f9f9f9',
+  mb: 3,
+};
+
+export const formFieldStyle = {
+  mb: 2,
+};
+
+export const resultBoxStyle = {
+  p: 2,
+  border: '2px dashed #1976d2',
+  borderRadius: 2,
+  backgroundColor: '#e3f2fd',
+};

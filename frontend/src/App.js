@@ -17,7 +17,7 @@ import EMICalculatorPage from './pages/tools/EMICalculatorPage';
 import PasswordInfoPage from './pages/tools/PasswordInfoPage';
 import JSONFormatterPage from "./pages/tools/JSONFormatterPage";
 import UnitConverterPage from './pages/tools/UnitConverterPage';
-
+import PregnancyDueDateCalculatorPage from './pages/tools/PregnancyDueDateCalculatorPage';
 function App() {
   const location = useLocation();
 
@@ -49,6 +49,8 @@ function App() {
           <Route path="/password-generator" element={<PasswordInfoPage />} />
           <Route path="/json-formatter" element={<JSONFormatterPage />} />
           <Route path="/unit-converter" element={<UnitConverterPage />} />
+          <Route path="/Pregnancy-Due-Date-Calculator" element={<PregnancyDueDateCalculatorPage />} />
+
           {/* Add more routes as needed */}
         </Routes>
       </ErrorBoundary>
