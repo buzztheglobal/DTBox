@@ -41,9 +41,9 @@ INSERT INTO public.menu_menuitem (
     video_url
 )
 VALUES (
-    28,                             -- id
-    '/RD-Calculator',          -- url
-    27,                             -- "order"
+    29,                             -- id
+    '/Pregnancy-Due-Date-Calculator',          -- url
+    28,                             -- "order"
     TRUE,                          -- is_active
     'public',                      -- access_level
     NULL,                          -- analytics_data
@@ -81,11 +81,11 @@ VALUES (
     1,                             -- published_by_id
     NULL,                          -- scheduled_at
     NULL,                          -- scheduled_by_id
-    'Use our RD calculator to quickly estimate your recurring deposit maturity value. Find out how much your savings can grow in just minutes.',      -- seo_description
-    'Recurring Deposit Calculator',            -- seo_title
+    'Estimate your baby''s due date with our Pregnancy Due Date Calculator. ',      -- seo_description
+    'Pregnancy Due Date Calculator',            -- seo_title
     '_blank',                      -- target
-    'Recurring Deposit Calculator',            -- title
-    'Finance',                 -- tool_domain
+    'Pregnancy Due Date Calculator',            -- title
+    'Health',                 -- tool_domain
     CURRENT_TIMESTAMP,             -- updated_at
     1,                             -- updated_by_id
     NULL                           -- video_url
