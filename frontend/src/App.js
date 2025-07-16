@@ -15,7 +15,8 @@ import ColorPickerPage from './pages/tools/ColorPickerPage';
 import DataStorageConverterPage from './pages/tools/DataStorageConverterPage';
 import EMICalculatorPage from './pages/tools/EMICalculatorPage';
 import PasswordInfoPage from './pages/tools/PasswordInfoPage';
-import JSONFormatterPage from "./pages/tools/JSONFormatterPage";  
+import JSONFormatterPage from "./pages/tools/JSONFormatterPage";
+import UnitConverterPage from './pages/tools/UnitConverterPage';
 
 function App() {
   const location = useLocation();
@@ -46,7 +47,8 @@ function App() {
           <Route path="/data-storage-converter" element={<DataStorageConverterPage />} />
           <Route path="/emi-calculator" element={<EMICalculatorPage />} />
           <Route path="/password-generator" element={<PasswordInfoPage />} />
-           <Route path="/json-formatter" element={<JSONFormatterPage />} />
+          <Route path="/json-formatter" element={<JSONFormatterPage />} />
+          <Route path="/unit-converter" element={<UnitConverterPage />} />
           {/* Add more routes as needed */}
         </Routes>
       </ErrorBoundary>
