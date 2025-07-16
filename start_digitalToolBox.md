@@ -56,4 +56,4 @@ Remove-Item -Force .\package-lock.json
 
 npm cache clean --force
 npm ls react
-npm install chart.js react-chartjs-2
+npm install chart.js react-chartjs-2 

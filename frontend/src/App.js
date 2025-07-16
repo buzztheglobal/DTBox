@@ -15,10 +15,13 @@ import ColorPickerPage from './pages/tools/ColorPickerPage';
 import DataStorageConverterPage from './pages/tools/DataStorageConverterPage';
 import EMICalculatorPage from './pages/tools/EMICalculatorPage';
 import PasswordInfoPage from './pages/tools/PasswordInfoPage';
+import JSONFormatterPage from "./pages/tools/JSONFormatterPage";  
 
 function App() {
   const location = useLocation();
 
+  console.log("JSONFormatterPage?", JSONFormatterPage);
+  // Initialize Google Analytics
   useEffect(() => {
     initGA();
   }, []);
@@ -43,6 +46,7 @@ function App() {
           <Route path="/data-storage-converter" element={<DataStorageConverterPage />} />
           <Route path="/emi-calculator" element={<EMICalculatorPage />} />
           <Route path="/password-generator" element={<PasswordInfoPage />} />
+           <Route path="/json-formatter" element={<JSONFormatterPage />} />
           {/* Add more routes as needed */}
         </Routes>
       </ErrorBoundary>

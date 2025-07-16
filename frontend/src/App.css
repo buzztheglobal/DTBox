@@ -136,3 +136,24 @@
 .tool-card button:hover {
   background: linear-gradient(90deg, #8fd3f4 0%, #84fab0 100%);
 }
+
+/* JSON block themes */
+.dark-code-block {
+  background-color: #1e1e1e;
+  color: #dcdcdc;
+}
+
+.light-code-block {
+  background-color: #f9f9f9;
+  color: #222;
+}
+
+/* Code Blocks */
+.dark-code-block {
+  background-color: #1e1e1e;
+  color: #dcdcdc;
+}
+.light-code-block {
+  background-color: #f9f9f9;
+  color: #222;
+}
