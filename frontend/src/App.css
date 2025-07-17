@@ -157,3 +157,18 @@
   background-color: #f9f9f9;
   color: #222;
 }
+
+/* File: src/styles/app.css */
+.calculator-container {
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+}
+
+.fd-result {
+  background-color: #f0fff0;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+  border-left: 6px solid green;
+}
