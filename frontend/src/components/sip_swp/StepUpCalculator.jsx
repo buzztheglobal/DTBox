@@ -1,23 +1,38 @@
 // Filename: src/components/sip_swp/StepUpCalculator.jsx
 import React, { useState } from 'react';
 import { Grid, TextField, Button, Typography, Box } from '@mui/material';
-import { formBoxStyle, formFieldStyle, resultBoxStyle, toolButtonStyle } from '../../styles/globalStyles';
+import { Line } from 'react-chartjs-2';
+import {
+  formBoxStyle,
+  formFieldStyle,
+  resultBoxStyle,
+  toolButtonStyle
+} from '../../styles/globalStyles';
+
+const formatCurrency = (value) => `₹${value.toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
 
 const StepUpCalculator = () => {
   const [amount, setAmount] = useState(5000);
   const [stepUp, setStepUp] = useState(10);
   const [tenure, setTenure] = useState(10);
   const [rate, setRate] = useState(12);
+  const [yearlyValues, setYearlyValues] = useState([]);
   const [futureValue, setFutureValue] = useState(null);
 
   const calculateStepUpSIP = () => {
     const i = rate / 12 / 100;
     let fv = 0;
+    let yearlyGrowth = [];
+
     for (let y = 0; y < tenure; y++) {
       const yearlySIP = amount * Math.pow(1 + stepUp / 100, y);
       const n = (tenure - y) * 12;
-      fv += yearlySIP * (((Math.pow(1 + i, n) - 1) / i) * (1 + i));
+      const yearlyFV = yearlySIP * (((Math.pow(1 + i, n) - 1) / i) * (1 + i));
+      fv += yearlyFV;
+      yearlyGrowth.push(Math.round(yearlyFV));
     }
+
+    setYearlyValues(yearlyGrowth);
     setFutureValue(fv);
   };
 
@@ -34,7 +49,26 @@ const StepUpCalculator = () => {
       {futureValue && (
         <Box sx={resultBoxStyle} mt={3}>
           <Typography variant="h6">Future Value with Step-Up:</Typography>
-          <Typography>₹{futureValue.toFixed(2)}</Typography>
+          <Typography>{formatCurrency(futureValue)}</Typography>
+
+          <Box mt={3} style={{ maxWidth: 600 }}>
+            <Line
+              data={{
+                labels: [...Array(tenure).keys()].map((y) => `Year ${y + 1}`),
+                datasets: [
+                  {
+                    label: 'Year-wise SIP Growth (₹)',
+                    data: yearlyValues,
+                    fill: true,
+                    borderColor: '#3f51b5',
+                    backgroundColor: 'rgba(63, 81, 181, 0.2)',
+                    tension: 0.4,
+                  },
+                ],
+              }}
+              options={{ responsive: true, plugins: { legend: { position: 'top' } } }}
+            />
+          </Box>
         </Box>
       )}
     </Box>

@@ -1,7 +1,15 @@
 // Filename: src/components/sip_swp/GoalPlanner.jsx
 import React, { useState } from 'react';
 import { Grid, TextField, Button, Typography, Box } from '@mui/material';
-import { formBoxStyle, formFieldStyle, resultBoxStyle, toolButtonStyle } from '../../styles/globalStyles';
+import { Bar } from 'react-chartjs-2';
+import {
+  formBoxStyle,
+  formFieldStyle,
+  resultBoxStyle,
+  toolButtonStyle
+} from '../../styles/globalStyles';
+
+const formatCurrency = (value) => `₹${value.toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
 
 const GoalPlanner = () => {
   const [target, setTarget] = useState(1000000);
@@ -31,8 +39,28 @@ const GoalPlanner = () => {
       {sip && (
         <Box sx={resultBoxStyle} mt={3}>
           <Typography variant="h6">Required SIP:</Typography>
-          <Typography>Monthly SIP Needed: ₹{sip.required.toFixed(2)}</Typography>
-          <Typography>Inflation Adjusted Goal: ₹{sip.adjustedTarget.toFixed(2)}</Typography>
+          <Typography>Monthly SIP Needed: {formatCurrency(sip.required)}</Typography>
+          <Typography>Inflation Adjusted Goal: {formatCurrency(sip.adjustedTarget)}</Typography>
+
+          <Box mt={3} style={{ maxWidth: 500 }}>
+            <Bar
+              data={{
+                labels: ['Required SIP', 'Adjusted Goal'],
+                datasets: [
+                  {
+                    label: '₹ Value',
+                    data: [sip.required * tenure * 12, sip.adjustedTarget],
+                    backgroundColor: ['#3f51b5', '#f44336'],
+                  },
+                ],
+              }}
+              options={{
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true } },
+              }}
+            />
+          </Box>
         </Box>
       )}
     </Box>
@@ -40,3 +68,6 @@ const GoalPlanner = () => {
 };
 
 export default GoalPlanner;
+// Note: Ensure you have the necessary styles defined in the specified paths. 
+// Also, ensure you have react-chartjs-2 and chart.js installed in your project with `npm install react-chartjs-2 chart.js` or `yarn add react-chartjs-2 chart.js`.
+// This component calculates the required SIP for a financial goal considering inflation and displays the result in a

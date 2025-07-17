@@ -2,17 +2,16 @@
 import React, { useState } from 'react';
 import { Container, Typography, Box, Tabs, Tab } from '@mui/material';
 import '../../App.css';
-
 import useGlobalStyles from '../../styles/useGlobalStyles';
 
-import SIPForm from '../../components/sip_swp/SIPForm';
+import SIPForm from '../../components/sip_swp/SIPFormWithPieChart';
 import SWPForm from '../../components/sip_swp/SWPForm';
 import GoalPlanner from '../../components/sip_swp/GoalPlanner';
 import StepUpCalculator from '../../components/sip_swp/StepUpCalculator';
 import TooltipsAccordion from '../../components/sip_swp/TooltipsAccordion';
 
 const SIPCalculatorPage = () => {
-  const globalStyles = useGlobalStyles(); // Default is "light"
+  const globalStyles = useGlobalStyles();
   const [tab, setTab] = useState(0);
 
   const handleTabChange = (_, newValue) => setTab(newValue);
@@ -37,13 +36,15 @@ const SIPCalculatorPage = () => {
         <Tab label="FAQs / Tooltips" />
       </Tabs>
 
-      <Box hidden={tab !== 0}><SIPForm /></Box>
-      <Box hidden={tab !== 1}><GoalPlanner /></Box>
-      <Box hidden={tab !== 2}><StepUpCalculator /></Box>
-      <Box hidden={tab !== 3}><SWPForm /></Box>
+      <Box hidden={tab !== 0}><SIPForm showChart formatAmount /></Box>
+      <Box hidden={tab !== 1}><GoalPlanner showChart formatAmount /></Box>
+      <Box hidden={tab !== 2}><StepUpCalculator showChart formatAmount /></Box>
+      <Box hidden={tab !== 3}><SWPForm showChart formatAmount /></Box>
       <Box hidden={tab !== 4}><TooltipsAccordion /></Box>
     </Container>
   );
 };
 
 export default SIPCalculatorPage;
+// Note: Ensure you have the necessary components and styles defined in the specified paths.
+// This page serves as a central hub for various mutual fund calculators, allowing users to switch between
