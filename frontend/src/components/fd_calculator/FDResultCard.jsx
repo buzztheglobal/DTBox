@@ -6,10 +6,10 @@ const FDResultCard = ({ result }) => {
   return (
     <Box mt={4} p={2} sx={{ background: '#e0f7fa', borderRadius: 2 }}>
       <Typography variant="h6" color="green">
-        Maturity Amount: ₹{result.maturityAmount}
+        Maturity Amount: {result.maturityAmount}
       </Typography>
       <Typography variant="body1">
-        Interest Earned: ₹{result.interestEarned}
+        Interest Earned: {result.interestEarned}
       </Typography>
       <Typography variant="body1">
         Maturity Date: {result.maturityDate}
