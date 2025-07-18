@@ -57,19 +57,19 @@ export const gradientBackground = (mode) =>
     : "linear-gradient(135deg, #FF6363 0%, #FF8282 100%)";
 
 // 🔹 Card Style
-export const cardBoxStyle = {
-  p: 3,
-  borderRadius: 3,
-  boxShadow: 3,
-  height: "100%",
-  background: lightCardGradient,
-  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-  "&:hover": {
-    transform: "translateY(-5px)",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-    color: "#111",
-  },
-};
+// export const cardBoxStyle = {
+//   p: 3,
+//   borderRadius: 3,
+//   boxShadow: 3,
+//   height: "100%",
+//   background: lightCardGradient,
+//   transition: "transform 0.3s ease, box-shadow 0.3s ease",
+//   "&:hover": {
+//     transform: "translateY(-5px)",
+//     boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+//     color: "#111",
+//   },
+// };
 
 // 🔹 Tool Button Style
 export const toolButtonStyle = {
@@ -104,11 +104,36 @@ export const formBoxStyle = {
 export const formFieldStyle = {
   mb: 2,
 };
+ 
 
-// 🔹 Result Box
+// Update existing exports
+export const cardBoxStyle = {
+  p: 3,
+  borderRadius: 3,
+  boxShadow: 3,
+  height: "100%",
+  background: "linear-gradient(135deg, #b2dfdb 0%, #e0f2f1 100%)",
+  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+  "&:hover": {
+    transform: "translateY(-5px)",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+    color: "#111",
+  },
+};
+
 export const resultBoxStyle = {
   p: 2,
-  border: '2px dashed #1976d2',
-  borderRadius: 2,
-  backgroundColor: '#e3f2fd',
+  border: "2px dashed #00897b",
+  borderRadius: 8,
+  backgroundColor: "#e0f2f1",
+  marginTop: "1.5rem",
+  fontWeight: 500,
+};
+
+// Add function to calculate Maturity Date
+export const getMaturityDate = (tenureMonths) => {
+  const today = new Date("2025-07-18T14:09:00Z"); // Current date and time
+  const maturity = new Date(today);
+  maturity.setMonth(maturity.getMonth() + parseInt(tenureMonths));
+  return maturity.toLocaleDateString("en-GB"); // e.g., 18/07/2026
 };

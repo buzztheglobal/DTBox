@@ -1,6 +1,6 @@
 // src/App.js
 import React, { useEffect } from "react";
-import {BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
 import { initGA, logPageView } from "./services/analytics";
 
@@ -22,6 +22,7 @@ import UnitConverterPage from './pages/tools/UnitConverterPage';
 import PregnancyDueDateCalculatorPage from './pages/tools/PregnancyDueDateCalculatorPage';
 import SIPCalculatorPage from './pages/tools/SIPCalculatorPage';
 import FDCalculatorPage from './pages/tools/FDCalculatorPage';
+import RDCalculatorPage from './pages/tools/RDCalculatorPage';
 
 function App() {
   const location = useLocation();
@@ -55,11 +56,12 @@ function App() {
           <Route path="/json-formatter" element={<JSONFormatterPage />} />
           <Route path="/unit-converter" element={<UnitConverterPage />} />
           <Route path="/Pregnancy-Due-Date-Calculator" element={<PregnancyDueDateCalculatorPage />} />
-           <Route path="/mf-sip-calculator" element={<SIPCalculatorPage />} />
-             <Route path="/Fixed-Deposit-Calculator" element={<FDCalculatorPage />} />
-          
+          <Route path="/mf-sip-calculator" element={<SIPCalculatorPage />} />
+          <Route path="/Fixed-Deposit-Calculator" element={<FDCalculatorPage />} />
+          <Route path="/RD-Calculator" element={<RDCalculatorPage />} />
+
           {/* Catch-all route for 404 */}
-        {/* <Route path="*" element={<div style={{ padding: '2rem' }}>404 - Page Not Found</div>} /> */}
+          {/* <Route path="*" element={<div style={{ padding: '2rem' }}>404 - Page Not Found</div>} /> */}
 
           {/* Add more routes as needed */}
         </Routes>

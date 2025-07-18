@@ -18,10 +18,10 @@ export default function BMICalculatorPage() {
 
         {/* Input + Result side by side */}
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <BMICalculatorForm />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <BMIResultCard />
           </Grid>
         </Grid>

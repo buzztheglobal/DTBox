@@ -1,0 +1,271 @@
+/* File: frontend/src/styles/rd_calculator.css */
+
+.rd-container {
+  background-color: #eef7f5;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-top: 2rem;
+}
+
+.rd-title {
+  color: #4a148c;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.rd-paper {
+  background-color: #b2dfdb;
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+label,
+.MuiFormLabel-root,
+.MuiTypography-root {
+  color: black !important;
+  font-weight: 500 !important;
+}
+
+.MuiInputBase-root,
+.MuiSelect-root {
+  background-color: #fff;
+  transition: box-shadow 0.3s ease;
+}
+
+.MuiInputBase-root:hover,
+.MuiSelect-root:hover {
+  box-shadow: 0 0 0 2px #00897b;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #00897b !important;
+}
+
+.recharts-default-legend {
+  color: black !important;
+}
+
+.recharts-label,
+.pie-label text {
+  fill: black !important;
+  font-weight: 500;
+}
+
+.MuiSwitch-root {
+  margin-top: 0.5rem;
+}
+
+/* Update existing .rd-container */
+.rd-container {
+  background-color: #eef7f5;
+  padding: 2.5rem;
+  border-radius: 12px;
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+/* Style input fields with defaults */
+.rd-paper input[type="text"],
+.rd-paper select {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+.rd-paper input[type="text"]::placeholder,
+.rd-paper select option:first-child {
+  color: #888;
+}
+.rd-paper select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+}
+
+/* Enhance pie chart */
+.pie-chart {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+.pie-chart text {
+  font-size: 14px;
+  fill: #333;
+  font-weight: 500;
+}
+.pie-chart .label {
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+/* Style toggle feedback */
+.MuiSwitch-root {
+  margin-top: 0.5rem;
+}
+.MuiSwitch-root .MuiSwitch-thumb {
+  background-color: #00897b;
+}
+.MuiSwitch-root .MuiSwitch-track {
+  background-color: #b2dfdb;
+}
+
+@media (max-width: 768px) {
+  .rd-container {
+    grid-template-columns: 1fr;
+  }
+  .pie-chart {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/* File: frontend/src/styles/rd_calculator.css */
+
+.rd-container {
+  background-color: #eef7f5;
+  padding: 2.5rem;
+  border-radius: 12px;
+  margin-top: 2rem;
+  /* Ensure this container is the grid parent for the two main sections */
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 2rem; /* Space between the columns */
+}
+
+.rd-title {
+  color: #4a148c;
+  font-weight: bold;
+  text-align: center; /* This will center the title within its grid area */
+  margin-bottom: 1.5rem;
+  /* To make the title span both columns, we'll likely need a wrapper or apply grid-column */
+  grid-column: 1 / -1; /* Spans from the first column line to the last */
+}
+
+.rd-paper {
+  background-color: #b2dfdb;
+  padding: 2rem;
+  border-radius: 12px;
+  /* This will be one of the grid items (e.g., the left input block) */
+}
+
+/* Existing styles for labels, inputs, selects, etc. remain the same */
+label,
+.MuiFormLabel-root,
+.MuiTypography-root {
+  color: black !important;
+  font-weight: 500 !important;
+}
+
+.MuiInputBase-root,
+.MuiSelect-root {
+  background-color: #fff;
+  transition: box-shadow 0.3s ease;
+}
+
+.MuiInputBase-root:hover,
+.MuiSelect-root:hover {
+  box-shadow: 0 0 0 2px #00897b;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #00897b !important;
+}
+
+.recharts-default-legend {
+  color: black !important;
+}
+
+.recharts-label,
+.pie-label text {
+  fill: black !important;
+  font-weight: 500;
+}
+
+.MuiSwitch-root {
+  margin-top: 0.5rem;
+}
+
+/* Style input fields with defaults */
+.rd-paper input[type="text"],
+.rd-paper select {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+.rd-paper input[type="text"]::placeholder,
+.rd-paper select option:first-child {
+  color: #888;
+}
+.rd-paper select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+}
+
+/* Enhance pie chart */
+.pie-chart {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+.pie-chart text {
+  font-size: 14px;
+  fill: #333;
+  font-weight: 500;
+}
+.pie-chart .label {
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+/* Style toggle feedback */
+.MuiSwitch-root {
+  margin-top: 0.5rem;
+}
+.MuiSwitch-root .MuiSwitch-thumb {
+  background-color: #00897b;
+}
+.MuiSwitch-root .MuiSwitch-track {
+  background-color: #b2dfdb;
+}
+
+/* New style for the results and pie chart container */
+.rd-results-section {
+  background-color: #b2dfdb; /* Same as rd-paper for consistency based on screenshot */
+  padding: 2rem;
+  border-radius: 12px;
+  display: flex; /* To stack results and pie chart vertically */
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+}
+
+/* Styling for individual result lines to match screenshot */
+.rd-result-item {
+  margin-bottom: 0.5rem; /* Space between result lines */
+  text-align: left; /* Align text to the left within the result section */
+  width: 100%; /* Take full width within its flex container */
+  color: black; /* Ensure text is black */
+  font-weight: 500; /* Match other text */
+}
+
+.rd-result-label {
+  font-weight: bold; /* Make labels bold */
+  margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .rd-container {
+    grid-template-columns: 1fr; /* Stack columns on smaller screens */
+  }
+  .pie-chart {
+    width: 150px;
+    height: 150px;
+  }
+}
