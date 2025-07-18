@@ -22,7 +22,8 @@ import UnitConverterPage from './pages/tools/UnitConverterPage';
 import PregnancyDueDateCalculatorPage from './pages/tools/PregnancyDueDateCalculatorPage';
 import SIPCalculatorPage from './pages/tools/SIPCalculatorPage';
 import FDCalculatorPage from './pages/tools/FDCalculatorPage';
-import RDCalculatorPage from './pages/tools/RDCalculatorPage';
+import RDCalculatorPage from "./pages/tools/RDCalculatorPage";
+import JsonToCsvPage from './pages/tools/JsonToCsvPage';
 
 function App() {
   const location = useLocation();
@@ -59,7 +60,7 @@ function App() {
           <Route path="/mf-sip-calculator" element={<SIPCalculatorPage />} />
           <Route path="/Fixed-Deposit-Calculator" element={<FDCalculatorPage />} />
           <Route path="/RD-Calculator" element={<RDCalculatorPage />} />
-
+          <Route path="/json-to-csv" element={<JsonToCsvPage />} />
           {/* Catch-all route for 404 */}
           {/* <Route path="*" element={<div style={{ padding: '2rem' }}>404 - Page Not Found</div>} /> */}
 
