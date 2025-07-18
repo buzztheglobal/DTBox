@@ -38,7 +38,7 @@ http://localhost:5173/
 
 # git commands # https://github.com/buzztheglobal/DTBox.git
 git add .
-git commit -m "password-generator"
+git commit -m "BMI Calculator"
 git push origin main
 
 git remote add origin https://github.com/buzztheglobal/DTBox

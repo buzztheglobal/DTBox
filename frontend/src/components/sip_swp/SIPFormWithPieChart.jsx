@@ -1,10 +1,17 @@
-// Filename: src/components/sip_swp/SIPForm.jsx
+// Filename: src/components/sip_swp/SIPFormWithPieChart.jsx
 import React, { useState } from 'react';
 import { Grid, TextField, Button, Typography, Box } from '@mui/material';
-import { formBoxStyle, formFieldStyle, resultBoxStyle, toolButtonStyle } from '../../styles/globalStyles';
-import ResultChart from './ResultChart';
+import { Pie } from 'react-chartjs-2';
+import {
+  formBoxStyle,
+  formFieldStyle,
+  resultBoxStyle,
+  toolButtonStyle
+} from '../../styles/globalStyles';
 
-const SIPForm = () => {
+const formatCurrency = (value) => `₹${value.toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
+
+const SIPFormWithPieChart = () => {
   const [amount, setAmount] = useState(5000);
   const [tenure, setTenure] = useState(10);
   const [rate, setRate] = useState(12);
@@ -15,8 +22,11 @@ const SIPForm = () => {
     const i = rate / 12 / 100;
     const n = tenure * 12;
     const futureValue = amount * (((Math.pow(1 + i, n) - 1) / i) * (1 + i));
+    const investedAmount = amount * n;
+    const gain = futureValue - investedAmount;
     const inflationAdjusted = futureValue / Math.pow(1 + inflation / 100, tenure);
-    setResult({ futureValue, inflationAdjusted });
+
+    setResult({ futureValue, investedAmount, gain, inflationAdjusted });
   };
 
   return (
@@ -32,13 +42,30 @@ const SIPForm = () => {
       {result && (
         <Box sx={resultBoxStyle} mt={3}>
           <Typography variant="h6">Results:</Typography>
-          <Typography>Future Value: ₹{result.futureValue.toFixed(2)}</Typography>
-          <Typography>Inflation Adjusted: ₹{result.inflationAdjusted.toFixed(2)}</Typography>
-          <ResultChart labels={['Today', `${tenure} yrs`]} data={[0, result.futureValue]} adjusted={[0, result.inflationAdjusted]} />
+          <Typography>Total Invested: {formatCurrency(result.investedAmount)}</Typography>
+          <Typography>Future Value: {formatCurrency(result.futureValue)}</Typography>
+          <Typography>Wealth Gained: {formatCurrency(result.gain)}</Typography>
+          <Typography>Inflation Adjusted: {formatCurrency(result.inflationAdjusted)}</Typography>
+
+          <Box mt={3} style={{ maxWidth: 400 }}>
+            <Pie
+              data={{
+                labels: ['Invested', 'Gain'],
+                datasets: [
+                  {
+                    data: [result.investedAmount, result.gain],
+                    backgroundColor: ['#4CAF50', '#FF9800'],
+                    hoverOffset: 6,
+                  },
+                ],
+              }}
+              options={{ plugins: { legend: { position: 'bottom' } } }}
+            />
+          </Box>
         </Box>
       )}
     </Box>
   );
 };
 
-export default SIPForm;
+export default SIPFormWithPieChart;

@@ -58,3 +58,4 @@ const ResultChart = ({ labels, data, adjusted }) => {
 };
 
 export default ResultChart;
+// Note: Ensure you have Chart.js installed in your project with `npm install chart.js` or `yarn add chart.js`.

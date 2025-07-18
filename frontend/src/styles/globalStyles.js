@@ -1,9 +1,12 @@
-// Colors & gradients
+// File: frontend/src/styles/globalStyles.js
+
+// 🎨 Color Constants & Gradients
 const primaryGradient = "linear-gradient(135deg, #780206, #061161)";
 const lightCardGradient = "linear-gradient(135deg, #f5c7c7 0%, #c7c9f5 100%)";
 const titleTextGradient = "linear-gradient(to right, #95D2B3, #D9D9D9)";
 const searchBgColor = "#F1F8E8";
 
+// 🔹 Navigation Chip Style
 export const navChipStyle = (selected, mode = "light") => ({
   px: 1.5,
   py: 1,
@@ -13,7 +16,7 @@ export const navChipStyle = (selected, mode = "light") => ({
   cursor: "pointer",
   color: selected ? "#fff" : mode === "dark" ? "#ccc" : "#000",
   background: selected
-    ? "linear-gradient(135deg, #780206, #061161)"
+    ? primaryGradient
     : mode === "dark"
     ? "#2e2e2e"
     : "#eee",
@@ -23,13 +26,13 @@ export const navChipStyle = (selected, mode = "light") => ({
   },
 });
 
-// Page container padding
+// 🔹 Page Container Padding
 export const pageContainerStyle = {
   pt: 4,
   pb: 6,
 };
 
-// Title with gradient text
+// 🔹 Page Title with Gradient Text
 export const pageTitleStyle = {
   fontWeight: "bold",
   mb: 2,
@@ -38,7 +41,7 @@ export const pageTitleStyle = {
   WebkitTextFillColor: "transparent",
 };
 
-// Search field with light background
+// 🔹 Search Field Styling
 export const searchFieldStyle = {
   mb: 3,
   "& .MuiOutlinedInput-root": {
@@ -47,13 +50,13 @@ export const searchFieldStyle = {
   },
 };
 
-// Responsive background based on theme
+// 🔹 Background Based on Theme
 export const gradientBackground = (mode) =>
   mode === "light"
     ? "linear-gradient(135deg, rgb(255, 255, 196) 0%, rgb(255, 97, 100) 50%, rgb(176, 0, 18) 100%)"
     : "linear-gradient(135deg, #FF6363 0%, #FF8282 100%)";
 
-// Tool Card styling
+// 🔹 Card Style
 export const cardBoxStyle = {
   p: 3,
   borderRadius: 3,
@@ -68,7 +71,7 @@ export const cardBoxStyle = {
   },
 };
 
-// Tool button styling
+// 🔹 Tool Button Style
 export const toolButtonStyle = {
   borderRadius: 2,
   backdropFilter: "blur(6px)",
@@ -82,13 +85,13 @@ export const toolButtonStyle = {
   },
 };
 
-// Chip styling
+// 🔹 General Chip Style
 export const chipStyle = {
   m: 0.5,
   fontSize: "0.85rem",
 };
 
-// Filename: globalStyles.js
+// 🔹 Form Container
 export const formBoxStyle = {
   p: 2,
   border: '1px solid #ccc',
@@ -97,10 +100,12 @@ export const formBoxStyle = {
   mb: 3,
 };
 
+// 🔹 Form Field Style
 export const formFieldStyle = {
   mb: 2,
 };
 
+// 🔹 Result Box
 export const resultBoxStyle = {
   p: 2,
   border: '2px dashed #1976d2',

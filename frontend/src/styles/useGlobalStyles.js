@@ -1,14 +1,16 @@
-// src/styles/useGlobalStyles.js
+// File: src/styles/useGlobalStyles.js
 import { useMemo } from "react";
 
 export default function useGlobalStyles(mode = "light") {
   const styles = useMemo(() => {
+    // 🎨 Gradients & Colors
     const primaryGradient = "linear-gradient(135deg, #780206, #061161)";
     const lightCardGradient = "linear-gradient(135deg, #f5c7c7 0%, #c7c9f5 100%)";
     const titleTextGradient = "linear-gradient(to right, #95D2B3, #D9D9D9)";
     const searchBgColor = "#F1F8E8";
 
     return {
+      // 🔹 Navigation Chip Style
       navChipStyle: (selected) => ({
         px: 1.5,
         py: 1,
@@ -27,10 +29,14 @@ export default function useGlobalStyles(mode = "light") {
           boxShadow: 2,
         },
       }),
+
+      // 🔹 Page Container
       pageContainerStyle: {
         pt: 4,
         pb: 6,
       },
+
+      // 🔹 Gradient Title
       pageTitleStyle: {
         fontWeight: "bold",
         mb: 2,
@@ -38,6 +44,8 @@ export default function useGlobalStyles(mode = "light") {
         WebkitBackgroundClip: "text",
         WebkitTextFillColor: "transparent",
       },
+
+      // 🔹 Search Field Input
       searchFieldStyle: {
         mb: 3,
         "& .MuiOutlinedInput-root": {
@@ -45,9 +53,14 @@ export default function useGlobalStyles(mode = "light") {
           backgroundColor: searchBgColor,
         },
       },
-      gradientBackground: mode === "light"
-        ? "linear-gradient(135deg, rgb(255, 255, 196) 0%, rgb(255, 97, 100) 50%, rgb(176, 0, 18) 100%)"
-        : "linear-gradient(135deg, #FF6363 0%, #FF8282 100%)",
+
+      // 🔹 Background for Light/Dark Mode
+      gradientBackground:
+        mode === "light"
+          ? "linear-gradient(135deg, rgb(255, 255, 196) 0%, rgb(255, 97, 100) 50%, rgb(176, 0, 18) 100%)"
+          : "linear-gradient(135deg, #FF6363 0%, #FF8282 100%)",
+
+      // 🔹 Card Style
       cardBoxStyle: {
         p: 3,
         borderRadius: 3,
@@ -61,6 +74,8 @@ export default function useGlobalStyles(mode = "light") {
           color: "#111",
         },
       },
+
+      // 🔹 Tool Button
       toolButtonStyle: {
         borderRadius: 2,
         backdropFilter: "blur(6px)",
@@ -73,6 +88,8 @@ export default function useGlobalStyles(mode = "light") {
           transform: "scale(1.02)",
         },
       },
+
+      // 🔹 Generic Chip
       chipStyle: {
         m: 0.5,
         fontSize: "0.85rem",

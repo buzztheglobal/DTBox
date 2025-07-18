@@ -43,3 +43,17 @@ for EMI Calculator
 . A Pie chart visualization (Principal vs Interest)?
 . Copy-to-clipboard or PDF download of EMI results?
 . Prepayment simulation?
+
+-------Pregnancy-Due-Date-Calculator
+Future Enhancements (with Backend)
+. Save user data to PostgreSQL
+. Add user accounts with Firebase/Auth or Express backend
+. Notification scheduling (email/push)
+. PDF export for due date report
+
+Let me know if you'd like:
+. Fetal development timeline
+. Additional educational resources
+. Printable report feature
+. Localization setup
+. Backend scaffolding
