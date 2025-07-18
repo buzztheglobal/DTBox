@@ -1,71 +1,48 @@
+// File: src/pages/tools/BMICalculatorPage.jsx
 import React from 'react';
-import { Container, Grid, Typography, Box, useTheme } from '@mui/material';
-import { BMIContextProvider } from '../../context/BMIContext';
+import { Container, Grid, Typography, Box } from '@mui/material';
 import BMICalculatorForm from '../../components/bmi_calculator/BMICalculatorForm';
 import BMIResultCard from '../../components/bmi_calculator/BMIResultCard';
+import { BMIContextProvider } from '../../context/BMIContextProvider';
 
 export default function BMICalculatorPage() {
-  const theme = useTheme();
-
   return (
     <BMIContextProvider>
       <Container maxWidth="md" sx={{ py: 5 }}>
-        {/* Page Title */}
-        <Typography variant="h4" gutterBottom textAlign="center">
+        <Typography variant="h4" align="center" gutterBottom>
           BMI Calculator
         </Typography>
-        <Typography variant="body1" color="text.secondary" textAlign="center" sx={{ mb: 4 }}>
-          Check your Body Mass Index (BMI) and get personalized health advice.
+        <Typography variant="body1" align="center" color="text.secondary" sx={{ mb: 4 }}>
+          Check your Body Mass Index (BMI) and get health insights.
         </Typography>
 
-        {/* Input and Result Side-by-Side */}
-        <Grid container spacing={4} alignItems="flex-start">
+        {/* Input + Result side by side */}
+        <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
-            <Box
-              sx={{
-                border: `1px solid ${theme.palette.divider}`,
-                borderRadius: 2,
-                padding: 3,
-                boxShadow: 1,
-              }}
-            >
-              <BMICalculatorForm />
-            </Box>
+            <BMICalculatorForm />
           </Grid>
-
           <Grid item xs={12} md={6}>
-            <Box
-              sx={{
-                border: `1px solid ${theme.palette.divider}`,
-                borderRadius: 2,
-                padding: 3,
-                boxShadow: 1,
-              }}
-            >
-              <BMIResultCard />
-            </Box>
+            <BMIResultCard />
           </Grid>
         </Grid>
 
-        {/* Tips Section */}
-        <Box sx={{ mt: 6 }}>
+        {/* Tips */}
+        <Box mt={5}>
           <Typography variant="h6" gutterBottom>
-            💡 Tips for Maintaining a Healthy BMI
+            💡 Tips for a Healthy BMI
           </Typography>
           <ul style={{ paddingLeft: '1.5rem' }}>
-            <li>Stay hydrated — drink 2–3 liters of water daily.</li>
-            <li>Exercise at least 30 mins a day — walking, cycling, or yoga.</li>
-            <li>Eat balanced meals — focus on veggies, proteins, and healthy fats.</li>
-            <li>Sleep well — aim for 7–8 hours of quality sleep every night.</li>
+            <li>Stay hydrated with 2–3 liters of water daily.</li>
+            <li>Exercise regularly — even 30 min/day helps.</li>
+            <li>Eat balanced meals: fruits, veggies, protein, good fats.</li>
+            <li>Sleep at least 7–8 hours a night.</li>
           </ul>
         </Box>
 
-        {/* Disclaimer Section */}
-        <Box sx={{ mt: 4 }}>
-          <Typography variant="caption" display="block" color="text.secondary">
-            ⚠️ <strong>Disclaimer:</strong> This BMI calculator is for informational use only and may not
-            be suitable for everyone. It does not consider factors like muscle mass, bone density, or medical
-            conditions. Consult a healthcare provider for a professional assessment.
+        {/* Disclaimer */}
+        <Box mt={3}>
+          <Typography variant="caption" color="text.secondary">
+            ⚠️ <strong>Disclaimer:</strong> This calculator is for general wellness use. BMI doesn't reflect body fat directly and may not apply to athletes, children, or those with medical conditions. Please consult a healthcare provider for personalized advice.
           </Typography>
         </Box>
       </Container>
