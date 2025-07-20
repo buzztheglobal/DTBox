@@ -1,4 +1,3 @@
-// C:\Users\gupta\Documents\DailyToolbox\frontend\src\components\date_calculator\AgeCalculator.jsx
 import React, { useState } from 'react';
 import { Box, TextField, Button, Typography } from '@mui/material';
 import { calculateDateDifference, getNextBirthdayCountdown } from './utils';
@@ -36,4 +35,3 @@ export default function AgeCalculator() {
     </Box>
   );
 }
-// C:\Users\gupta\Documents\DailyToolbox\frontend\src\components\date_calculator/utils.js

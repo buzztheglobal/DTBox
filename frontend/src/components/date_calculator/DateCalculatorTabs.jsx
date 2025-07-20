@@ -1,4 +1,3 @@
-// C:\Users\gupta\Documents\DailyToolbox\frontend\src\components\date_calculator\DateCalculatorTabs.jsx
 import React from 'react';
 import { Tabs, Tab, Box } from '@mui/material';
 import ChronologicalAgeCalculator from './ChronologicalAgeCalculator';
@@ -6,7 +5,7 @@ import RelationshipGapCalculator from './RelationshipGapCalculator';
 import LifeExpectancyCalculator from './LifeExpectancyCalculator';
 import RelationshipCompatibilityCalculator from './RelationshipCompatibilityCalculator';
 import AgeCalculator from './AgeCalculator';
-import DateDiffCalculator from './DateDiffCalculator'; // ✅ THIS LINE IS ESSENTIAL
+import DateDiffCalculator from './DateDiffCalculator';
 
 const DateCalculatorTabs = () =>  {
   const [tabIndex, setTabIndex] = React.useState(0);
@@ -28,7 +27,6 @@ const DateCalculatorTabs = () =>  {
         <Tab label="Compatibility" />
         <Tab label="Age Calculator" />
       </Tabs>
-
       <Box sx={{ mt: 4 }}>
         {tabIndex === 0 && <DateDiffCalculator />}
         {tabIndex === 1 && <ChronologicalAgeCalculator />}
@@ -42,4 +40,3 @@ const DateCalculatorTabs = () =>  {
 }
 
 export default DateCalculatorTabs;
-// C:\Users\gupta\Documents\DailyToolbox\frontend\src\components/date_calculator/DateInputForm.jsx
