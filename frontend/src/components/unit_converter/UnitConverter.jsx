@@ -81,7 +81,7 @@ const UnitConverter = () => {
       />
 
       <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <UnitSelect
             label="From"
             units={unitOptions}
@@ -98,7 +98,7 @@ const UnitConverter = () => {
           />
         </Grid>
 
-        <Grid item xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <UnitSelect
             label="To"
             units={unitOptions}

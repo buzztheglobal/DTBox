@@ -1,9 +1,10 @@
 // File: frontend/src/context/BMIContext.js
+
 import React, { createContext, useState } from 'react';
 
 export const BMIContext = createContext();
 
-export const BMIContextProvider = ({ children }) => {
+export function BMIContextProvider({ children }) {
   const [result, setResult] = useState(null);
 
   return (
@@ -11,4 +12,4 @@ export const BMIContextProvider = ({ children }) => {
       {children}
     </BMIContext.Provider>
   );
-};
+}

@@ -1,0 +1,19 @@
+/* C:\Users\gupta\Documents\DailyToolbox\frontend\src\components\date_calculator\date_calculator.css */
+.date-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.date-input {
+  width: 100%;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.result-box {
+  margin-top: 2rem;
+}
