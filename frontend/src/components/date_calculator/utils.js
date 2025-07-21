@@ -1,5 +1,4 @@
-// File: src/components/date_calculator/utils.js
-
+// src/components/date_calculator/utils.js
 import {
   differenceInYears,
   differenceInMonths,
@@ -9,7 +8,6 @@ import {
   differenceInCalendarDays,
 } from 'date-fns';
 
-// 🔹 Calculate the difference in years, months, days
 export function calculateDateDifference(dateStr1, dateStr2) {
   const d1 = parseISO(dateStr1);
   const d2 = parseISO(dateStr2);
@@ -27,7 +25,6 @@ export function calculateDateDifference(dateStr1, dateStr2) {
   return { years, months, days };
 }
 
-// 🔹 Zodiac sign calculator
 export function getZodiacSign(date) {
   const day = date.getDate();
   const month = date.getMonth() + 1;
@@ -46,7 +43,6 @@ export function getZodiacSign(date) {
   return 'Sagittarius';
 }
 
-// 🔹 Countdown to next birthday
 export function getNextBirthdayCountdown(birthDateStr) {
   const today = new Date();
   const birthDate = parseISO(birthDateStr);
@@ -60,3 +56,6 @@ export function getNextBirthdayCountdown(birthDateStr) {
 
   return differenceInCalendarDays(nextBirthday, today);
 }
+// C:\Users\gupta\Documents\DailyToolbox\frontend\src\components\date_calculator/utils.js
+// This file contains utility functions for date calculations, including calculating date differences, zodiac signs, and birthday countdowns.
+// It uses date-fns for date manipulations and ensures valid date inputs.

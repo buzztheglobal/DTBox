@@ -1,3 +1,4 @@
+// src/components/date_calculator/ChronologicalAgeCalculator.jsx
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import DateInputForm from './DateInputForm';
@@ -42,3 +43,5 @@ export default function ChronologicalAgeCalculator() {
     </Box>
   );
 }
+// C:\Users\gupta\Documents\DailyToolbox\frontend\src\components\date_calculator/ChronologicalAgeCalculator.jsx
+// This component calculates the chronological age based on the provided birth date and today's date.

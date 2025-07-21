@@ -1,4 +1,4 @@
-// C:\Users\gupta\Documents\DailyToolbox\frontend\src\components\date_calculator\RelationshipCompatibilityCalculator.jsx
+// src/components/date_calculator/RelationshipCompatibilityCalculator.jsx
 import React, { useState } from 'react';
 import { Box, TextField, Button, Typography } from '@mui/material';
 import { calculateDateDifference, getZodiacSign } from './utils';
@@ -66,4 +66,5 @@ export default function RelationshipCompatibilityCalculator() {
     </Box>
   );
 }
-// C:\Users\gupta\Documents\DailyToolbox\frontend\src\components\date_calculator\RelationshipCompatibilityCalculator.jsx
+// C:\Users\gupta\Documents\DailyToolbox\frontend\src\components\date_calculator/RelationshipCompatibilityCalculator.jsx
+// This component calculates the compatibility between two people based on their zodiac signs and age difference.

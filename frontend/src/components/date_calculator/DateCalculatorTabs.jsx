@@ -1,3 +1,4 @@
+// src/components/date_calculator/DateCalculatorTabs.jsx
 import React from 'react';
 import { Tabs, Tab, Box } from '@mui/material';
 import ChronologicalAgeCalculator from './ChronologicalAgeCalculator';
@@ -37,6 +38,7 @@ const DateCalculatorTabs = () =>  {
       </Box>
     </Box>
   );
-}
+};
 
 export default DateCalculatorTabs;
+// C:\Users\gupta\Documents\DailyToolbox\frontend\src\components\date_calculator\DateCalculatorTabs.jsx

@@ -1,4 +1,4 @@
-// C:\Users\gupta\Documents\DailyToolbox\frontend\src\components\date_calculator\RelationshipGapCalculator.jsx
+// src/components/date_calculator/RelationshipGapCalculator.jsx
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import DateInputForm from './DateInputForm';
@@ -43,3 +43,5 @@ export default function RelationshipGapCalculator() {
     </Box>
   );
 }
+// C:\Users\gupta\Documents\DailyToolbox\frontend\src\components\date_calculator/RelationshipGapCalculator.jsx
+// This component calculates the gap between two dates, typically used for relationship duration calculations.

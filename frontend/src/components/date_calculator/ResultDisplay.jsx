@@ -1,4 +1,4 @@
-// C:\Users\gupta\Documents\DailyToolbox\frontend\src\components\date_calculator\ResultDisplay.jsx
+// src/components/date_calculator/ResultDisplay.jsx
 import React from 'react';
 import { Typography, Box, IconButton, Tooltip } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -28,4 +28,5 @@ export default function ResultDisplay({ difference, error }) {
     </Box>
   );
 }
-// C:\Users\gupta\Documents\DailyToolbox\frontend\src\components/date_calculator/ResultDisplay.jsx
+// C:\Users\gupta\Documents\DailyToolbox\frontend\src\components\date_calculator/ResultDisplay.jsx
+// This component displays the result of date calculations and allows copying the result to clipboard.
