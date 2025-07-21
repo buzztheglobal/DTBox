@@ -1,18 +1,42 @@
 // /src/components/qr_code_generator/QRCodeResult.jsx
 import React, { useRef } from 'react';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography, Button, Stack } from '@mui/material';
 import QRCode from 'react-qr-code';
 import domtoimage from 'dom-to-image';
 import { resultBoxStyle, toolButtonStyle } from '../../styles/globalStyles';
 
-const QRCodeResult = ({ qrValue = '', inputData }) => {
+const QRCodeResult = ({ qrValue = '', inputData, type }) => {
   const qrRef = useRef(null);
 
-  const handleDownload = () => {
+  const getToday = () => {
+    const today = new Date();
+    return today.toISOString().split('T')[0]; // YYYY-MM-DD
+  };
+
+  const getIdentifier = () => {
+    if (type === 'contact' && inputData?.name) return inputData.name.replace(/\s+/g, '-');
+    if (type === 'url' && inputData?.url) {
+      try {
+        const { hostname } = new URL(inputData.url);
+        return hostname.replace(/\./g, '-');
+      } catch { return 'url'; }
+    }
+    if (type === 'email' && inputData?.email) return inputData.email.split('@')[0];
+    if (type === 'geo' && inputData?.lat && inputData?.lng) return `${inputData.lat}_${inputData.lng}`;
+    return type || 'qr';
+  };
+
+  const handleDownload = (format = 'png') => {
     if (!qrRef.current) return;
-    domtoimage.toPng(qrRef.current).then((dataUrl) => {
+
+    const downloadFn = format === 'svg'
+      ? domtoimage.toSvg(qrRef.current)
+      : domtoimage.toPng(qrRef.current);
+
+    downloadFn.then((dataUrl) => {
       const link = document.createElement('a');
-      link.download = 'qr-code.png';
+      const filename = `${getIdentifier()}-qr-${getToday()}.${format}`;
+      link.download = filename;
       link.href = dataUrl;
       link.click();
     });
@@ -29,29 +53,40 @@ const QRCodeResult = ({ qrValue = '', inputData }) => {
     });
   };
 
-  if (!qrValue || typeof qrValue !== 'string' || qrValue.trim().length === 0) {
-    return null; // 👈 Don't render anything if qrValue is invalid
-  }
+  if (!qrValue || typeof qrValue !== 'string' || qrValue.trim().length === 0) return null;
 
   return (
     <Box sx={resultBoxStyle} textAlign="center">
       <Typography variant="h6">QR Code Preview</Typography>
-      <Box ref={qrRef} sx={{ display: 'inline-block', background: '#fff', padding: 2, borderRadius: 2, mt: 2 }}>
+
+      <Box
+        ref={qrRef}
+        sx={{
+          display: 'inline-block',
+          background: '#fff',
+          padding: 2,
+          borderRadius: 2,
+          mt: 2
+        }}
+      >
         <QRCode value={qrValue} size={256} />
       </Box>
 
-      <Box mt={2}>
-        <Button onClick={handleDownload} sx={{ ...toolButtonStyle, mr: 2 }}>
+      <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="center" spacing={2} mt={3}>
+        <Button onClick={() => handleDownload('png')} sx={toolButtonStyle}>
           Download PNG
+        </Button>
+        <Button onClick={() => handleDownload('svg')} sx={toolButtonStyle}>
+          Download SVG
         </Button>
         <Button onClick={handleCopy} sx={toolButtonStyle}>
           Copy to Clipboard
         </Button>
-      </Box>
+      </Stack>
 
-      <Box mt={3}>
+      <Box mt={4}>
         <Typography variant="subtitle1" fontWeight={600}>Input Used:</Typography>
-        <pre style={{ textAlign: 'left', fontSize: '0.9rem' }}>
+        <pre style={{ textAlign: 'left', fontSize: '0.9rem', overflowX: 'auto' }}>
           {JSON.stringify(inputData, null, 2)}
         </pre>
       </Box>
@@ -60,6 +95,6 @@ const QRCodeResult = ({ qrValue = '', inputData }) => {
 };
 
 export default QRCodeResult;
-// C:\Users\gupta\Documents\DailyToolbox\frontend\src\components\qr_code_generator/QRCodeResult.jsx
-// This component displays the generated QR code and allows downloading or copying it to clipboard. 
-// It also shows the input data used for generating the QR code.
+// C:\Users\gupta\Documents\DailyToolbox\frontend\src\components\qr_code_generator\QRCodeResult.jsx
+// This component displays the generated QR code and provides options to download it in different formats or copy it to the clipboard.
+// It also shows the input data used for generating the QR code, formatted as JSON for clarity
