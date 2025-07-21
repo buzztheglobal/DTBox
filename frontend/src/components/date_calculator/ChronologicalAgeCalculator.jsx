@@ -41,7 +41,7 @@ export default function ChronologicalAgeCalculator() {
         onReset={handleReset}
         className="input-group input-container"
       />
-      <ResultDisplay className="result-box" difference={difference} error={error} />
+      <ResultDisplay className="result-box form-content" difference={difference} error={error} />
     </Box>
   );
 }

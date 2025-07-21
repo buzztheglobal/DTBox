@@ -40,7 +40,7 @@ export default function RelationshipGapCalculator() {
         onCalculate={handleCalculate}
         onReset={handleReset}
       />
-      <ResultDisplay className="button-group" difference={difference} error={error} />
+      <ResultDisplay className="result-box form-content" difference={difference} error={error} />
     </Box>
   );
 }

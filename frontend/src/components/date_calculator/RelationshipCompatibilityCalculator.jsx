@@ -62,7 +62,7 @@ export default function RelationshipCompatibilityCalculator() {
         InputLabelProps={{ shrink: true }}
         className="input-label"
       />
-      <Button className='btn-calculate' variant="contained" sx={{ ml: 2 }} onClick={calculateCompatibility}>
+      <Button className='btn btn-calculate' variant="contained" sx={{ ml: 2 }} onClick={calculateCompatibility}>
         Check
       </Button>
       <Typography className='input-label' mt={2} whiteSpace="pre-line">{result}</Typography>

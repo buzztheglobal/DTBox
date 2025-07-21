@@ -37,8 +37,10 @@ PS C:\Users\gupta\Documents\DailyToolbox\frontend> npm run dev
 http://localhost:5173/
 
 # git commands # https://github.com/buzztheglobal/DTBox.git
+
+# https://github.com/buzztheglobal/DTBox
 git add .
-git commit -m "json-to-csv"
+git commit -m "date diff calculator"
 git push origin main
 
 git remote add origin https://github.com/buzztheglobal/DTBox
