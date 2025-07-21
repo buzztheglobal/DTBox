@@ -26,6 +26,8 @@ import JsonToCsvPage from './pages/tools/JsonToCsvPage';
 import DateCalculatorPage from './pages/tools/DateCalculatorPage';
 import AnalyticsTracker from './components/AnalyticsTracker'; // ✅
 import QRCodeGeneratorPage from './pages/tools/QRCodeGeneratorPage';
+//
+import WebDiagnosticsPage from './pages/tools/WebDiagnosticsPage';
 
 
 function App() {
@@ -54,6 +56,7 @@ function App() {
           <Route path="/json-to-csv" element={<JsonToCsvPage />} />
           <Route path="/date-calculator" element={<DateCalculatorPage />} />
           <Route path="/qr-code-generator" element={<QRCodeGeneratorPage />} />
+          <Route path="/Web-Diagnostics" element={<WebDiagnosticsPage />} />
           {/* <Route path="*" element={<div>404 - Page Not Found</div>} /> */}
         </Routes>
       </ErrorBoundary>
