@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Box, TextField, Button, Typography } from '@mui/material';
 import { calculateDateDifference, getZodiacSign } from './utils';
+import './date_calculator.css';
 
 const zodiacCompatibilityMap = {
   Aries: ['Leo', 'Sagittarius', 'Gemini'],
@@ -43,13 +44,14 @@ export default function RelationshipCompatibilityCalculator() {
   };
 
   return (
-    <Box>
+    <Box className="form-card">
       <TextField
         label="Person A DOB"
         type="date"
         value={dob1}
         onChange={(e) => setDob1(e.target.value)}
         InputLabelProps={{ shrink: true }}
+        className="input-label"
       />
       <TextField
         label="Person B DOB"
@@ -58,11 +60,12 @@ export default function RelationshipCompatibilityCalculator() {
         onChange={(e) => setDob2(e.target.value)}
         sx={{ ml: 2 }}
         InputLabelProps={{ shrink: true }}
+        className="input-label"
       />
-      <Button variant="contained" sx={{ ml: 2 }} onClick={calculateCompatibility}>
+      <Button className='btn-calculate' variant="contained" sx={{ ml: 2 }} onClick={calculateCompatibility}>
         Check
       </Button>
-      <Typography mt={2} whiteSpace="pre-line">{result}</Typography>
+      <Typography className='input-label' mt={2} whiteSpace="pre-line">{result}</Typography>
     </Box>
   );
 }

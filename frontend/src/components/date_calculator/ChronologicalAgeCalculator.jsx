@@ -4,6 +4,7 @@ import { Box } from '@mui/material';
 import DateInputForm from './DateInputForm';
 import ResultDisplay from './ResultDisplay';
 import { calculateDateDifference } from './utils';
+import './date_calculator.css';
 
 export default function ChronologicalAgeCalculator() {
   const [birthDate, setBirthDate] = useState('');
@@ -38,8 +39,9 @@ export default function ChronologicalAgeCalculator() {
         disableDate2={true}
         onCalculate={handleCalculate}
         onReset={handleReset}
+        className="input-group input-container"
       />
-      <ResultDisplay difference={difference} error={error} />
+      <ResultDisplay className="result-box" difference={difference} error={error} />
     </Box>
   );
 }

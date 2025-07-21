@@ -1,6 +1,7 @@
 // src/components/date_calculator/LifeExpectancyCalculator.jsx
 import React, { useState } from 'react';
 import { Box, TextField, Button, Typography } from '@mui/material';
+import './date_calculator.css';
 
 export default function LifeExpectancyCalculator() {
   const [age, setAge] = useState('');
@@ -21,17 +22,18 @@ export default function LifeExpectancyCalculator() {
   };
 
   return (
-    <Box>
+    <Box className="form-card">
       <TextField
         label="Your Age"
         type="number"
         value={age}
+        className="input-label"
         onChange={(e) => setAge(e.target.value)}
       />
-      <Button variant="contained" onClick={calculate} sx={{ ml: 2 }}>
+      <Button variant="contained" className='btn btn-estimate btn-estimate:hover' onClick={calculate} sx={{ ml: 2 }}>
         Estimate
       </Button>
-      <Typography mt={2}>{result}</Typography>
+      <Typography className='input-label' mt={2}>{result}</Typography>
     </Box>
   );
 }

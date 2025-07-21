@@ -4,6 +4,7 @@ import { Box } from '@mui/material';
 import DateInputForm from './DateInputForm';
 import ResultDisplay from './ResultDisplay';
 import { calculateDateDifference } from './utils';
+import './date_calculator.css';
 
 const DateDiffCalculator = () => {
   const [date1, setDate1] = useState('');
@@ -30,7 +31,7 @@ const DateDiffCalculator = () => {
   };
 
   return (
-    <Box className="date-calculator-box">
+    <Box className="form-card form-section">
       <DateInputForm
         date1={date1}
         date2={date2}
@@ -38,8 +39,9 @@ const DateDiffCalculator = () => {
         setDate2={setDate2}
         onCalculate={handleCalculate}
         onReset={handleReset}
+        className="input-group input-container"
       />
-      <ResultDisplay difference={difference} error={error} />
+      <ResultDisplay className="result-box form-content" difference={difference} error={error} />
     </Box>
   );
 };

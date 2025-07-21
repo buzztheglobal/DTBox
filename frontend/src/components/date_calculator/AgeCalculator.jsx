@@ -1,6 +1,11 @@
+// src/components/date_calculator/AgeCalculator.jsx
 import React, { useState } from 'react';
 import { Box, TextField, Button, Typography } from '@mui/material';
-import { calculateDateDifference, getNextBirthdayCountdown } from './utils';
+import {
+  calculateDateDifference,
+  getNextBirthdayCountdown
+} from './utils';
+import './date_calculator.css';
 
 export default function AgeCalculator() {
   const [dob, setDob] = useState('');
@@ -20,18 +25,19 @@ export default function AgeCalculator() {
   };
 
   return (
-    <Box>
+    <Box  className="form-card">
       <TextField
         label="Your Date of Birth"
         type="date"
         value={dob}
         onChange={(e) => setDob(e.target.value)}
         InputLabelProps={{ shrink: true }}
+        className="input-label"
       />
-      <Button variant="contained" sx={{ ml: 2 }} onClick={calculate}>
+      <Button className='btn btn-calculate btn-calculate:hover' variant="contained" sx={{ ml: 2 }} onClick={calculate}>
         Calculate Age
       </Button>
-      <Typography mt={2} whiteSpace="pre-line">{result}</Typography>
+      <Typography className='input-label' mt={2} whiteSpace="pre-line">{result}</Typography>
     </Box>
   );
 }

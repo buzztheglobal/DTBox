@@ -2,6 +2,7 @@
 import React from 'react';
 import { Typography, Box, IconButton, Tooltip } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import './date_calculator.css';
 
 export default function ResultDisplay({ difference, error }) {
   const handleCopy = () => {
@@ -11,11 +12,11 @@ export default function ResultDisplay({ difference, error }) {
   };
 
   return (
-    <Box className="result-box">
+    <Box className="form-card result-display">
       {error && <Typography color="error">{error}</Typography>}
       {difference && (
-        <Box display="flex" alignItems="center">
-          <Typography variant="h6">
+        <Box display="flex" className="input-container" alignItems="center">
+          <Typography className='input-label' variant="h6">
             Difference: {difference.years} years, {difference.months} months, {difference.days} days
           </Typography>
           <Tooltip title="Copy to clipboard">
