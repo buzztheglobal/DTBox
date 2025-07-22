@@ -40,7 +40,7 @@ http://localhost:5173/
 
 # https://github.com/buzztheglobal/DTBox
 git add .
-git commit -m "web_diagnostics"
+git commit -m "timer_world_clock basic functionality added"
 git push origin main
 
 git remote add origin https://github.com/buzztheglobal/DTBox

@@ -28,6 +28,7 @@ import AnalyticsTracker from './components/AnalyticsTracker'; // ✅
 import QRCodeGeneratorPage from './pages/tools/QRCodeGeneratorPage';
 //
 import WebDiagnosticsPage from './pages/tools/WebDiagnosticsPage';
+import TimerWorldClockPage from './pages/tools/TimerWorldClockPage'; // ✅
 
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
           <Route path="/date-calculator" element={<DateCalculatorPage />} />
           <Route path="/qr-code-generator" element={<QRCodeGeneratorPage />} />
           <Route path="/Web-Diagnostics" element={<WebDiagnosticsPage />} />
+          <Route path="/countdown-timer-world-clock" element={<TimerWorldClockPage />} />
           {/* <Route path="*" element={<div>404 - Page Not Found</div>} /> */}
         </Routes>
       </ErrorBoundary>
