@@ -224,3 +224,7 @@ const WorldClock = () => {
 
 export default WorldClock;
 // src/components/timer_world_clock/WorldClock.jsx
+
+// This file implements a World Clock component that displays real-time clocks for multiple time zones.
+// It allows users to add or remove time zones, toggle between 12-hour and 24
+  
