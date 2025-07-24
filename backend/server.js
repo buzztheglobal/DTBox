@@ -1,16 +1,17 @@
 // backend/server.js
-
+//C:\Users\gupta\Documents\DailyToolbox\backend\server.js
 const express = require('express');
 const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// ✅ Import routes
+// ✅ Import route modules
 const menuRoutes = require('./routes/menuRoutes');
 const logRoutes = require('./routes/logRoutes');
 const colorRoutes = require('./routes/colorRoutes');
+const formsRouter = require('./routes/forms');
 
-// ✅ Import DB setup functions
+// ✅ Import DB table creators
 const { createMenuItemsTable } = require('./models/menuItemModel');
 const { createLogsTable } = require('./models/Log');
 const { createColorTable } = require('./models/Color');
@@ -19,23 +20,24 @@ const { createColorTable } = require('./models/Color');
 app.use(cors());
 app.use(express.json());
 
-// ✅ Log incoming requests
+// ✅ Logger
 app.use((req, res, next) => {
   console.log(`[REQ] ${req.method} ${req.originalUrl}`);
   next();
 });
 
-// ✅ Register API routes
+// ✅ Register routes
 app.use('/api/menuitems', menuRoutes);
 app.use('/api/logs', logRoutes);
 app.use('/api/colors', colorRoutes);
+app.use('/api/forms', formsRouter); // 👈 Add this line
 
 // ✅ Health check
 app.get('/', (req, res) => {
   res.send('✅ Backend running');
 });
 
-// ✅ Start server and initialize DB tables
+// ✅ Start server and init DB
 app.listen(PORT, async () => {
   try {
     await createMenuItemsTable();
@@ -48,3 +50,4 @@ app.listen(PORT, async () => {
 });
 
 module.exports = app;
+//C:\Users\gupta\Documents\DailyToolbox\backend\server.js
