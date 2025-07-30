@@ -1,27 +1,31 @@
+// File: src/components/timezone_converter/TimeZoneSelector.jsx
 import React from 'react';
-import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { Autocomplete, TextField } from '@mui/material';
 
 const TimeZoneSelector = ({ label, value, onChange, timezones = [] }) => {
   return (
-    <FormControl fullWidth margin="normal">
-      <InputLabel>{label}</InputLabel>
-      <Select value={value} onChange={onChange} label={label}>
-        {Array.isArray(timezones) && timezones.length > 0 ? (
-          timezones.map((tz) => (
-            <MenuItem key={tz} value={tz}>
-              {tz}
-            </MenuItem>
-          ))
-        ) : (
-          <MenuItem value="" disabled>
-            Loading timezones...
-          </MenuItem>
-        )}
-      </Select>
-    </FormControl>
+    <Autocomplete
+      disablePortal
+      options={timezones}
+      getOptionLabel={(option) => typeof option === 'string' ? option : option.value || ''}
+      value={value || ''}
+      onChange={(e, newValue) => {
+        if (typeof newValue === 'string') {
+          onChange({ target: { value: newValue } });
+        } else if (newValue && newValue.value) {
+          onChange({ target: { value: newValue.value } });
+        } else if (typeof newValue === 'object') {
+          onChange({ target: { value: newValue } });
+        } else {
+          onChange({ target: { value: '' } });
+        }
+      }}
+      renderInput={(params) => <TextField {...params} label={label} fullWidth />}
+      isOptionEqualToValue={(option, val) => {
+        return option === val || option.value === val || option === val.value;
+      }}
+    />
   );
 };
 
 export default TimeZoneSelector;
-
-//C:\Users\gupta\Documents\DailyToolbox\frontend\src\components\timezone_converter\TimeZoneSelector.jsx
