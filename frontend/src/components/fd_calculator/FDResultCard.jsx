@@ -4,7 +4,7 @@ import { Box, Typography } from '@mui/material';
 
 const FDResultCard = ({ result }) => {
   return (
-    <Box mt={4} p={2} sx={{ background: '#e0f7fa', borderRadius: 2 }}>
+    <Box className="form-card" mt={4} p={2} sx={{ background: '#e0f7fa', borderRadius: 2 }}>
       <Typography variant="h6" color="green">
         Maturity Amount: {result.maturityAmount}
       </Typography>

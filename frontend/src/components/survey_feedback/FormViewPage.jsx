@@ -47,7 +47,7 @@ const FormViewPage = () => {
   if (loading) return <CircularProgress sx={{ m: 4 }} />;
 
   return (
-    <Box sx={{ p: 3 }}>
+    <Box className="form-card" sx={{ p: 3 }}>
       <Typography variant="h5">{form.title}</Typography>
       <Typography variant="body1" mb={2}>{form.description}</Typography>
 

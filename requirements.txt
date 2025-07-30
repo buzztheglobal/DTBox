@@ -1,174 +1,243 @@
-timer and world clock
+Survey-Feedback-Tools
 -------------------------
-Implementing a countdown timer and world clock in a business application requires clear business requirements to ensure functionality, usability, and alignment with business goals. Below is a detailed list of business requirements for both features, categorized for clarity.
 
-http://localhost:3000/tools/countdown-timer-world-clock
+http://localhost:3000/Survey-Feedback-Tools
 
-### **General Business Requirements**
-1. **Purpose and Scope**:
-   - Provide a countdown timer to track time-sensitive events, tasks, or promotions.
-   - Offer a world clock to display real-time in multiple time zones for global teams or customers.
-   - Ensure both features are intuitive, accessible, and aligned with the application’s purpose (e.g., project management, e-commerce, event planning).
+Implementing a  poll creator Below is a comprehensive list of business functionalities for a **Poll Creator** system, covering **backend**, **frontend**, **poll creation**, and **poll submission**. These requirements are designed to ensure the poll creator is user-friendly, scalable, secure, and capable of meeting diverse use cases for collecting quick user feedback. The functionalities are organized by the specified categories, with an emphasis on ensuring a complete, end-to-end solution.
 
-2. **Target Audience**:
-   - Identify primary users (e.g., employees, customers, event attendees).
-   - Support diverse user groups, including those with varying technical expertise and accessibility needs.
+### 1. Backend Functionalities
+The backend handles data storage, processing, security, and integrations for the poll creator system.
 
-3. **Platform and Accessibility**:
-   - Support web, mobile (iOS, Android), and/or desktop applications.
-   - Ensure compatibility with major browsers (Chrome, Firefox, Safari, Edge).
-   - Comply with accessibility standards (e.g., WCAG 2.1) for users with disabilities (e.g., screen reader support, high-contrast mode).
+#### 1.1 Data Management
+- **Database Schema**:
+  - Store poll metadata (e.g., ID, title, description, question, options, creation date, creator ID, status).
+  - Store response data (e.g., respondent ID or anonymous identifier, selected option, timestamp, IP address).
+  - Support for categorization (e.g., tags like "customer feedback," "event poll").
+- **CRUD Operations**:
+  - Create, read, update, and delete polls and their responses.
+  - Soft delete functionality to mark polls as deleted (`is_deleted`) without permanent data loss.
+- **Response Storage**:
+  - Store responses with metadata (e.g., geolocation, device type, submission time) while complying with privacy laws (e.g., GDPR, CCPA).
+  - Support high-volume response storage with efficient indexing for quick retrieval.
 
-4. **Performance and Reliability**:
-   - Ensure real-time accuracy for both countdown timer and world clock.
-   - Minimize latency in time updates, especially for world clock across multiple time zones.
-   - Achieve 99.9% uptime for time-related services.
+#### 1.2 API Endpoints
+- **Poll Management APIs**:
+  - `POST /api/polls`: Create a new poll with question, options, and settings (e.g., anonymous, time-bound).
+  - `GET /api/polls/{id}`: Retrieve poll details by ID.
+  - `PUT /api/polls/{id}`: Update poll settings or content.
+  - `DELETE /api/polls/{id}`: Soft delete a poll.
+  - `GET /api/polls`: List all polls for a user or organization with filters (e.g., active, archived, draft).
+- **Response APIs**:
+  - `POST /api/polls/{id}/responses`: Submit a poll response.
+  - `GET /api/polls/{id}/results`: Retrieve poll results (e.g., vote counts, percentages) with optional filters (e.g., date range, demographics).
+- **Analytics APIs**:
+  - `GET /api/polls/{id}/analytics`: Fetch detailed analytics (e.g., response trends, completion rates).
+- **Authentication & Authorization**:
+  - Secure endpoints with JWT, OAuth, or API keys.
+  - Role-based access (e.g., admin can manage all polls, users can manage their own).
 
-5. **Security**:
-   - Protect user data (e.g., event details, time zone preferences) with encryption (e.g., AES-256 for stored data).
-   - Ensure secure API calls for time zone data or external time servers.
-   - Comply with data privacy regulations (e.g., GDPR, CCPA) if user data is collected.
+#### 1.3 Business Logic
+- **Poll Validation**:
+  - Ensure polls have a valid question and at least two options.
+  - Enforce constraints (e.g., maximum number of options, character limits for question/answers).
+- **Response Validation**:
+  - Prevent duplicate votes (e.g., using IP address, user ID, or cookies).
+  - Validate response format (e.g., selected option exists).
+- **Time-Bound Polls**:
+  - Automatically close polls after a specified duration or date (`scheduled_at`).
+  - Trigger notifications or actions upon poll closure.
+- **Anonymity Control**:
+  - Support anonymous or identifiable responses based on poll settings.
+  - Mask sensitive respondent data (e.g., IP address) for compliance.
+- **Real-Time Updates**:
+  - Use WebSockets or server-sent events to push real-time vote counts to clients (if enabled).
+- **Caching**:
+  - Cache poll metadata and results (`is_cacheable`) to reduce database load for high-traffic polls.
+- **Scalability**:
+  - Use distributed databases (e.g., PostgreSQL with sharding) or NoSQL (e.g., MongoDB) for high-scale response storage.
+  - Implement queue systems (e.g., RabbitMQ, Kafka) for asynchronous response processing.
 
-6. **Scalability**:
-   - Support a growing number of users accessing the countdown timer and world clock simultaneously.
-   - Handle multiple time zones and countdown events without performance degradation.
+#### 1.4 Security & Compliance
+- **Data Encryption**:
+  - Encrypt sensitive data (e.g., responses, user metadata) in transit (TLS) and at rest (AES-256).
+- **Access Control**:
+  - Restrict poll access based on `access_level` (e.g., public, private, organization-only).
+  - Support password-protected or link-based access for private polls.
+- **Compliance**:
+  - Ensure GDPR/CCPA compliance for data collection, storage, and deletion.
+  - Provide data export/deletion options for respondents.
+- **Audit Logging**:
+  - Log actions (e.g., poll creation, updates, deletions) with timestamps and user IDs (`created_by_id`, `updated_by_id`).
 
-7. **Localization and Internationalization**:
-   - Support multiple languages and regional time formats (e.g., 12-hour vs. 24-hour clocks).
-   - Display dates and times in user-preferred formats based on locale.
+#### 1.5 Integrations
+- **Third-Party Integrations**:
+  - Integrate with email platforms (e.g., Mailchimp) for poll distribution.
+  - Connect with analytics tools (e.g., Google Analytics) for tracking engagement.
+  - Support embedding via APIs or webhooks (e.g., post results to Slack).
+- **Export Capabilities**:
+  - Export poll results in CSV, JSON, or PDF formats.
+  - Generate shareable reports with visualizations.
 
----
+### 2. Frontend Functionalities
+The frontend provides the user interface for creating, managing, and interacting with polls.
 
-### **Countdown Timer: Specific Business Requirements**
+#### 2.1 User Interface
+- **Dashboard**:
+  - Display a list of polls with filters (e.g., active, draft, archived) and statuses (`is_active`, `is_published`).
+  - Show quick stats (e.g., total responses, completion rate).
+- **Responsive Design**:
+  - Ensure compatibility across devices (desktop, tablet, mobile) using frameworks like React or Vue.js.
+  - Support WCAG 2.1 accessibility standards (e.g., screen reader support, keyboard navigation).
+- **Theming**:
+  - Allow customization of poll appearance (e.g., colors, fonts, logos) via `custom_css` and `custom_js`.
+  - Support dark/light mode for better user experience.
 
-1. **Functional Requirements**:
-   - Allow users to set a countdown timer for specific events (e.g., project deadlines, sales promotions, personal reminders).
-   - Support customizable time units (days, hours, minutes, seconds).
-   - Provide options to start, pause, reset, or cancel the countdown.
-   - Enable multiple simultaneous countdowns for different events.
-   - Allow recurring countdowns for repeating events (e.g., weekly meetings).
-   - Display a visual progress indicator (e.g., progress bar, circular timer).
+#### 2.2 Poll Management
+- **Poll Creation UI**:
+  - Drag-and-drop interface for adding questions and options.
+  - Preview mode to visualize the poll before publishing.
+- **Poll Editing**:
+  - Edit question, options, or settings (e.g., anonymity, time limits) before or after publishing (if allowed).
+- **Poll Status Indicators**:
+  - Show statuses like `is_draft`, `is_published`, `is_scheduled`, or `is_archived` with clear visual cues.
+- **Embedding Options**:
+  - Generate embed codes for websites, iframes, or social media.
+  - Provide QR codes for offline distribution.
 
-2. **Customization**:
-   - Allow users to name or label countdowns for easy identification.
-   - Support customizable themes (e.g., colors, fonts) to match brand identity.
-   - Provide options for sound or visual notifications when the countdown reaches zero.
+#### 2.3 Results Visualization
+- **Real-Time Results**:
+  - Display live vote counts or percentages (if enabled) using charts (e.g., bar, pie).
+  - Support toggling result visibility for respondents (`is_visible`).
+- **Interactive Charts**:
+  - Render dynamic charts using Chart.js or D3.js for vote distribution.
+  - Allow filtering by date, demographics, or response source.
 
-3. **Notifications and Alerts**:
-   - Send notifications via email, SMS, or in-app alerts at user-defined intervals (e.g., 1 hour before, at completion).
-   - Allow users to configure notification preferences (e.g., silent mode, vibration).
+#### 2.4 User Experience
+- **Notifications**:
+  - Show alerts for successful actions (e.g., poll created, response submitted).
+  - Notify users of poll closure or errors (e.g., duplicate vote attempt).
+- **Social Sharing**:
+  - Provide buttons to share polls on platforms like X, LinkedIn, or WhatsApp.
+- **Multilingual Support**:
+  - Render UI in multiple languages based on user settings or browser locale.
 
-4. **User Interface (UI)**:
-   - Provide a clean, intuitive interface for setting and viewing countdowns.
-   - Display remaining time prominently in a user-friendly format.
-   - Ensure mobile responsiveness for smaller screens.
+### 3. Poll Creation Functionalities
+These focus on the process of creating and configuring polls.
 
-5. **Integration**:
-   - Integrate with calendar applications (e.g., Google Calendar, Outlook) to auto-create countdowns from events.
-   - Sync with task management tools (e.g., Trello, Asana) for project deadlines.
-   - Allow API access for third-party applications to create or monitor countdowns.
+- **Question Input**:
+  - Allow a single question with a character limit (e.g., 255 characters).
+  - Support rich text for questions (e.g., bold, italic) via a WYSIWYG editor.
+- **Option Configuration**:
+  - Add up to a configurable maximum number of options (e.g., 10).
+  - Support text-based options with optional images (`featured_image_url`).
+- **Poll Settings**:
+  - Enable/disable anonymity for responses.
+  - Set time limits (`scheduled_at`) for poll duration (e.g., 24 hours, 7 days).
+  - Toggle result visibility to respondents (`is_visible`).
+  - Enable/disable multiple votes (e.g., one vote per user via cookies/IP).
+- **Templates**:
+  - Provide pre-built poll templates (e.g., "Quick Feedback," "Event Poll").
+- **Draft Mode**:
+  - Save polls as drafts (`is_draft`) for later editing.
+- **Distribution Options**:
+  - Generate unique poll URLs for sharing.
+  - Support embedding via HTML snippets or iframes.
+  - Create QR codes for print or mobile scanning.
+- **SEO Optimization**:
+  - Allow input for `seo_title` and `seo_description` to improve discoverability.
+  - Auto-generate SEO fields based on poll content if not provided.
+- **Access Control**:
+  - Set `access_level` (e.g., public, private, organization-only).
+  - Support password protection or link-based access.
 
-6. **Data Persistence**:
-   - Save countdown settings and progress across sessions, even if the user logs out or closes the app.
-   - Support cloud synchronization for multi-device access.
+### 4. Poll Submission Functionalities
+These cover how users interact with and submit responses to polls.
 
-7. **Analytics and Reporting**:
-   - Track usage metrics (e.g., number of countdowns created, completion rates).
-   - Provide reports for business users (e.g., marketing teams tracking promotional campaign timers).
+- **Response Submission**:
+  - Allow users to select one or multiple options based on poll settings.
+  - Support anonymous submissions or require user login (`created_by_id` for tracking).
+- **Vote Validation**:
+  - Prevent duplicate submissions using IP address, cookies, or user authentication.
+  - Display error messages for invalid submissions (e.g., poll expired, option not valid).
+- **User Feedback**:
+  - Show confirmation messages after successful submission.
+  - Optionally display real-time results post-submission (`is_visible`).
+- **Accessibility**:
+  - Ensure poll forms are WCAG-compliant (e.g., keyboard-navigable, screen-reader-friendly).
+- **Offline Support**:
+  - Allow offline submissions (e.g., via mobile app) with syncing when online.
+- **Rate Limiting**:
+  - Prevent abuse by limiting submission frequency (e.g., one vote per minute per IP).
+- **Geo-Tagging**:
+  - Optionally capture geolocation (`geo_location`) for responses, with user consent.
 
----
-https://mui.com/material-ui/react-tabs/#scrollable-tabs
-implement World Clock, and Countdown Timer tab based using scrollable-tabs. 
-### **World Clock: Specific Business Requirements**
+### Additional Considerations
+- **Performance**:
+  - Optimize backend queries for high-traffic polls (e.g., use indexing, caching).
+  - Minimize frontend load times with lazy loading for results or charts.
+- **Scalability**:
+  - Support thousands of concurrent respondents without latency.
+  - Use load balancers and CDNs for global accessibility.
+- **Analytics**:
+  - Provide insights like response rate, drop-off rate, and demographic breakdowns.
+  - Support exportable reports in multiple formats (CSV, PDF).
+- **Extensibility**:
+  - Allow future enhancements like gamification (e.g., badges for voting) or AI-driven result analysis.
 
-1. **Functional Requirements**:
-   - Display real-time clocks for multiple time zones simultaneously.
-   - Allow users to add, remove, or reorder time zones from a predefined list or custom input.
-   - Automatically adjust for Daylight Saving Time (DST) changes in relevant time zones.
-   - Support search functionality for time zones by city, country, or UTC offset.
-   - Provide a comparison feature to show time differences between selected zones.
+### Example Workflow
+1. **Poll Creation**:
+   - User logs in, navigates to the poll creator dashboard, and selects "Create Poll."
+   - Enters a question, adds options, and configures settings (e.g., anonymous, 24-hour duration).
+   - Saves as draft or publishes (`is_published = TRUE`).
+   - Shares the poll via URL, QR code, or social media.
+2. **Poll Submission**:
+   - Respondent accesses the poll via a link or embedded widget.
+   - Selects an option and submits (anonymous or authenticated).
+   - Sees confirmation and optional results (if enabled).
+3. **Backend Processing**:
+   - Backend validates the response, stores it, and updates real-time vote counts.
+   - Triggers notifications (e.g., email to creator) if configured.
+4. **Frontend Display**:
+   - Creator views real-time results on the dashboard with charts and filters.
+   - Exports data or shares results with stakeholders.
 
-2. **Customization**:
-   - Allow users to label clocks (e.g., “New York Office,” “Tokyo Client”).
-   - Support analog and digital clock formats.
-   - Enable customizable display options (e.g., 12-hour/24-hour format, AM/PM indicators).
+### Notes
+- The requirements align with the `menu_menuitem` schema provided earlier, incorporating fields like `is_active`, `is_published`, `seo_title`, `seo_description`, `tool_domain`, etc.
+- If you need specific technical details (e.g., database schema, API specifications, or frontend component breakdown), let me know.
+- I can also generate a sample chart (e.g., pie chart for poll results) or search X for real-world poll creator examples if desired.
 
-3. **User Interface (UI)**:
-   - Display multiple clocks in a grid or list format for easy comparison.
-   - Ensure readability with clear fonts, colors, and layouts.
-   - Support responsive design for varying screen sizes.
+current Folder structure
+Directory: C:\Users\gupta\Documents\DailyToolbox\frontend\src\components\survey_feedback
 
-4. **Data Source and Accuracy**:
-   - Use reliable external APIs or time servers (e.g., WorldTimeAPI, time.gov) for accurate time zone data.
-   - Cache time zone data locally to reduce API calls and improve performance.
-   - Update time displays at least every second for real-time accuracy.
 
-5. **Integration**:
-   - Integrate with calendar apps to display meeting times in multiple time zones.
-   - Sync with collaboration tools (e.g., Slack, Microsoft Teams) for scheduling across global teams.
-   - Allow API access for third-party apps to retrieve time zone data.
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----         7/24/2025  11:09 PM                admin
+-a----         7/24/2025   4:51 PM            513 FeedbackFormTab.jsx
+-a----         7/24/2025   3:37 PM           2917 FormViewPage.jsx
+-a----         7/26/2025   8:23 PM            505 PollCreatorTab.jsx
 
-6. **Offline Functionality**:
-   - Support offline mode with locally stored time zone data and device clock synchronization.
-   - Notify users if time accuracy may be affected due to lack of internet connectivity.
 
-7. **Analytics and Reporting**:
-   - Track which time zones are most frequently viewed by users.
-   - Provide insights for businesses to optimize global operations (e.g., identifying peak collaboration times).
+PS C:\Users\gupta\Documents\DailyToolbox\frontend\src\components\survey_feedback> cd .\admin\
+PS C:\Users\gupta\Documents\DailyToolbox\frontend\src\components\survey_feedback\admin> dir
 
----
 
-### **Non-Functional Requirements (Applicable to Both Features)**
+    Directory: C:\Users\gupta\Documents\DailyToolbox\frontend\src\components\survey_feedback\admin
 
-1. **Usability**:
-   - Ensure intuitive navigation and minimal learning curve for end users.
-   - Provide tooltips or help documentation for complex features.
 
-2. **Maintainability**:
-   - Use modular code architecture for easy updates and bug fixes.
-   - Document APIs and codebase for developer reference.
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----         7/24/2025   3:57 PM           3039 AdminDashboardPage.jsx
+-a----         7/24/2025   3:54 PM           1097 EmbedCodeGenerator.jsx
+-a----         7/24/2025   3:35 PM           1182 PreviewFormModal.jsx
+-a----         7/24/2025   3:34 PM           2573 QuestionFormBuilder.jsx
+-a----         7/24/2025  11:09 PM              0 ResponseViewerPage.jsx
+-a----         7/24/2025   9:03 PM           8403 SurveyBuilderPage.jsx
+-a----         7/24/2025   6:51 PM              0 UpdateFormPage.jsx
 
-3. **Testing**:
-   - Conduct unit testing for timer accuracy and time zone calculations.
-   - Perform usability testing with target users to validate UI/UX.
-   - Test edge cases (e.g., DST transitions, leap seconds, extreme time zone offsets).
+create detailed API design, frontend mockups, or an `INSERT` query to add a poll creator menu item to the `menu_menuitem` table!
 
-4. **Branding**:
-   - Incorporate company branding (e.g., logos, color schemes) into the UI.
-   - Allow white-labeling for businesses offering the features to their customers.
-
-5. **Support and Maintenance**:
-   - Provide customer support channels (e.g., email, chat) for user issues.
-   - Schedule regular updates to maintain compatibility with new devices and OS versions.
-
----
-
-### **Assumptions and Constraints**
-- **Assumptions**:
-  - Users have access to devices with reliable internet for initial time synchronization.
-  - The application has access to a time zone database (e.g., IANA Time Zone Database).
-  - Users expect minimal latency in time updates.
-
-- **Constraints**:
-  - Limited by device clock accuracy for offline functionality.
-  - Dependent on third-party APIs for time zone data, which may have rate limits or costs.
-  - Compliance with regional data privacy laws may restrict data storage or processing.
-
----
-
-### **Additional Considerations**
-- **Monetization** (if applicable):
-  - Offer premium features (e.g., unlimited countdowns, advanced analytics) via subscription (refer users to https://x.ai/grok for pricing details if using xAI’s platform).
-  - Provide ad-supported free tiers or freemium models.
-
-- **Future Enhancements**:
-  - Add voice control for setting countdowns or selecting time zones.
-  - Integrate AI to suggest optimal meeting times based on user-selected time zones.
-  - Support wearable devices for timer notifications or time zone displays.
-
-This comprehensive list covers the core business requirements for implementing a countdown timer and world clock. If you need specific technical requirements, user stories, or a focus on a particular platform, let me know!
-These utilities share a similar focus on providing quick, network-related diagnostic information in a user-friendly format, often leveraging APIs or browser capabilities to deliver real-time results.
-and sample file and Folders Structure
+Implement survey builder, poll creator, and feedback form using the following structure: https://mui.com/material-ui/react-tabs/#scrollable-tabs
 
 frontend/
 └── src/
@@ -199,8 +268,8 @@ Frontend: React.js (v18+), Bootstrap 5.3, Material-UI (v5+)
 Backend: Node.js (v20.19.3) + Express (for future use)
 Database: PostgreSQL + pgAdmin
 
-refer and use app.css, and globalStyles.js 
+refer and use app.css, globalStyles.js , and commonStyles.js
 
 refer app.js for routing
 
-localhost URL: http://localhost:3000/tools/countdown-timer-world-clock
+localhost URL: http://localhost:3000/Survey-Feedback-Tools

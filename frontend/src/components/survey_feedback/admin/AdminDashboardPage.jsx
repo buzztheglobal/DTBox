@@ -1,86 +1,89 @@
 // File: src/components/survey_feedback/admin/AdminDashboardPage.jsx
 import React, { useEffect, useState } from 'react';
 import {
-  Box, Typography, Table, TableHead, TableRow,
-  TableCell, TableBody, Button, CircularProgress
+  Box, Typography, Paper, Button, IconButton, Tooltip, Table, TableHead,
+  TableRow, TableCell, TableBody, Dialog, DialogTitle, DialogContent
 } from '@mui/material';
-import { CSVLink } from 'react-csv';
-import EmbedCodeGenerator from './EmbedCodeGenerator';
+import DeleteIcon from '@mui/icons-material/Delete';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import ShareIcon from '@mui/icons-material/Share';
+import PollSummaryPage from '../PollSummaryPage';
 
 const AdminDashboardPage = () => {
-  const [forms, setForms] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [polls, setPolls] = useState([]);
+  const [selectedPoll, setSelectedPoll] = useState(null);
+
+  const fetchPolls = () => {
+    fetch('/api/polls')
+      .then((res) => res.json())
+      .then(setPolls);
+  };
 
   useEffect(() => {
-    const fetchForms = async () => {
-      try {
-        const res = await fetch('/api/forms/admin/forms', {
-          headers: { Authorization: localStorage.getItem('userEmail') || '' }
-        });
-        const data = await res.json();
-        setForms(data);
-        setLoading(false);
-      } catch (err) {
-        console.error('Failed to load forms:', err);
-        setLoading(false);
-      }
-    };
-    fetchForms();
+    fetchPolls();
   }, []);
 
-  if (loading) return <CircularProgress sx={{ m: 4 }} />;
+  const handleDelete = (id) => {
+    if (!window.confirm("Are you sure you want to archive this poll?")) return;
+    fetch(`/api/polls/${id}`, { method: 'DELETE' })
+      .then(() => fetchPolls());
+  };
 
   return (
-    <Box sx={{ p: 3 }}>
-      <Typography variant="h5" mb={3}>📊 Admin Dashboard</Typography>
+    <Box sx={{ p: 4 }}>
+      <Typography variant="h4" gutterBottom>📋 Admin Poll Dashboard</Typography>
 
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell><strong>Title</strong></TableCell>
-            <TableCell><strong>Type</strong></TableCell>
-            <TableCell><strong>Created</strong></TableCell>
-            <TableCell><strong>Responses</strong></TableCell>
-            <TableCell><strong>Export</strong></TableCell>
-            <TableCell><strong>Embed</strong></TableCell>
-          </TableRow>
-        </TableHead>
-
-        <TableBody>
-          {forms.map((form) => (
-            <TableRow key={form.id}>
-              <TableCell>{form.title}</TableCell>
-              <TableCell>{form.type}</TableCell>
-              <TableCell>{new Date(form.created_at).toLocaleDateString()}</TableCell>
-              <TableCell>{form.response_count || 0}</TableCell>
-
-              {/* CSV Export */}
-              <TableCell>
-                {form.responses && form.responses.length > 0 ? (
-                  <CSVLink
-                    filename={`${form.title.replace(/\s+/g, '_')}-responses.csv`}
-                    data={form.responses.map((r) => {
-                      const row = { submitted_at: r.submitted_at };
-                      r.answers.forEach((a, i) => {
-                        row[`Q${i + 1}`] = a.answer_text;
-                      });
-                      return row;
-                    })}
-                    style={{ textDecoration: 'none' }}
-                  >
-                    <Button variant="outlined" size="small">Download</Button>
-                  </CSVLink>
-                ) : '—'}
-              </TableCell>
-
-              {/* Embed Code Generator */}
-              <TableCell>
-                <EmbedCodeGenerator formId={form.id} />
-              </TableCell>
+      <Paper sx={{ mt: 3 }}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Poll Question</TableCell>
+              <TableCell>Created At</TableCell>
+              <TableCell>Published</TableCell>
+              <TableCell>Actions</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody>
+            {polls.map((poll) => (
+              <TableRow key={poll.id}>
+                <TableCell>{poll.question}</TableCell>
+                <TableCell>{new Date(poll.created_at).toLocaleString()}</TableCell>
+                <TableCell>{poll.is_published ? '✅' : '❌'}</TableCell>
+                <TableCell>
+                  <Tooltip title="Share & Embed">
+                    <IconButton onClick={() => setSelectedPoll(poll)}>
+                      <ShareIcon />
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title="Export CSV">
+                    <IconButton
+                      component="a"
+                      href={`http://localhost:5000/api/polls/${poll.id}/export`}
+                      target="_blank"
+                    >
+                      <FileDownloadIcon />
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title="Delete Poll">
+                    <IconButton onClick={() => handleDelete(poll.id)}>
+                      <DeleteIcon color="error" />
+                    </IconButton>
+                  </Tooltip>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Paper>
+
+      <Dialog open={!!selectedPoll} onClose={() => setSelectedPoll(null)} maxWidth="md" fullWidth>
+        <DialogTitle>Poll Summary</DialogTitle>
+        <DialogContent>
+          {selectedPoll && (
+            <PollSummaryPage pollId={selectedPoll.id} pollSlug={selectedPoll.slug} />
+          )}
+        </DialogContent>
+      </Dialog>
     </Box>
   );
 };

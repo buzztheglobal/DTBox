@@ -36,7 +36,7 @@ const SWPForm = () => {
   };
 
   return (
-    <Box sx={formBoxStyle}>
+    <Box className="form-card" sx={formBoxStyle}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}><TextField fullWidth label="Initial Investment (₹)" value={initial} onChange={(e) => setInitial(+e.target.value)} sx={formFieldStyle} /></Grid>
         <Grid item xs={12} sm={6}><TextField fullWidth label="Monthly Withdrawal (₹)" value={withdrawal} onChange={(e) => setWithdrawal(+e.target.value)} sx={formFieldStyle} /></Grid>

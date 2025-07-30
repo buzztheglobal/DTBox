@@ -1,43 +1,46 @@
-// backend/server.js
-//C:\Users\gupta\Documents\DailyToolbox\backend\server.js
+// File: /backend/server.js
+
 const express = require('express');
 const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 5000;
-
-// ✅ Import route modules
-const menuRoutes = require('./routes/menuRoutes');
-const logRoutes = require('./routes/logRoutes');
-const colorRoutes = require('./routes/colorRoutes');
-const formsRouter = require('./routes/forms');
-
-// ✅ Import DB table creators
-const { createMenuItemsTable } = require('./models/menuItemModel');
-const { createLogsTable } = require('./models/Log');
-const { createColorTable } = require('./models/Color');
+require('dotenv').config();
 
 // ✅ Middleware
 app.use(cors());
 app.use(express.json());
 
-// ✅ Logger
+// ✅ Logger Middleware
 app.use((req, res, next) => {
   console.log(`[REQ] ${req.method} ${req.originalUrl}`);
   next();
 });
 
-// ✅ Register routes
+// ✅ Route Modules
+const menuRoutes = require('./routes/menuRoutes');
+const logRoutes = require('./routes/logRoutes');
+const colorRoutes = require('./routes/colorRoutes');
+const formsRoutes = require('./routes/forms');
+const pollRoutes = require('./routes/polls'); // ✅ Polls route added
+
+// ✅ Register Routes
 app.use('/api/menuitems', menuRoutes);
 app.use('/api/logs', logRoutes);
 app.use('/api/colors', colorRoutes);
-app.use('/api/forms', formsRouter); // 👈 Add this line
+app.use('/api/forms', formsRoutes);
+app.use('/api/polls', pollRoutes); // ✅ Enable Polls API
 
-// ✅ Health check
+// ✅ Health Check
 app.get('/', (req, res) => {
-  res.send('✅ Backend running');
+  res.send('✅ Backend running at DailyToolbox 🚀');
 });
 
-// ✅ Start server and init DB
+// ✅ DB Table Creators
+const { createMenuItemsTable } = require('./models/menuItemModel');
+const { createLogsTable } = require('./models/Log');
+const { createColorTable } = require('./models/Color');
+
+// ✅ Start Server & Initialize DB
 app.listen(PORT, async () => {
   try {
     await createMenuItemsTable();
@@ -50,4 +53,3 @@ app.listen(PORT, async () => {
 });
 
 module.exports = app;
-//C:\Users\gupta\Documents\DailyToolbox\backend\server.js

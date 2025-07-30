@@ -54,7 +54,7 @@ const PasswordGenerator = () => {
   };
 
   return (
-    <Box sx={cardBoxStyle} mb={4}>
+    <Box className="form-card" sx={cardBoxStyle} mb={4}>
       <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 2, color: 'black' }}>Generate a Strong Password</Typography>
       <Stack spacing={2} mt={2}>
         <Slider

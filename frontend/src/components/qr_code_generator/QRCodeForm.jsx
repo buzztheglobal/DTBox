@@ -165,7 +165,7 @@ const QRCodeForm = () => {
             <Tabs value={tabIndex} onChange={handleTabChange} variant="scrollable" scrollButtons="auto">
                 {tabTypes.map((label, index) => <Tab key={index} label={label.toUpperCase()} />)}
             </Tabs>
-            <Box mt={2}>
+            <Box className="form-card" mt={2}>
                 {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
 
                 {type === 'url' && (

@@ -30,7 +30,7 @@ const SIPFormWithPieChart = () => {
   };
 
   return (
-    <Box sx={formBoxStyle}>
+    <Box className="form-card" sx={formBoxStyle}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}><TextField fullWidth label="Monthly SIP (₹)" value={amount} onChange={(e) => setAmount(+e.target.value)} sx={formFieldStyle} /></Grid>
         <Grid item xs={12} sm={6}><TextField fullWidth label="Investment Tenure (Years)" value={tenure} onChange={(e) => setTenure(+e.target.value)} sx={formFieldStyle} /></Grid>

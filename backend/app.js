@@ -1,41 +1,33 @@
+// File: /backend/app.js
 const express = require("express");
 const cors = require("cors");
+const app = express();
 require("dotenv").config();
 
+// Middleware
 app.use(cors());
 app.use(express.json());
- 
- 
 
-// Routes
-const menuItemRoutes = require("./routes/menuRoutes");
-app.use("/api/menuitems", menuItemRoutes);
-// Mount Color API
-app.use('/api/colors', colorRoutes);
+// Route imports
+const menuRoutes = require('./routes/menuRoutes');
+const logRoutes = require('./routes/logRoutes');
+const colorRoutes = require('./routes/colorRoutes');
+const formsRoutes = require('./routes/forms');
+const pollRoutes = require('./routes/polls'); // ✅ polls route
 
+// Cron job
+require('./cron/pollScheduler'); // Optional
+
+// Mount routes
+app.use("/api/menuitems", menuRoutes);
+app.use("/api/logs", logRoutes);
+app.use("/api/colors", colorRoutes);
+app.use("/api/forms", formsRoutes);
+app.use("/api/polls", pollRoutes); // ✅ mount polls route
+
+// Health check
 app.get("/", (req, res) => {
   res.send("✅ Welcome to DailyToolbox Backend API 🚀");
-});
-
-// // ✅ Add this POST route to handle logging
-// app.post("/api/logs", (req, res) => {
-//   const { type, category, search, count } = req.body;
-
-//   console.log("📊 Log Entry Received:", {
-//     type,
-//     category,
-//     search,
-//     count,
-//     timestamp: new Date().toISOString()
-//   });
-
-//   res.status(200).json({ success: true, message: "Log received" });
-// });
-
-// Your server listen
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
 });
 
 module.exports = app;

@@ -1,5 +1,5 @@
 // src/App.js
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useParams, Navigate } from "react-router-dom"; // ✅ includes Navigate
 import CssBaseline from "@mui/material/CssBaseline";
 import React, { useContext } from "react"; // 👈 add useContext here
 
@@ -35,6 +35,21 @@ import SurveyFeedbackToolsPage from './pages/tools/SurveyFeedbackToolsPage';
 import SurveyBuilderPage from './components/survey_feedback/admin/SurveyBuilderPage';
 import AdminDashboardPage from './components/survey_feedback/admin/AdminDashboardPage';
 import FormViewPage from './components/survey_feedback/FormViewPage';
+import UpdateFormPage from './components/survey_feedback/admin/UpdateFormPage';
+
+import PollGalleryPage from './pages/tools/PollGalleryPage';
+import PollSummaryPage from './components/survey_feedback/PollSummaryPage';
+import PollViewPage from './pages/tools/PollViewPage';
+
+const PollSummaryPageWrapper = () => {
+  const { id } = useParams();
+  return <PollSummaryPage pollId={id} />;
+};
+
+const ProtectedRoute = ({ children }) => {
+  const { user } = useContext(AuthContext);
+  return user ? children : <Navigate to="/login" />;
+};
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -69,10 +84,17 @@ function App() {
           <Route path="/Survey-Feedback-Tools" element={<SurveyFeedbackToolsPage />} />
           {/* Admin Routes (requires login) */}
           <Route path="/admin/survey-builder" element={user ? <SurveyBuilderPage /> : <div>Login Required</div>} />
-          <Route path="/admin/dashboard" element={user ? <AdminDashboardPage /> : <div>Login Required</div>} />
+          {/* <Route path="/admin/dashboard" element={user ? <AdminDashboardPage /> : <div>Login Required</div>} /> */}
+          <Route path="/admin/dashboard" element={
+            <ProtectedRoute><AdminDashboardPage /></ProtectedRoute>
+          } />
           {/* Public Tools */}
           <Route path="/Survey-Feedback-Tools" element={<SurveyFeedbackToolsPage />} />
           <Route path="/form/:formId" element={<FormViewPage />} />
+          <Route path="/admin/update-form/:id" element={user ? <UpdateFormPage /> : <div>Login Required</div>} />
+          <Route path="/form/:pollId" element={<PollViewPage />} />
+          <Route path="/poll-gallery" element={<PollGalleryPage />} />
+          <Route path="/admin/poll/:id/summary" element={<PollSummaryPageWrapper />} />
           {/* Admin Routes */}
           {/* <Route path="*" element={<div>404 - Page Not Found</div>} /> */}
         </Routes>

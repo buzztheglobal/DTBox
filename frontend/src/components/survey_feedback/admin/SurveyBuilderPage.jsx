@@ -139,7 +139,7 @@ const SurveyBuilderPage = () => {
       />
 
       <DragDropContext onDragEnd={handleDragEnd}>
-        <Droppable droppableId="questions">
+        <Droppable droppableId="questions" isDropDisabled={false}>
           {(provided) => (
             <Box ref={provided.innerRef} {...provided.droppableProps}>
               {questions.map((q, index) => (
