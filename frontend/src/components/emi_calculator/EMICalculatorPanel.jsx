@@ -104,7 +104,7 @@ const EMICalculatorPanel = () => {
           <Button
             variant="contained"
             fullWidth
-            className="glassy-button"
+            className="btn glassy-button"
             onClick={() => setShowResult(true)}
           >
             Calculate
@@ -114,6 +114,7 @@ const EMICalculatorPanel = () => {
             variant="outlined"
             fullWidth
             color="secondary"
+            className="btn"
             onClick={handleReset}
           >
             Reset

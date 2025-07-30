@@ -73,18 +73,18 @@ const QRCodeResult = ({ qrValue = '', inputData, type }) => {
       </Box>
 
       <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="center" spacing={2} mt={3}>
-        <Button onClick={() => handleDownload('png')} sx={toolButtonStyle}>
+        <Button className='btn' onClick={() => handleDownload('png')} sx={toolButtonStyle}>
           Download PNG
         </Button>
-        <Button onClick={() => handleDownload('svg')} sx={toolButtonStyle}>
+        <Button className='btn' onClick={() => handleDownload('svg')} sx={toolButtonStyle}>
           Download SVG
         </Button>
-        <Button onClick={handleCopy} sx={toolButtonStyle}>
+        <Button className='btn' onClick={handleCopy} sx={toolButtonStyle}>
           Copy to Clipboard
         </Button>
       </Stack>
 
-      <Box mt={4}>
+      <Box className="form-card"  mt={4}>
         <Typography variant="subtitle1" fontWeight={600}>Input Used:</Typography>
         <pre style={{ textAlign: 'left', fontSize: '0.9rem', overflowX: 'auto' }}>
           {JSON.stringify(inputData, null, 2)}

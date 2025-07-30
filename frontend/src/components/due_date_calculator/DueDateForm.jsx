@@ -46,7 +46,7 @@ const DueDateForm = ({ onSubmit }) => {
             </MenuItem>
           ))}
         </TextField>
-        <Button className="pregnancy-submit-btn" variant="contained" type="submit" fullWidth>
+        <Button className="btn pregnancy-submit-btn" variant="contained" type="submit" fullWidth>
           Calculate Due Date
         </Button>
       </form>

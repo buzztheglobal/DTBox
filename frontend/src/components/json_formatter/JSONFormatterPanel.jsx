@@ -101,7 +101,7 @@ const JSONFormatterPanel = () => {
         </Typography>
       )}
 
-      <Box
+      <Box  className="form-card"
         sx={{
           display: "flex",
           flexWrap: "wrap",
@@ -145,10 +145,10 @@ const JSONFormatterPanel = () => {
       </Box>
 
       <Box sx={{ mt: 2, display: "flex", gap: 2 }}>
-        <Button variant="contained" sx={styles.toolButtonStyle} onClick={handleFormat}>
+        <Button className="btn" variant="contained" sx={styles.toolButtonStyle} onClick={handleFormat}>
           Format JSON
         </Button>
-        <Button variant="outlined" color="error" onClick={handleClear}>
+        <Button className="btn" variant="outlined" color="error" onClick={handleClear}>
           Clear
         </Button>
       </Box>

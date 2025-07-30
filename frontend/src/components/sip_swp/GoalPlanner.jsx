@@ -33,7 +33,7 @@ const GoalPlanner = () => {
         <Grid item xs={12} sm={6}><TextField fullWidth label="Tenure (Years)" value={tenure} onChange={(e) => setTenure(+e.target.value)} sx={formFieldStyle} /></Grid>
         <Grid item xs={12} sm={6}><TextField fullWidth label="Expected Return (% p.a.)" value={rate} onChange={(e) => setRate(+e.target.value)} sx={formFieldStyle} /></Grid>
         <Grid item xs={12} sm={6}><TextField fullWidth label="Inflation Rate (% p.a.)" value={inflation} onChange={(e) => setInflation(+e.target.value)} sx={formFieldStyle} /></Grid>
-        <Grid item xs={12}><Button sx={toolButtonStyle} onClick={calculateRequiredSIP}>Calculate</Button></Grid>
+        <Grid item xs={12}><Button className='btn'  sx={toolButtonStyle} onClick={calculateRequiredSIP}>Calculate</Button></Grid>
       </Grid>
 
       {sip && (

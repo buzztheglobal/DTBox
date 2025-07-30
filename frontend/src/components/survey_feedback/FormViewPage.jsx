@@ -85,7 +85,7 @@ const FormViewPage = () => {
         </Box>
       ))}
 
-      <Button variant="contained" onClick={handleSubmit}>Submit</Button>
+      <Button className='btn' variant="contained" onClick={handleSubmit}>Submit</Button>
     </Box>
   );
 };

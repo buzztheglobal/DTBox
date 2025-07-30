@@ -207,7 +207,7 @@ export default function BMICalculatorForm() {
 
       <Grid container spacing={2}>
         <Grid item xs={6}>
-          <Button
+          <Button className='btn'
             variant="contained"
             fullWidth
             sx={{ ...toolButtonStyle, mt: 2 }}
@@ -217,7 +217,7 @@ export default function BMICalculatorForm() {
           </Button>
         </Grid>
         <Grid item xs={6}>
-          <Button
+          <Button className='btn'
             variant="outlined"
             fullWidth
             sx={{ mt: 2 }}

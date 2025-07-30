@@ -61,7 +61,7 @@ const PollCreateWizard = ({ onComplete }) => {
                 sx={{ mt: 2 }}
               />
             ))}
-            <Button onClick={() => setOptions([...options, ''])} sx={{ mt: 2 }}>
+            <Button className='btn' onClick={() => setOptions([...options, ''])} sx={{ mt: 2 }}>
               Add Option
             </Button>
           </>
@@ -103,8 +103,8 @@ const PollCreateWizard = ({ onComplete }) => {
       </Stepper>
       <Box className="form-card">{renderStep()}</Box>
       <Box className="form-card" mt={3}>
-        <Button disabled={activeStep === 0} onClick={handleBack} sx={{ mr: 2 }}>Back</Button>
-        <Button variant="contained" onClick={handleNext}>
+        <Button className='btn' disabled={activeStep === 0} onClick={handleBack} sx={{ mr: 2 }}>Back</Button>
+        <Button className='btn' variant="contained" onClick={handleNext}>
           {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
         </Button>
       </Box>

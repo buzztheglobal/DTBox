@@ -288,8 +288,8 @@ const QRCodeForm = () => {
                 )}
 
                 <QRCustomization />
-                <Box mt={2} display="flex" gap={2}>
-                    <Button
+                <Box  className="form-card" mt={2} display="flex" gap={2}>
+                    <Button className='btn'
                         variant="contained"
                         sx={{ ...toolButtonStyle, mt: 2 }}
                         onClick={handleCreateQR}
@@ -297,7 +297,7 @@ const QRCodeForm = () => {
                     >
                         Create QR Code
                     </Button>
-                    <Button
+                    <Button className='btn'
                         variant="outlined"
                         color="secondary"
                         sx={{ ...toolButtonStyle, mt: 2 }}

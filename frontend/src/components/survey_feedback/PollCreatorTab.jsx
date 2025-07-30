@@ -161,15 +161,16 @@ const PollCreatorTab = () => {
       </LocalizationProvider>
 
       <Box className="form-card" mt={3} display="flex" gap={2} flexWrap="wrap">
-        <Button variant="outlined" startIcon={<AddCircle />} onClick={handleAddOption}>
+        <Button variant="outlined" className='btn' startIcon={<AddCircle />} onClick={handleAddOption}>
           Add Option
         </Button>
-        <Button variant="outlined" onClick={() => setShowPreview(true)}>
+        <Button variant="outlined" className='btn' onClick={() => setShowPreview(true)}>
           Preview Poll
         </Button>
         <Button
           variant="contained"
           color="primary"
+          className='btn'
           onClick={handleSubmitPoll}
           disabled={submitting}
         >

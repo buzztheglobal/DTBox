@@ -78,7 +78,7 @@ const PasswordGenerator = () => {
           ))}
         </Box>
 
-        <Button sx={toolButtonStyle} onClick={generatePassword}>
+        <Button className='btn' sx={toolButtonStyle} onClick={generatePassword}>
           Generate Password
         </Button>
 

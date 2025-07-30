@@ -13,7 +13,7 @@ const PollCard = ({ poll }) => {
         </Typography>
 
         <Box className="form-card" mt={2}>
-          <Button
+          <Button className='btn'
             variant="contained"
             component={Link}
             to={`/form/${poll.slug || poll.id}`}
@@ -21,7 +21,7 @@ const PollCard = ({ poll }) => {
           >
             View Poll
           </Button>
-          <Button
+          <Button className='btn'
             variant="outlined"
             component={Link}
             to={`/admin/poll/${poll.id}/summary`}

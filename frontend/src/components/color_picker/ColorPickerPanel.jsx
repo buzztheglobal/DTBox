@@ -94,7 +94,7 @@ const ColorPickerPanel = () => {
       <Typography variant="h5" gutterBottom className="color-title">
         🎨 Advanced Color Picker
       </Typography>
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', width: '100%', alignItems: 'stretch' }}>
+      <Box  className="form-card" sx={{ display: 'flex', flexWrap: 'wrap', width: '100%', alignItems: 'stretch' }}>
         <Box sx={{ width: '50%', paddingRight: 1, display: 'flex', flexDirection: 'column' }}>
           <Typography variant="h6" gutterBottom>Color Picker</Typography>
           <div className="canvas-container">
@@ -115,7 +115,7 @@ const ColorPickerPanel = () => {
           </label>
           <input id="upload-image" type="file" accept="image/*" onChange={handleImageUpload} className="upload-input" />
         </Box>
-        <Box sx={{ width: '50%', paddingLeft: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <Box  className="form-card" sx={{ width: '50%', paddingLeft: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <ColorPreview color={color} sx={{ border: '1px solid #000000', borderRadius: '8px', p: 1 }} />
           {['HEX', 'RGB', 'HSL'].map((label) => (
             <Box key={label} sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
@@ -136,11 +136,11 @@ const ColorPickerPanel = () => {
             </Box>
           ))}
 
-          <Button variant="contained" className="tool-button" sx={{ color: '#fff' }} onClick={() => copyToClipboard(color)} fullWidth>
+          <Button variant="contained" className="btn tool-button" sx={{ color: '#fff' }} onClick={() => copyToClipboard(color)} fullWidth>
             COPY HEX
           </Button>
 
-          <Box sx={{ mt: 3 }}>
+          <Box  className="form-card" sx={{ mt: 3 }}>
             <Typography variant="subtitle1" gutterBottom>
               Recent Colors
             </Typography>

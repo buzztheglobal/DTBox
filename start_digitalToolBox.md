@@ -40,7 +40,7 @@ http://localhost:5173/
 
 # https://github.com/buzztheglobal/DTBox
 git add .
-git commit -m "poll creator"
+git commit -m "Time Zone Converter all time zones - auto complete"
 git push origin main
 
 git remote add origin https://github.com/buzztheglobal/DTBox

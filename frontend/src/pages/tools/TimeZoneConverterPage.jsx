@@ -115,11 +115,11 @@ const TimeZoneConverterPage = () => {
         timezones={allTimezones}
       />
 
-      <Box mt={2}>
-        <Button variant="contained" onClick={handleConvert} className="glassy-button">
+      <Box  className="form-card" mt={2}>
+        <Button variant="contained" onClick={handleConvert} className="btn glassy-button">
           Convert Time
         </Button>
-        <Button variant="outlined" onClick={() => handleAddToFavorites(targetZone)} sx={{ ml: 2 }}>
+        <Button variant="outlined" className="btn" onClick={() => handleAddToFavorites(targetZone)} sx={{ ml: 2 }}>
           ⭐ Add to Favorites
         </Button>
       </Box>
@@ -145,7 +145,7 @@ const TimeZoneConverterPage = () => {
         </Grid>
       )}
 
-      <Box mt={4}>
+      <Box  className="form-card" mt={4}>
         <Button variant="text" onClick={handleGoToFavorites}>
           📂 View Favorites & History
         </Button>
