@@ -1,24 +1,26 @@
-// src/components/timezone_converter/TimeZoneSelector.jsx
-// src/components/timezone_converter/TimeZoneSelector.jsx
 import React from 'react';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import timezones from './timezones.json'; // Make sure this file exists and is valid JSON
+import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
-const TimeZoneSelector = ({ label, value, onChange }) => (
-  <FormControl fullWidth margin="normal">
-    <InputLabel>{label}</InputLabel>
-    <Select value={value} onChange={onChange} label={label}>
-      {timezones.map((tz) => (
-        <MenuItem key={tz} value={tz}>
-          {tz}
-        </MenuItem>
-      ))}
-    </Select>
-  </FormControl>
-);
+const TimeZoneSelector = ({ label, value, onChange, timezones = [] }) => {
+  return (
+    <FormControl fullWidth margin="normal">
+      <InputLabel>{label}</InputLabel>
+      <Select value={value} onChange={onChange} label={label}>
+        {Array.isArray(timezones) && timezones.length > 0 ? (
+          timezones.map((tz) => (
+            <MenuItem key={tz} value={tz}>
+              {tz}
+            </MenuItem>
+          ))
+        ) : (
+          <MenuItem value="" disabled>
+            Loading timezones...
+          </MenuItem>
+        )}
+      </Select>
+    </FormControl>
+  );
+};
 
 export default TimeZoneSelector;
 

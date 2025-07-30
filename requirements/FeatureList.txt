@@ -43,7 +43,7 @@ for EMI Calculator
 . A Pie chart visualization (Principal vs Interest)?
 . Copy-to-clipboard or PDF download of EMI results?
 . Prepayment simulation?
-
+. add option for prepayment which could suggest how much time/locan duration getting saved on every such prepayment.
 -------Pregnancy-Due-Date-Calculator
 Future Enhancements (with Backend)
 . Save user data to PostgreSQL

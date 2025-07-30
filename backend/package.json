@@ -19,6 +19,7 @@
     "googleapis": "^154.1.0",
     "json2csv": "^6.0.0-alpha.2",
     "jsonwebtoken": "^9.0.2",
+    "luxon": "^3.7.1",
     "morgan": "^1.10.0",
     "pg": "^8.16.3",
     "pg-hstore": "^2.3.4",

@@ -42,6 +42,7 @@ import PollSummaryPage from './components/survey_feedback/PollSummaryPage';
 import PollViewPage from './pages/tools/PollViewPage';
 //
 import TimeZoneConverterPage from './pages/tools/TimeZoneConverterPage';
+import FavoritesViewer from './pages/tools/FavoritesViewer';
 
 const PollSummaryPageWrapper = () => {
   const { id } = useParams();
@@ -101,6 +102,7 @@ function App() {
           {/* <Route path="*" element={<div>404 - Page Not Found</div>} /> */}
           {/* time-zone-converter */}
           <Route path="/time-zone-converter" element={<TimeZoneConverterPage />} />
+          <Route path="/tools/favorites" element={<FavoritesViewer />} />
         </Routes>
       </ErrorBoundary>
     </>

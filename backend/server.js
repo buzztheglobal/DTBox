@@ -16,19 +16,29 @@ app.use((req, res, next) => {
   next();
 });
 
-// ✅ Route Modules
+// ✅ Route Modules (make sure each file exports a router function)
 const menuRoutes = require('./routes/menuRoutes');
 const logRoutes = require('./routes/logRoutes');
 const colorRoutes = require('./routes/colorRoutes');
 const formsRoutes = require('./routes/forms');
-const pollRoutes = require('./routes/polls'); // ✅ Polls route added
+const pollRoutes = require('./routes/polls');
+const timezonesRoute = require('./routes/timezones');
+const userConversionsRoute = require('./routes/userConversions');
+const userFavoritesRoute = require('./routes/userFavorites');
+
+console.log("🟢 server.js is running");
 
 // ✅ Register Routes
 app.use('/api/menuitems', menuRoutes);
 app.use('/api/logs', logRoutes);
 app.use('/api/colors', colorRoutes);
 app.use('/api/forms', formsRoutes);
-app.use('/api/polls', pollRoutes); // ✅ Enable Polls API
+app.use('/api/polls', pollRoutes);
+console.log("🛠 before /api/timezones");
+app.use('/api/timezones', timezonesRoute);
+console.log("🛠 after /api/timezones");
+app.use('/api/user-conversions', userConversionsRoute);
+app.use('/api/user-favorites', userFavoritesRoute);
 
 // ✅ Health Check
 app.get('/', (req, res) => {
