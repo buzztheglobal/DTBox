@@ -16,7 +16,7 @@ const RDChart = ({ principal, interest }) => {
     const COLORS = ["#8884d8", "#00C49F"];
 
     return (
-        <Box className="form-card" sx={{ height: 250, mt: 3 }} className="pie-chart">
+        <Box sx={{ height: 250, mt: 3 }} className="pie-chart">
             <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                     <Pie

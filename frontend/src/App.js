@@ -40,6 +40,8 @@ import UpdateFormPage from './components/survey_feedback/admin/UpdateFormPage';
 import PollGalleryPage from './pages/tools/PollGalleryPage';
 import PollSummaryPage from './components/survey_feedback/PollSummaryPage';
 import PollViewPage from './pages/tools/PollViewPage';
+//
+import TimeZoneConverterPage from './pages/tools/TimeZoneConverterPage';
 
 const PollSummaryPageWrapper = () => {
   const { id } = useParams();
@@ -97,6 +99,8 @@ function App() {
           <Route path="/admin/poll/:id/summary" element={<PollSummaryPageWrapper />} />
           {/* Admin Routes */}
           {/* <Route path="*" element={<div>404 - Page Not Found</div>} /> */}
+          {/* time-zone-converter */}
+          <Route path="/time-zone-converter" element={<TimeZoneConverterPage />} />
         </Routes>
       </ErrorBoundary>
     </>
