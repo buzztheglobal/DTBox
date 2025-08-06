@@ -98,13 +98,13 @@ const ConversionTabs = () => {
   const fileIcon = tabIndex === 0 ? <FaFileCode size={24} style={{ marginRight: 8 }} /> : <FaFileCsv size={24} style={{ marginRight: 8 }} />;
 
   return (
-    <Box>
+    <Box className="form-card"> 
       <Tabs centered value={tabIndex} onChange={(e, val) => setTabIndex(val)}>
         <Tab label="JSON ➜ CSV" />
         <Tab label="CSV ➜ JSON" />
       </Tabs>
 
-      <Box mt={2}>
+      <Box className="form-card" mt={2}>
         {/* Upload + Dropzone */}
         <input
           type="file"
@@ -155,7 +155,7 @@ const ConversionTabs = () => {
                 <MenuItem value="\t">Tab (↹)</MenuItem>
               </Select>
             </Stack>
-            <Button variant="contained" onClick={handleJsonToCsv}>
+            <Button  className='btn' variant="contained" onClick={handleJsonToCsv}>
               Convert to CSV
             </Button>
           </>
@@ -174,7 +174,7 @@ const ConversionTabs = () => {
                 <MenuItem value="\t">Tab (↹)</MenuItem>
               </Select>
             </Stack>
-            <Button variant="contained" onClick={handleCsvToJson}>
+            <Button  className='btn' variant="contained" onClick={handleCsvToJson}>
               Convert to JSON
             </Button>
           </>

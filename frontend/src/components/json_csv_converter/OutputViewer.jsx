@@ -4,7 +4,7 @@ import { Box, Typography } from "@mui/material";
 
 const OutputViewer = ({ output, type }) => {
   return (
-    <Box
+    <Box className="form-card"
       sx={{
         mt: 2,
         p: 2,
