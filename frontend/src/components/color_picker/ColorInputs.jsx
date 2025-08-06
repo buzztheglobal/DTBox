@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Box } from '@mui/material';
+import {
+      formBoxStyle,
+  formFieldStyle,
+  resultBoxStyle,
+  toolButtonStyle
+} from '../../styles/globalStyles';
 
 const ColorInputs = ({ color, setColor }) => {
   const [hex, setHex] = useState(color);
@@ -35,7 +41,7 @@ const ColorInputs = ({ color, setColor }) => {
   };
 
   return (
-    <Box sx={{ mt: 2, display: 'flex', gap: '10px' }}>
+    <Box sx={{ formBoxStyle, mt: 2, display: 'flex', gap: '10px' }}>
       <TextField label="HEX" value={hex} onChange={handleHexChange} />
       <TextField label="R" type="number" value={rgb.r} onChange={handleRgbChange('r')} />
       <TextField label="G" type="number" value={rgb.g} onChange={handleRgbChange('g')} />

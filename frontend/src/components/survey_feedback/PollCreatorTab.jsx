@@ -20,6 +20,11 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import '../../App.css';
+import {
+    formBoxStyle,
+    formFieldStyle,
+    toolButtonStyle
+} from '../../styles/globalStyles';
 
 const PollCreatorTab = () => {
   const navigate = useNavigate();
@@ -120,15 +125,15 @@ const PollCreatorTab = () => {
       <TextField
         fullWidth
         label="Poll Question"
-        value={question}
+        value={question}  SX={formFieldStyle}
         onChange={(e) => setQuestion(e.target.value)}
         sx={{ mb: 2 }}
       />
 
       {options.map((opt, index) => (
-        <Box className="form-card" key={index} display="flex" alignItems="center" gap={1} mb={1}>
+        <Box className="form-card" sx={formBoxStyle}  key={index} display="flex" alignItems="center" gap={1} mb={1}>
           <TextField
-            fullWidth
+            fullWidth  SX={formFieldStyle}
             label={`Option ${index + 1}`}
             value={opt}
             onChange={(e) => handleOptionChange(index, e.target.value)}
@@ -143,7 +148,7 @@ const PollCreatorTab = () => {
         </Box>
       ))}
 
-      <FormControlLabel
+      <FormControlLabel  SX={formFieldStyle}
         control={
           <Switch checked={isVisible} onChange={(e) => setIsVisible(e.target.checked)} />
         }
@@ -154,29 +159,30 @@ const PollCreatorTab = () => {
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DateTimePicker
           label="Schedule Publish Time"
-          value={scheduledAt}
+          value={scheduledAt} SX={formFieldStyle}
           onChange={setScheduledAt}
           renderInput={(params) => <TextField {...params} fullWidth sx={{ mt: 2 }} />}
         />
       </LocalizationProvider>
 
-      <Box className="form-card" mt={3} display="flex" gap={2} flexWrap="wrap">
-        <Button variant="outlined" className='btn' startIcon={<AddCircle />} onClick={handleAddOption}>
+      <Box className="form-card" sx={formBoxStyle} mt={3} display="flex" gap={2} flexWrap="wrap">
+        <Button variant="outlined" className='btn' sx={toolButtonStyle} startIcon={<AddCircle />} onClick={handleAddOption}>
           Add Option
         </Button>
-        <Button variant="outlined" className='btn' onClick={() => setShowPreview(true)}>
+        <Button variant="outlined" sx={toolButtonStyle} className='btn' onClick={() => setShowPreview(true)}>
           Preview Poll
         </Button>
         <Button
           variant="contained"
           color="primary"
           className='btn'
+          sx={toolButtonStyle} 
           onClick={handleSubmitPoll}
           disabled={submitting}
         >
           {submitting ? 'Submitting...' : 'Submit Poll'}
         </Button>
-        <Button variant="text" color="secondary" onClick={handleReset}>
+        <Button variant="text" sx={toolButtonStyle}  color="secondary" onClick={handleReset}>
           Reset
         </Button>
       </Box>

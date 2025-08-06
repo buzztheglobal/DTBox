@@ -5,6 +5,12 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import UploadIcon from '@mui/icons-material/Upload';
 import ColorPreview, { hexToRgb, rgbToHsl } from './ColorPreview';
 import './color_picker.css';
+import {
+      formBoxStyle,
+  formFieldStyle,
+  resultBoxStyle,
+  toolButtonStyle
+} from '../../styles/globalStyles';
 
 const ColorPickerPanel = () => {
   const [color, setColor] = useState('#ffa300');
@@ -90,12 +96,12 @@ const ColorPickerPanel = () => {
   const hsl = safeRgbToHsl(rgb.r, rgb.g, rgb.b);
 
   return (
-    <Box className="color-picker-container">
+    <Box className="color-picker-container" SX={formBoxStyle}>
       <Typography variant="h5" gutterBottom className="color-title">
         🎨 Advanced Color Picker
       </Typography>
-      <Box  className="form-card" sx={{ display: 'flex', flexWrap: 'wrap', width: '100%', alignItems: 'stretch' }}>
-        <Box sx={{ width: '50%', paddingRight: 1, display: 'flex', flexDirection: 'column' }}>
+      <Box className="form-card" sx={{ formBoxStyle, display: 'flex', flexWrap: 'wrap', width: '100%', alignItems: 'stretch' }}>
+        <Box sx={{ formBoxStyle,width: '50%', paddingRight: 1, display: 'flex', flexDirection: 'column' }}>
           <Typography variant="h6" gutterBottom>Color Picker</Typography>
           <div className="canvas-container">
             <canvas
@@ -110,17 +116,18 @@ const ColorPickerPanel = () => {
               style={{ display: zoomColor ? 'block' : 'none' }}
             />
           </div>
-          <label htmlFor="upload-image" className="upload-label">
+          <label htmlFor="upload-image" SX={formFieldStyle} className="upload-label">
             <UploadIcon sx={{ mr: 1 }} /> Upload Image
           </label>
           <input id="upload-image" type="file" accept="image/*" onChange={handleImageUpload} className="upload-input" />
         </Box>
-        <Box  className="form-card" sx={{ width: '50%', paddingLeft: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <Box  className="form-card" sx={{formBoxStyle, width: '50%', paddingLeft: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <ColorPreview color={color} sx={{ border: '1px solid #000000', borderRadius: '8px', p: 1 }} />
           {['HEX', 'RGB', 'HSL'].map((label) => (
             <Box key={label} sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <TextField
                 label={label}
+                SX={formFieldStyle}
                 value={
                   label === 'HEX' ? color :
                   label === 'RGB' ? `${rgb.r}, ${rgb.g}, ${rgb.b}` :
@@ -136,15 +143,15 @@ const ColorPickerPanel = () => {
             </Box>
           ))}
 
-          <Button variant="contained" className="btn tool-button" sx={{ color: '#fff' }} onClick={() => copyToClipboard(color)} fullWidth>
+          <Button variant="contained" SX={toolButtonStyle} className="btn tool-button" sx={{ color: '#fff' }} onClick={() => copyToClipboard(color)} fullWidth>
             COPY HEX
           </Button>
 
-          <Box  className="form-card" sx={{ mt: 3 }}>
+          <Box SX={formBoxStyle} className="form-card" sx={{ mt: 3 }}>
             <Typography variant="subtitle1" gutterBottom>
               Recent Colors
             </Typography>
-            <Box sx={{ display: 'flex', gap: '8px' }}>
+            <Box sx={{ formBoxStyle, display: 'flex', gap: '8px' }}>
               {recentColors.map((c, i) => (
                 <Box
                   key={i}

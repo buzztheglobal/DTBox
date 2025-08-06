@@ -14,6 +14,13 @@ import QuestionFormBuilder from './QuestionFormBuilder';
 import PreviewFormModal from './PreviewFormModal';
 import { v4 as uuidv4 } from 'uuid';
 
+import {
+    formBoxStyle,
+    formFieldStyle,
+    toolButtonStyle
+} from '../../../styles/globalStyles';
+
+
 const SurveyBuilderPage = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -129,11 +136,11 @@ const SurveyBuilderPage = () => {
     <Box sx={{ p: 3 }}>
       <Typography variant="h5" mb={2}>🛠️ Survey Builder</Typography>
 
-      <TextField
+      <TextField SX={formFieldStyle}
         fullWidth label="Title" value={title}
         onChange={(e) => setTitle(e.target.value)} sx={{ mb: 2 }}
       />
-      <TextField
+      <TextField  SX={formFieldStyle}
         fullWidth multiline rows={3} label="Description"
         value={description} onChange={(e) => setDescription(e.target.value)} sx={{ mb: 3 }}
       />
@@ -170,17 +177,17 @@ const SurveyBuilderPage = () => {
         </Droppable>
       </DragDropContext>
 
-      <Box sx={{ mt: 2, display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-        <Button variant="outlined" startIcon={<AddIcon />} onClick={() => setModalOpen(true)}>
+      <Box sx={{ formBoxStyle, mt: 2, display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+        <Button variant="outlined" sx={toolButtonStyle} startIcon={<AddIcon />} onClick={() => setModalOpen(true)}>
           Add Question
         </Button>
-        <Button variant="outlined" onClick={() => setPreviewOpen(true)}>
+        <Button variant="outlined" sx={toolButtonStyle} onClick={() => setPreviewOpen(true)}>
           Preview
         </Button>
-        <Button variant="contained" startIcon={<SaveIcon />} onClick={handleSubmit}>
+        <Button variant="contained" sx={toolButtonStyle} startIcon={<SaveIcon />} onClick={handleSubmit}>
           Save Form
         </Button>
-        <Button color="error" startIcon={<ClearIcon />} onClick={handleClearDraft}>
+        <Button color="error" sx={toolButtonStyle} startIcon={<ClearIcon />} onClick={handleClearDraft}>
           Clear Draft
         </Button>
       </Box>

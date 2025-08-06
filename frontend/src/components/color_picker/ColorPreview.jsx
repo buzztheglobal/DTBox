@@ -1,5 +1,11 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
+import {
+      formBoxStyle,
+  formFieldStyle,
+  resultBoxStyle,
+  toolButtonStyle
+} from '../../styles/globalStyles';
 
 export function hexToRgb(hex) {
   hex = hex.replace(/^#/, '');
@@ -41,7 +47,7 @@ const ColorPreview = ({ color }) => {
     <Box sx={{ mb: 2 }}>
       <Box
         sx={{
-          width: '100%',
+          formBoxStyle, width: '100%',
           height: 50,
           backgroundColor: color,
           border: '1px solid #ccc',

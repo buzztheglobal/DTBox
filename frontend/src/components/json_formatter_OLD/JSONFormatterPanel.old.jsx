@@ -15,7 +15,12 @@ import {
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import useGlobalStyles from "../../styles/useGlobalStyles";
 import CodeEditor from "@uiw/react-textarea-code-editor";
-
+import {
+  formBoxStyle,
+  formFieldStyle,
+  resultBoxStyle,
+  toolButtonStyle
+} from '../../styles/globalStyles';
 
 const JSONFormatterPanel = () => {
   const [input, setInput] = useState("");
@@ -110,6 +115,7 @@ const JSONFormatterPanel = () => {
         }}
       >
         <FormControlLabel
+        sx={formBoxStyle}
           control={
             <Switch
               checked={minify}
@@ -120,6 +126,7 @@ const JSONFormatterPanel = () => {
         />
 
         <FormControlLabel
+        sx={formBoxStyle}
           control={
             <Switch
               checked={darkTheme}

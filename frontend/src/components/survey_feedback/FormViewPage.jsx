@@ -5,6 +5,11 @@ import {
   Button, CircularProgress, MenuItem
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
+import {
+    formBoxStyle,
+    formFieldStyle,
+    toolButtonStyle
+} from '../../styles/globalStyles';
 
 const FormViewPage = () => {
   const { formId } = useParams();
@@ -69,7 +74,7 @@ const FormViewPage = () => {
 
           {q.question_type === 'rating' && (
             <TextField
-              type="number"
+              type="number" SX={formFieldStyle}
               inputProps={{ min: 1, max: 5 }}
               fullWidth
               onChange={(e) => handleChange(q.id, e.target.value)}
@@ -77,7 +82,7 @@ const FormViewPage = () => {
           )}
 
           {q.question_type === 'boolean' && (
-            <FormControlLabel
+            <FormControlLabel  SX={formFieldStyle}
               control={<Checkbox onChange={(e) => handleChange(q.id, e.target.checked ? 'Yes' : 'No')} />}
               label="Yes"
             />
