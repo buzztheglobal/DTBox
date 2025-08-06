@@ -17,7 +17,7 @@ import ColorPickerPage from './pages/tools/ColorPickerPage';
 import DataStorageConverterPage from './pages/tools/DataStorageConverterPage';
 import EMICalculatorPage from './pages/tools/EMICalculatorPage';
 import PasswordInfoPage from './pages/tools/PasswordInfoPage';
-import JSONFormatterPage from "./pages/tools/JSONFormatterPage";
+// import JSONFormatterPage from "./pages/tools/JSONFormatterPage";
 import UnitConverterPage from './pages/tools/UnitConverterPage';
 import PregnancyDueDateCalculatorPage from './pages/tools/PregnancyDueDateCalculatorPage';
 import SIPCalculatorPage from './pages/tools/SIPCalculatorPage';
@@ -73,7 +73,6 @@ function App() {
           <Route path="/data-storage-converter" element={<DataStorageConverterPage />} />
           <Route path="/emi-calculator" element={<EMICalculatorPage />} />
           <Route path="/password-generator" element={<PasswordInfoPage />} />
-          <Route path="/json-formatter" element={<JSONFormatterPage />} />
           <Route path="/unit-converter" element={<UnitConverterPage />} />
           <Route path="/Pregnancy-Due-Date-Calculator" element={<PregnancyDueDateCalculatorPage />} />
           <Route path="/mf-sip-calculator" element={<SIPCalculatorPage />} />
@@ -103,6 +102,9 @@ function App() {
           {/* time-zone-converter */}
           <Route path="/time-zone-converter" element={<TimeZoneConverterPage />} />
           <Route path="/tools/favorites" element={<FavoritesViewer />} />
+          {/* json-formatter */}
+          <Route path="/json-formatter" element={<JsonToCsvPage />} />
+
         </Routes>
       </ErrorBoundary>
     </>

@@ -1,9 +1,0 @@
-pre {
-  font-family: 'Fira Code', monospace;
-  color: #333;
-}
-
-.dark-mode pre {
-  background-color: #1e1e1e;
-  color: #f4f4f4;
-}
