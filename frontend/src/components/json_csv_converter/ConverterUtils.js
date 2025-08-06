@@ -1,17 +1,21 @@
 // /src/components/json_csv_converter/ConverterUtils.js
-export function jsonToCsv(jsonArray, delimiter = ",") {
+// /src/components/json_csv_converter/converterUtils.js
+
+export function jsonToCsv(jsonArray, delimiter = ",", flatten = true) {
   if (!Array.isArray(jsonArray)) return "";
 
   const headers = Array.from(
-    new Set(jsonArray.flatMap(obj => Object.keys(flatten(obj))))
+    new Set(jsonArray.flatMap(obj =>
+      Object.keys(flatten ? flattenObject(obj) : obj)
+    ))
   );
 
   const csvRows = [headers.join(delimiter)];
 
   jsonArray.forEach((obj) => {
-    const flatObj = flatten(obj);
+    const rowSource = flatten ? flattenObject(obj) : obj;
     const row = headers.map(header => {
-      const val = flatObj[header] !== undefined ? String(flatObj[header]) : "";
+      const val = rowSource[header] !== undefined ? String(rowSource[header]) : "";
       return `"${val.replace(/"/g, '""')}"`;
     });
     csvRows.push(row.join(delimiter));
@@ -36,12 +40,12 @@ export function csvToJson(csvText, delimiter = ",") {
   return data;
 }
 
-function flatten(obj, prefix = "", res = {}) {
+function flattenObject(obj, prefix = "", res = {}) {
   for (const key in obj) {
     const value = obj[key];
     const newKey = prefix ? `${prefix}.${key}` : key;
     if (typeof value === "object" && value !== null && !Array.isArray(value)) {
-      flatten(value, newKey, res);
+      flattenObject(value, newKey, res);
     } else {
       res[newKey] = value;
     }
