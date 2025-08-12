@@ -23,7 +23,9 @@ import PregnancyDueDateCalculatorPage from './pages/tools/PregnancyDueDateCalcul
 import SIPCalculatorPage from './pages/tools/SIPCalculatorPage';
 import FDCalculatorPage from './pages/tools/FDCalculatorPage';
 import RDCalculatorPage from "./pages/tools/RDCalculatorPage";
-import JsonToCsvPage from './pages/tools/JsonToCsvPage';
+//
+import JSONFormatterPage from './pages/tools/JSONFormatterPage';
+//
 import DateCalculatorPage from './pages/tools/DateCalculatorPage';
 import AnalyticsTracker from './components/AnalyticsTracker'; // ✅
 import QRCodeGeneratorPage from './pages/tools/QRCodeGeneratorPage';
@@ -78,7 +80,7 @@ function App() {
           <Route path="/mf-sip-calculator" element={<SIPCalculatorPage />} />
           <Route path="/Fixed-Deposit-Calculator" element={<FDCalculatorPage />} />
           <Route path="/RD-Calculator" element={<RDCalculatorPage />} />
-          <Route path="/json-to-csv" element={<JsonToCsvPage />} />
+          {/* <Route path="/json-to-csv" element={<JsonToCsvPage />} /> */}
           <Route path="/date-calculator" element={<DateCalculatorPage />} />
           <Route path="/qr-code-generator" element={<QRCodeGeneratorPage />} />
           <Route path="/Web-Diagnostics" element={<WebDiagnosticsPage />} />
@@ -103,7 +105,7 @@ function App() {
           <Route path="/time-zone-converter" element={<TimeZoneConverterPage />} />
           <Route path="/tools/favorites" element={<FavoritesViewer />} />
           {/* json-formatter */}
-          <Route path="/json-formatter" element={<JsonToCsvPage />} />
+          <Route path="/json-formatter" element={<JSONFormatterPage />} />
 
         </Routes>
       </ErrorBoundary>

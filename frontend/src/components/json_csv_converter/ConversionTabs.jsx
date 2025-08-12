@@ -1,4 +1,5 @@
-// /src/components/json_csv_converter/ConversionTabs.jsx
+// src/components/json_csv_converter/ConversionTabs.jsx
+// src/components/json_csv_converter/ConversionTabs.jsx
 import React, { useState, useRef } from "react";
 import {
   Box, Tabs, Tab, Button, Typography, FormControlLabel,
@@ -7,8 +8,9 @@ import {
 import JsonInputPanel from "./JsonInputPanel";
 import CsvInputPanel from "./CsvInputPanel";
 import OutputViewer from "./OutputViewer";
+import JsonFormatterPanel from "./JsonFormatterPanel"; // <-- new
 import { jsonToCsv, csvToJson } from "./ConverterUtils";
-import { FaFileCsv, FaFileCode } from "react-icons/fa"; // npm install react-icons
+import { FaFileCsv, FaFileCode } from "react-icons/fa";
 
 const MAX_FILE_SIZE_MB = 2;
 
@@ -26,21 +28,20 @@ const ConversionTabs = () => {
   const handleFileUpload = (file) => {
     const validExtensions = tabIndex === 0 ? [".json"] : [".csv"];
     const fileExt = file.name.slice(file.name.lastIndexOf(".")).toLowerCase();
-
-    if (!validExtensions.includes(fileExt)) {
-      alert(`❌ Invalid file type. Only ${validExtensions.join(", ")} allowed.`);
-      return;
+    if (tabIndex < 2) {
+      if (!validExtensions.includes(fileExt)) {
+        alert(`❌ Invalid file type. Only ${validExtensions.join(", ")} allowed.`);
+        return;
+      }
     }
-
     if (!validateFileSize(file)) {
       alert(`❌ File too large. Max ${MAX_FILE_SIZE_MB}MB allowed.`);
       return;
     }
-
     const reader = new FileReader();
     reader.onload = () => {
       if (tabIndex === 0) setJsonInput(reader.result);
-      else setCsvInput(reader.result);
+      else if (tabIndex === 1) setCsvInput(reader.result);
     };
     reader.readAsText(file);
   };
@@ -60,7 +61,7 @@ const ConversionTabs = () => {
     const blob = new Blob([output], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
-    const filename = tabIndex === 0 ? "converted.csv" : "converted.json";
+    const filename = tabIndex === 0 ? "converted.csv" : tabIndex === 1 ? "converted.json" : "formatted.json";
     a.href = url;
     a.download = filename;
     a.click();
@@ -94,14 +95,12 @@ const ConversionTabs = () => {
     }
   };
 
-  const dragDropLabel = tabIndex === 0 ? "Drop a JSON file here" : "Drop a CSV file here";
-  const fileIcon = tabIndex === 0 ? <FaFileCode size={24} style={{ marginRight: 8 }} /> : <FaFileCsv size={24} style={{ marginRight: 8 }} />;
-
   return (
-    <Box className="form-card"> 
+    <Box className="form-card">
       <Tabs centered value={tabIndex} onChange={(e, val) => setTabIndex(val)}>
         <Tab label="JSON ➜ CSV" />
         <Tab label="CSV ➜ JSON" />
+        <Tab label="JSON Formatter" />
       </Tabs>
 
       <Box className="form-card" mt={2}>
@@ -128,13 +127,12 @@ const ConversionTabs = () => {
           onDrop={handleDrop}
         >
           <Stack direction="row" justifyContent="center" alignItems="center">
-            {fileIcon}
-            <Typography>{dragDropLabel} or click to select</Typography>
+            {tabIndex === 0 ? <FaFileCode size={24} style={{ marginRight: 8 }} /> : <FaFileCsv size={24} style={{ marginRight: 8 }} />}
+            <Typography>{tabIndex === 2 ? "Paste JSON to format or drop a JSON file" : (tabIndex === 0 ? "Drop a JSON file here or click to select" : "Drop a CSV file here or click to select")}</Typography>
           </Stack>
         </Paper>
 
-        {/* Input Panel */}
-        {tabIndex === 0 ? (
+        {tabIndex === 0 && (
           <>
             <JsonInputPanel jsonInput={jsonInput} setJsonInput={setJsonInput} />
             <Stack direction="row" spacing={2} alignItems="center" mt={1} mb={2}>
@@ -145,43 +143,38 @@ const ConversionTabs = () => {
                 label="Flatten Nested JSON"
               />
               <InputLabel>Delimiter</InputLabel>
-              <Select
-                value={delimiter}
-                onChange={(e) => setDelimiter(e.target.value)}
-                size="small"
-              >
+              <Select value={delimiter} onChange={(e) => setDelimiter(e.target.value)} size="small">
                 <MenuItem value=",">Comma (,)</MenuItem>
                 <MenuItem value=";">Semicolon (;)</MenuItem>
                 <MenuItem value="\t">Tab (↹)</MenuItem>
               </Select>
             </Stack>
-            <Button  className='btn' variant="contained" onClick={handleJsonToCsv}>
+            <Button className="btn" variant="contained" onClick={handleJsonToCsv}>
               Convert to CSV
             </Button>
           </>
-        ) : (
+        )}
+
+        {tabIndex === 1 && (
           <>
             <CsvInputPanel csvInput={csvInput} setCsvInput={setCsvInput} />
             <Stack direction="row" spacing={2} alignItems="center" mt={1} mb={2}>
               <InputLabel>Delimiter</InputLabel>
-              <Select
-                value={delimiter}
-                onChange={(e) => setDelimiter(e.target.value)}
-                size="small"
-              >
+              <Select value={delimiter} onChange={(e) => setDelimiter(e.target.value)} size="small">
                 <MenuItem value=",">Comma (,)</MenuItem>
                 <MenuItem value=";">Semicolon (;)</MenuItem>
                 <MenuItem value="\t">Tab (↹)</MenuItem>
               </Select>
             </Stack>
-            <Button  className='btn' variant="contained" onClick={handleCsvToJson}>
+            <Button className="btn" variant="contained" onClick={handleCsvToJson}>
               Convert to JSON
             </Button>
           </>
         )}
 
-        {/* Output Panel */}
-        {output && (
+        {tabIndex === 2 && <JsonFormatterPanel />}
+
+        {output && tabIndex < 2 && (
           <>
             <OutputViewer output={output} type={tabIndex === 0 ? "csv" : "json"} />
             <Stack direction="row" spacing={2} mt={2}>
@@ -201,4 +194,4 @@ const ConversionTabs = () => {
 
 export default ConversionTabs;
 
-//C:\Users\gupta\Documents\DailyToolbox\frontend\src\components\json_csv_converter\ConversionTabs.jsx
+//C:\Users\gupta\Documents\DailyToolbox\frontend\src\components\json_csv_converter\conversionTabs.jsx
