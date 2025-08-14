@@ -1,7 +1,7 @@
 // /src/pages/tools/JsonToCsvPage.jsx
 import React from "react";
 import { Container, Typography } from "@mui/material";
-import ConversionTabs from "../../components/json_csv_converter/conversionTabs";
+import ConversionTabs from "../../components/json_csv_converter/ConversionTabs";
 import { pageContainerStyle, pageTitleStyle } from "../../styles/globalStyles";
 
 const JsonToCsvPage = () => {

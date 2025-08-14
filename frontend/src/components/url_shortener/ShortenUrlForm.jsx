@@ -2,6 +2,21 @@
 // File: /frontend/src/components/url_shortener/ShortenUrlForm.jsx
 import React, { useState } from "react";
 import { createShortUrl } from "../../api/urlApi";
+import {
+  Box,
+  TextField,
+  Button,
+  Typography,
+  Paper,
+  Alert,
+  Stack
+} from "@mui/material";
+import {
+  formBoxStyle,
+  formFieldStyle,
+  cardBoxStyle,
+  toolButtonStyle
+} from "../../styles/globalStyles";
 
 const ShortenUrlForm = () => {
   const [originalUrl, setOriginalUrl] = useState("");
@@ -31,55 +46,66 @@ const ShortenUrlForm = () => {
   };
 
   return (
-    <div style={{ maxWidth: "500px" }}>
-      <form onSubmit={handleShorten}>
-        <div style={{ marginBottom: "10px" }}>
-          <label>Original URL:</label>
-          <input
-            type="url"
-            value={originalUrl}
-            onChange={(e) => setOriginalUrl(e.target.value)}
-            placeholder="https://example.com"
-            style={{ width: "100%", padding: "8px" }}
-            required
-          />
-        </div>
+    <Paper sx={{ ...cardBoxStyle, p: 3, maxWidth: 500 }}>
+      <Typography variant="h6" gutterBottom>
+        Shorten a New URL
+      </Typography>
 
-        <div style={{ marginBottom: "10px" }}>
-          <label>Custom Short Code (optional):</label>
-          <input
-            type="text"
-            value={customCode}
-            onChange={(e) => setCustomCode(e.target.value)}
-            placeholder="my-custom-link"
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </div>
+      <Box component="form" onSubmit={handleShorten} sx={formBoxStyle}>
+        <TextField
+          label="Original URL"
+          type="url"
+          value={originalUrl}
+          onChange={(e) => setOriginalUrl(e.target.value)}
+          placeholder="https://example.com"
+          required
+          fullWidth
+          sx={formFieldStyle}
+        />
 
-        <button type="submit" style={{ padding: "8px 16px" }}>
+        <TextField
+          label="Custom Short Code (optional)"
+          type="text"
+          value={customCode}
+          onChange={(e) => setCustomCode(e.target.value)}
+          placeholder="my-custom-link"
+          fullWidth
+          sx={formFieldStyle}
+        />
+
+        <Button
+          variant="contained"
+          type="submit"
+          sx={{ ...toolButtonStyle, mt: 2 }}
+        >
           Shorten URL
-        </button>
-      </form>
+        </Button>
+      </Box>
 
-      {error && <p style={{ color: "red", marginTop: "10px" }}>{error}</p>}
+      {error && (
+        <Alert severity="error" sx={{ mt: 2 }}>
+          {error}
+        </Alert>
+      )}
 
       {shortUrl && (
-        <div style={{ marginTop: "10px" }}>
-          <p>
+        <Stack spacing={1} sx={{ mt: 2 }}>
+          <Typography variant="body1">
             Short URL:{" "}
             <a href={shortUrl} target="_blank" rel="noopener noreferrer">
               {shortUrl}
             </a>
-          </p>
-          <button
+          </Typography>
+          <Button
+            variant="outlined"
+            size="small"
             onClick={() => navigator.clipboard.writeText(shortUrl)}
-            style={{ padding: "6px 12px", marginTop: "5px" }}
           >
             Copy to Clipboard
-          </button>
-        </div>
+          </Button>
+        </Stack>
       )}
-    </div>
+    </Paper>
   );
 };
 

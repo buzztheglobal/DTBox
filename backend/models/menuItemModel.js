@@ -121,8 +121,10 @@ const getAllMenuItems = async () => {
     strQuery = strQuery + ' is_dropdown, deleted_at, deleted_by_id, draft_version, featured_image_url, geo_location, icon, is_accessible, is_archived, is_cacheable, is_deleted,';
     strQuery = strQuery + 'is_draft, is_dropdown, is_external, is_featured, is_featured_image, is_hidden, is_promoted, is_published, is_scheduled, is_searchable, is_trending, ';
     strQuery = strQuery + ' is_video, is_visible, parent_menu_id, published_at, published_by_id, scheduled_at, scheduled_by_id, seo_description, seo_title, target, ';
-    strQuery = strQuery + ' title, tool_domain, updated_at, updated_by_id, video_url FROM public.menu_menuitem ';
-    strQuery = strQuery + ' WHERE is_deleted = false AND is_visible = true and is_active=TRUE AND is_published = true  ORDER BY \"order\" ASC NULLS LAST;';
+    strQuery = strQuery + ' title, tool_domain, updated_at, updated_by_id, video_url ';
+    strQuery = strQuery + ' FROM public.menu_menuitem ';
+    strQuery = strQuery + ' WHERE is_deleted = FALSE AND is_visible = TRUE and is_active=TRUE ';
+    strQuery = strQuery + ' AND is_published = TRUE ORDER BY \"order\" ASC NULLS LAST;';
     console.error("QUERY: ", strQuery);
     const result = await pool.query(strQuery);
     return result.rows;

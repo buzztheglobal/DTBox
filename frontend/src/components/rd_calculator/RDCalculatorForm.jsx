@@ -107,7 +107,7 @@ const RDCalculatorForm = ({ onCalculate }) => {
 
       <Grid container spacing={2}>
         <Grid item xs={6}>
-          <FormControlLabel
+          <FormControlLabel SX={formBoxStyle}
             control={
               <Switch
                 checked={isSenior}
@@ -121,7 +121,7 @@ const RDCalculatorForm = ({ onCalculate }) => {
           />
         </Grid>
         <Grid item xs={6}>
-          <FormControlLabel
+          <FormControlLabel  SX={formBoxStyle}
             control={
               <Switch
                 checked={applyTDS}

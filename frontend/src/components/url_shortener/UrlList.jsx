@@ -1,7 +1,20 @@
 // src/components/url_shortener/UrlList.jsx
 // File: /frontend/src/components/url_shortener/UrlList.jsx
 import React, { useEffect, useState } from "react";
+import {
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableContainer,
+  Paper,
+  Typography,
+  CircularProgress,
+  Link
+} from "@mui/material";
 import { getAllUrls } from "../../api/urlApi";
+import { cardBoxStyle } from "../../styles/globalStyles";
 
 const UrlList = () => {
   const [urls, setUrls] = useState([]);
@@ -21,48 +34,68 @@ const UrlList = () => {
     fetchUrls();
   }, []);
 
-  if (loading) return <p>Loading URLs...</p>;
+  if (loading) {
+    return (
+      <Paper sx={{ ...cardBoxStyle, p: 2, textAlign: "center" }}>
+        <CircularProgress />
+        <Typography variant="body2" sx={{ mt: 1 }}>
+          Loading URLs...
+        </Typography>
+      </Paper>
+    );
+  }
 
   return (
-    <div className="url-list">
-      <h3>Shortened URLs</h3>
+    <Paper sx={{ ...cardBoxStyle, p: 2 }}>
+      <Typography variant="h6" gutterBottom>
+        Shortened URLs
+      </Typography>
+
       {urls.length === 0 ? (
-        <p>No URLs found.</p>
+        <Typography variant="body2">No URLs found.</Typography>
       ) : (
-        <table border="1" cellPadding="8" style={{ borderCollapse: "collapse", width: "100%" }}>
-          <thead>
-            <tr>
-              <th>Short Code</th>
-              <th>Original URL</th>
-              <th>Created At</th>
-              <th>Clicks</th>
-            </tr>
-          </thead>
-          <tbody>
-            {urls.map((url) => (
-              <tr key={url.id}>
-                <td>
-                  <a
-                    href={`/${url.short_code}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {url.short_code}
-                  </a>
-                </td>
-                <td>
-                  <a href={url.original_url} target="_blank" rel="noopener noreferrer">
-                    {url.original_url}
-                  </a>
-                </td>
-                <td>{new Date(url.created_at).toLocaleString()}</td>
-                <td>{url.clicks}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <TableContainer>
+          <Table size="small">
+            <TableHead>
+              <TableRow>
+                <TableCell><strong>Short Code</strong></TableCell>
+                <TableCell><strong>Original URL</strong></TableCell>
+                <TableCell><strong>Created At</strong></TableCell>
+                <TableCell><strong>Clicks</strong></TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {urls.map((url) => (
+                <TableRow key={url.id}>
+                  <TableCell>
+                    <Link
+                      href={`/${url.short_code}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {url.short_code}
+                    </Link>
+                  </TableCell>
+                  <TableCell>
+                    <Link
+                      href={url.original_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {url.original_url}
+                    </Link>
+                  </TableCell>
+                  <TableCell>
+                    {new Date(url.created_at).toLocaleString()}
+                  </TableCell>
+                  <TableCell>{url.clicks}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       )}
-    </div>
+    </Paper>
   );
 };
 

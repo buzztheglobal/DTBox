@@ -257,7 +257,7 @@ const QRCodeForm = () => {
 
                 {type === 'contact' && (
                     <>
-                        <FormControlLabel
+                        <FormControlLabel  SX={formBoxStyle}
                             control={<Switch checked={useJsonContact} onChange={() => setUseJsonContact(!useJsonContact)} />}
                             label="Use vCard JSON input"
                             sx={{ mb: 2 }}

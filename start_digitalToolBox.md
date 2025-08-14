@@ -40,7 +40,7 @@ http://localhost:5173/
 
 # https://github.com/buzztheglobal/DTBox
 git add .
-git commit -m "Time Zone Converter all time zones - auto complete"
+git commit -m "url_shortener"
 git push origin main
 
 git remote add origin https://github.com/buzztheglobal/DTBox
@@ -52,10 +52,17 @@ npm install @mui/material@5.15.19 @mui/icons-material@5.15.18
 npm install @emotion/react@11.11.4 @emotion/styled@11.11.5
 npm install bootstrap@5.3.3 firebase@10.12.4
 npm install react-scripts@5.0.1
+npm install chart.js react-chartjs-2 
+
 
 Remove-Item -Recurse -Force .\node_modules\
 Remove-Item -Force .\package-lock.json
 
 npm cache clean --force
 npm ls react
-npm install chart.js react-chartjs-2 
+
+cache clean
+Remove-Item -Recurse -Force node_modules, build, dist, .vite, .cache
+Remove-Item -Force package-lock.json
+npm install
+npm start

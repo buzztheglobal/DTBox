@@ -19,7 +19,7 @@ const DueDateForm = ({ onSubmit }) => {
 
   return (
     <Box sx={formBoxStyle}>
-      <Typography className="pregnancy-calculator-title" variant="h6" gutterBottom>Enter your details</Typography>
+      <Typography className="pregnancy-calculator-title" sx={formBoxStyle} variant="h6" gutterBottom>Enter your details</Typography>
       <form className="pregnancy-calculator-container" onSubmit={handleSubmit}>
         <TextField
           fullWidth

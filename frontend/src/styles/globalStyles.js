@@ -137,3 +137,22 @@ export const getMaturityDate = (tenureMonths) => {
   maturity.setMonth(maturity.getMonth() + parseInt(tenureMonths));
   return maturity.toLocaleDateString("en-GB"); // e.g., 18/07/2026
 };
+
+// src/styles/globalStyles.js
+export const globalStyles = {
+  container: {
+    maxWidth: "900px",
+    margin: "auto",
+    padding: "20px",
+  },
+  card: {
+    padding: "16px",
+    borderRadius: "8px",
+    boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+    marginBottom: "20px",
+  },
+  button: {
+    textTransform: "none",
+    fontWeight: "600",
+  },
+};

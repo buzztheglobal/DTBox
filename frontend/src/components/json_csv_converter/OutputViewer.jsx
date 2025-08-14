@@ -16,7 +16,7 @@ const OutputViewer = ({ output, type }) => {
       }}
     >
       <Typography variant="subtitle1" fontWeight="bold" mb={1}>
-        Output:
+        Output: 
       </Typography>
       <pre style={{ margin: 0 }}>{output}</pre>
     </Box>
