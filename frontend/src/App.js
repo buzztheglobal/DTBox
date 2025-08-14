@@ -48,6 +48,8 @@ import FavoritesViewer from "./pages/tools/FavoritesViewer";
 import UrlShortenerPage from "./pages/tools/UrlShortenerPage";
 import RedirectHandler from "./pages/tools/RedirectHandler";
 import UrlList from "./components/url_shortener/UrlList";
+//
+import StageTimerPage from "./pages/tools/StageTimerPage";
 
 const PollSummaryPageWrapper = () => {
   const { id } = useParams();
