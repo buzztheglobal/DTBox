@@ -50,7 +50,8 @@ import RedirectHandler from "./pages/tools/RedirectHandler";
 import UrlList from "./components/url_shortener/UrlList";
 //
 import StageTimerPage from "./pages/tools/StageTimerPage";
-
+import StageTimerController from "./pages/tools/StageTimerController"; // New component
+//
 const PollSummaryPageWrapper = () => {
   const { id } = useParams();
   return <PollSummaryPage pollId={id} />;
@@ -123,6 +124,9 @@ function App() {
           <Route path="/url-shortener" element={<UrlShortenerPage />} />
           <Route path="/url-list" element={<UrlList />} />
           <Route path="/:shortCode" element={<RedirectHandler />} />
+          {/* Stage-Timer */}
+          <Route path="/Stage-Timer" element={<StageTimerPage />} />
+          <Route path="/Stage-Timer/control/:roomId" element={<StageTimerController />} />
         </Routes>
       </ErrorBoundary>
     </>
