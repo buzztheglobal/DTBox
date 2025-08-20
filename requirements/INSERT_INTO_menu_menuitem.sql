@@ -1,49 +1,19 @@
 INSERT INTO public.menu_menuitem (
-    id,     url,     "order",     is_active,     access_level,     analytics_data,     archived_at,
-    archived_by_id,     created_at,     created_by_id,
-    custom_css,
-    custom_js,
-    deleted_at,
-    deleted_by_id,
-    draft_version,
-    featured_image_url,
-    geo_location,
-    icon,
-    is_accessible,
-    is_archived,
-    is_cacheable,
-    is_deleted,
-    is_draft,
-    is_dropdown,
-    is_external,
-    is_featured,
-    is_featured_image,
-    is_hidden,
-    is_promoted,
-    is_published,
-    is_scheduled,
-    is_searchable,
-    is_trending,
-    is_video,
-    is_visible,
-    parent_menu_id,
-    published_at,
-    published_by_id,
-    scheduled_at,
-    scheduled_by_id,
-    seo_description,
-    seo_title,
-    target,
-    title,
-    tool_domain,
-    updated_at,
-    updated_by_id,
-    video_url
+    id, url, "order", is_active, access_level, analytics_data, archived_at,
+    archived_by_id, created_at, created_by_id,
+    custom_css, custom_js, deleted_at, deleted_by_id, draft_version,
+    featured_image_url, geo_location, icon, is_accessible, is_archived,
+    is_cacheable, is_deleted, is_draft, is_dropdown, is_external,
+    is_featured, is_featured_image, is_hidden, is_promoted, is_published,
+    is_scheduled, is_searchable, is_trending, is_video, is_visible,
+    parent_menu_id, published_at, published_by_id, scheduled_at, scheduled_by_id,
+    seo_description, seo_title, target, title, tool_domain,
+    updated_at, updated_by_id, video_url
 )
 VALUES (
-    29,                             -- id
-    '/Pregnancy-Due-Date-Calculator',          -- url
-    28,                             -- "order"
+    36,                             -- id
+    '/Stage-Timer',                -- url
+    35,                            -- "order"
     TRUE,                          -- is_active
     'public',                      -- access_level
     NULL,                          -- analytics_data
@@ -56,9 +26,9 @@ VALUES (
     NULL,                          -- deleted_at
     NULL,                          -- deleted_by_id
     NULL,                          -- draft_version
-    NULL, -- featured_image_url
+    NULL,                          -- featured_image_url
     NULL,                          -- geo_location
-    NULL,                     -- icon
+    NULL,                          -- icon
     TRUE,                          -- is_accessible
     FALSE,                         -- is_archived
     TRUE,                          -- is_cacheable
@@ -81,11 +51,11 @@ VALUES (
     1,                             -- published_by_id
     NULL,                          -- scheduled_at
     NULL,                          -- scheduled_by_id
-    'Estimate your baby''s due date with our Pregnancy Due Date Calculator. ',      -- seo_description
-    'Pregnancy Due Date Calculator',            -- seo_title
+    'Manage event schedules with our Stage Timer tool, featuring QR code access for remote control.', -- seo_description
+    'Stage Timer',                 -- seo_title
     '_blank',                      -- target
-    'Pregnancy Due Date Calculator',            -- title
-    'Health',                 -- tool_domain
+    'Stage Timer',                 -- title
+    'Events',                      -- tool_domain
     CURRENT_TIMESTAMP,             -- updated_at
     1,                             -- updated_by_id
     NULL                           -- video_url
