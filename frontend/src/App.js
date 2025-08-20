@@ -49,8 +49,6 @@ import UrlShortenerPage from "./pages/tools/UrlShortenerPage";
 import RedirectHandler from "./pages/tools/RedirectHandler";
 import UrlList from "./components/url_shortener/UrlList";
 //
-import StageTimerPage from "./pages/tools/StageTimerPage";
-import StageTimerController from "./pages/tools/StageTimerController"; // New component
 //
 const PollSummaryPageWrapper = () => {
   const { id } = useParams();
@@ -90,7 +88,6 @@ function App() {
           <Route path="/date-calculator" element={<DateCalculatorPage />} />
           <Route path="/qr-code-generator" element={<QRCodeGeneratorPage />} />
           <Route path="/Web-Diagnostics" element={<WebDiagnosticsPage />} />
-          <Route path="/countdown-timer-world-clock" element={<TimerWorldClockPage />} />
           <Route path="/Survey-Feedback-Tools" element={<SurveyFeedbackToolsPage />} />
 
           {/* Admin Routes */}
@@ -124,9 +121,6 @@ function App() {
           <Route path="/url-shortener" element={<UrlShortenerPage />} />
           <Route path="/url-list" element={<UrlList />} />
           <Route path="/:shortCode" element={<RedirectHandler />} />
-          {/* Stage-Timer */}
-          <Route path="/Stage-Timer" element={<StageTimerPage />} />
-          <Route path="/Stage-Timer/control/:roomId" element={<StageTimerController />} />
         </Routes>
       </ErrorBoundary>
     </>
