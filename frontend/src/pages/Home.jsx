@@ -20,6 +20,7 @@ import {
   navChipStyle,
   navButtonStyle,
 } from "../styles/globalStyles";
+import CategoryChips from "../components/CategoryChips";
 
 function useQuery() {
   const { search } = useLocation();
@@ -41,8 +42,9 @@ function Home() {
   const theme = useTheme();
 
   const isToolsPage = location.pathname === "/tools";
-  const categoryFilter = query.get("category") || (isToolsPage ? null : "Featured");
   const searchTerm = query.get("search") || "";
+  const categoryFilter = query.get("category") || (isToolsPage ? null : "Featured");
+
 
   useEffect(() => {
     setLoading(true);
@@ -79,7 +81,13 @@ function Home() {
     }
 
     if (query.get("category")) {
-      items = items.filter((item) => item.tool_domain === categoryFilter);
+      if (categoryFilter === "Featured") {
+        // 🟢 Featured → show all tools (no filter), just sorted by order
+        items = [...menuItems].sort((a, b) => a.order - b.order);
+      } else {
+        // 🟢 Normal categories
+        items = items.filter((item) => item.tool_domain === categoryFilter);
+      }
     }
 
     items.sort((a, b) => a.order - b.order);
@@ -145,22 +153,12 @@ function Home() {
       )}
 
       {allCategories.length > 0 && (
-        <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap", mb: 3 }}>
-          {allCategories.map((cat) => (
-            <Badge
-              key={cat}
-              badgeContent={categoryCounts[cat] || 0}
-              color="primary"
-              overlap="circular"
-            >
-              <Chip
-                label={cat}
-                onClick={() => navigate(`/tools?category=${encodeURIComponent(cat)}`)}
-                sx={navChipStyle(categoryFilter === cat, theme.palette.mode)}
-              />
-            </Badge>
-          ))}
-        </Box>
+        <CategoryChips
+          allCategories={allCategories}
+          categoryCounts={categoryCounts}
+          categoryFilter={categoryFilter}
+          theme={theme}
+        />
       )}
 
       <Grid container spacing={3}>
