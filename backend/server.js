@@ -43,7 +43,7 @@ const pool = new Pool({
   password: process.env.DB_PASS,
   port: process.env.DB_PORT,
 });
-console.log("✅ PostgreSQL Config:", {
+console.log("✅ PostgreSQL Config:0: ", {
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
   database: process.env.DB_NAME,

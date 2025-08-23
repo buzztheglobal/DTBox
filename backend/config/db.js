@@ -18,7 +18,7 @@ console.log('DB_HOST:', dbConfig.host);
 console.log('DB_PORT:', dbConfig.port);
 console.log('DB_NAME:', dbConfig.database);
 
-console.log('✅ PostgreSQL Config:', dbConfig); // Debug output
+console.log('✅ PostgreSQL Config: 1: ', dbConfig); // Debug output
 if (typeof dbConfig.password !== 'string' || !dbConfig.password.length) {
   throw new Error('[FATAL] DB_PASS is not a valid string');
 }

@@ -2,10 +2,11 @@
 
 const pool = require("../config/db");
 
-console.log("✅ menuItemModel.js IN");
+console.log("✅ menuItemModel.js IN vg");
 
 const createMenuItemsTable = async () => {
   try {
+    console.log("✅ createMenuItemsTable vg");
     await pool.query(`
       CREATE TABLE IF NOT EXISTS public.menu_menuitem
 (
@@ -116,6 +117,7 @@ CREATE INDEX IF NOT EXISTS menu_menuitem_updated_by_id_39647017
 
 const getAllMenuItems = async () => {
   try {
+    console.log("✅ getAllMenuItems");
     const strQuery = 'SELECT id, url, \"order\", is_active, access_level, analytics_data, archived_at, archived_by_id, created_at, created_by_id, custom_css, custom_js,';
     strQuery = strQuery + ' deleted_at, deleted_by_id, draft_version, featured_image_url, geo_location, icon, is_accessible, is_archived, is_cacheable, is_deleted, is_draft,';
     strQuery = strQuery + ' is_dropdown, deleted_at, deleted_by_id, draft_version, featured_image_url, geo_location, icon, is_accessible, is_archived, is_cacheable, is_deleted,';
@@ -125,7 +127,7 @@ const getAllMenuItems = async () => {
     strQuery = strQuery + ' FROM public.menu_menuitem ';
     strQuery = strQuery + ' WHERE is_deleted = FALSE AND is_visible = TRUE and is_active=TRUE ';
     strQuery = strQuery + ' AND is_published = TRUE ORDER BY \"order\" ASC NULLS LAST;';
-    console.error("QUERY: ", strQuery);
+    //console.error("QUERY: ", strQuery);
     const result = await pool.query(strQuery);
     return result.rows;
   } catch (error) {

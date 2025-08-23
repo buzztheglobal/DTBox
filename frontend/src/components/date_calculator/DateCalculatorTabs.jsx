@@ -25,7 +25,7 @@ const DateCalculatorTabs = () =>  {
       >
         <Tab className='nav-tab ' label="Date Difference" />
         <Tab className='nav-tab' label="Chronological Age" />
-        <Tab className='nav-tab' label="Relationship Gap" />
+        {/* <Tab className='nav-tab' label="Relationship Gap" /> */}
         <Tab className='nav-tab' label="Life Expectancy" />
         <Tab className='nav-tab' label="Compatibility" />
         <Tab className='nav-tab' label="Age Calculator" />
@@ -33,10 +33,10 @@ const DateCalculatorTabs = () =>  {
       <Box className="nav-section nav-tab:hover nav-section form-card subtitle" sx={{ mt: 4 }}>
         {tabIndex === 0 && <DateDiffCalculator />}
         {tabIndex === 1 && <ChronologicalAgeCalculator />}
-        {tabIndex === 2 && <RelationshipGapCalculator />}
-        {tabIndex === 3 && <LifeExpectancyCalculator />}
-        {tabIndex === 4 && <RelationshipCompatibilityCalculator />}
-        {tabIndex === 5 && <AgeCalculator />}
+        {/* {tabIndex === 2 && <RelationshipGapCalculator />} */}
+        {tabIndex === 2 && <LifeExpectancyCalculator />}
+        {tabIndex === 3 && <RelationshipCompatibilityCalculator />}
+        {tabIndex === 4 && <AgeCalculator />}
       </Box>
     </Box>
   );
