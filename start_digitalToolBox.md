@@ -40,7 +40,7 @@ http://localhost:5173/
 
 # https://github.com/buzztheglobal/DTBox
 git add .
-git commit -m "Stage-Timer"
+git commit -m "Stage-Timer, AND SURVEY tiles hidden via query - getAllMenuItems"
 git push origin main
 
 git remote add origin https://github.com/buzztheglobal/DTBox

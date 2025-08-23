@@ -81,7 +81,7 @@ const IPAddressChecker = () => {
             value={ipInput}
             onChange={(e) => setIpInput(e.target.value)}
           />
-          <Button variant="contained" type="submit">
+          <Button variant="contained" className="btn" type="submit">
             Lookup IP Details
           </Button>
         </Box>

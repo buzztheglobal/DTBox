@@ -1,37 +1,18 @@
-/* emi_calculator.css */
+/* src/components/emi_calculator/emi_calculator.css */
+
 .emi-panel {
   padding: 2rem;
-  background: linear-gradient(135deg, #f5c7c7 0%, #c7c9f5 100%);
+  /* background: linear-gradient(135deg, #f5c7c7 0%, #c7c9f5 100%); */
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   margin-bottom: 2rem;
 }
 
-.emi-header {
-    background-color: #ffffff;
-    border-radius: 1rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    padding: 2rem;
-    margin: 2rem auto;
-    max-width: 600px;
-    font-family: 'Inter', sans-serif;
-    color: #222;
-    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.emi-card {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem 0;
-    border-bottom: 1px dashed #eee;
-    font-size: 1rem;
-    color: #000000;
-}
-
 .emi-result {
   padding: 1rem;
-  background: linear-gradient(135deg, #f5c7c7 0%, #c7c9f5 100%);
+  /* background: linear-gradient(135deg, #f5c7c7 0%, #c7c9f5 100%); */
   margin-top: 1rem;
+  border-radius: 12px;
 }
 
 .emi-label {
@@ -39,12 +20,65 @@
   margin-bottom: 8px;
 }
 
-.emi-button {
-    border-radius: 8px;
-    backdrop-filter: blur(6px);
-    background: linear-gradient(135deg, #780206, #061161);
-    color: #fff;
-    font-weight: 500;
-    text-transform: none;
-    transition: all 0.2s ease-in-out;
+/* ---------- DARK MODE FIXES ---------- */
+.dark-mode .calculator-container,
+.dark-mode .calculator-container * {
+  color: #dcdcdc !important;
+}
+
+/* TextField background */
+.dark-mode .MuiTextField-root {
+  background-color: #2c2c2c !important;
+  border-radius: 6px;
+}
+
+/* Inputs */
+.dark-mode .MuiOutlinedInput-root {
+  color: #fff !important;
+  border: 1px solid #444 !important;
+}
+.dark-mode .MuiOutlinedInput-input {
+  color: #fff !important;
+}
+.dark-mode .MuiInputLabel-root,
+.dark-mode .MuiFormLabel-root {
+  color: #fff !important;
+}
+.dark-mode .MuiOutlinedInput-input::placeholder {
+  color: #fff !important;
+  opacity: 0.8;
+}
+
+/* Slider */
+.dark-mode .MuiSlider-root {
+  color: #61dafb !important;
+}
+
+/* Toggle buttons */
+.dark-mode .MuiToggleButton-root {
+  background-color: #2c2c2c !important;
+  color: #fff !important;
+  border: 1px solid #444 !important;
+}
+.dark-mode .MuiToggleButton-root.Mui-selected {
+  background-color: #61dafb !important;
+  color: #000 !important;
+}
+
+/* Buttons */
+.dark-mode .MuiButton-outlinedSecondary {
+  border-color: #61dafb !important;
+  color: #61dafb !important;
+}
+
+/* EMI Result Card */
+.dark-mode .emi-result {
+  background-color: #1e1e1e !important;
+  border: 1px solid #333 !important;
+  color: #dcdcdc !important;
+}
+
+/* Invert chart for dark mode */
+.dark-mode canvas {
+  filter: invert(1) hue-rotate(180deg);
 }

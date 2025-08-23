@@ -1,224 +1,109 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
-
-.App {
-  text-align: center;
+/* ---------- Global Typography ---------- */
+body {
+  font-family: "Roboto", sans-serif !important;
+  color: #000 !important; /* Light mode text */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* src/App.css or global css */
-.card-img-top {
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #eee;
-}
-
-.dark-mode {
-  background-color: #121212 !important;
-  color: #ffffff !important;
-  min-height: 100vh;
-}
-
-.dark-mode .card {
-  background-color: #1e1e1e;
-  border: 1px solid #333;
-  color: white;
-}
-
-.dark-mode .form-control {
-  background-color: #2c2c2c;
-  color: white;
-  border: 1px solid #444;
-}
-
-.dark-mode .form-select {
-  background-color: #2c2c2c;
-  color: white;
-  border: 1px solid #444;
-}
-.dark-mode .btn {
-  background-color: #3a3a3a;
-  color: white;
-  border: 1px solid #444;
-}
-
-.card-title {
+h1, h2, h3, h4, h5, h6, .MuiTypography-h5 {
+  font-family: "Roboto", sans-serif !important;
   font-weight: 600;
+  color: #000 !important;
 }
 
-.glassy-button {
-  background: linear-gradient(135deg, #E0F252, #EDF25C);
-  color: #0D0D0D;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 30px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(108, 99, 255, 0.3);
+/* ---------- Dark Mode Overrides ---------- */
+.dark-mode body,
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode h6,
+.dark-mode .MuiTypography-h5 {
+  color: #fff !important;
+  font-family: "Roboto", sans-serif !important;
 }
 
-.glassy-button:hover {
-  background: linear-gradient(135deg, #4b42d5, #9a6fff);
-  box-shadow: 0 6px 12px rgba(108, 99, 255, 0.5);
-  transform: translateY(-2px);
+/* ---------- Form Labels & Placeholders ---------- */
+.MuiInputLabel-root, 
+.MuiFormLabel-root {
+  color: #000 !important; /* Light mode labels */
 }
 
-.tool-card {
-  background: linear-gradient(135deg, #f5f7fa, #e2ebf0); /* soft light gradient */
-  border-radius: 1rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  padding: 1rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  color: #222;
+.MuiOutlinedInput-input,
+.MuiSelect-select,
+.MuiAutocomplete-input {
+  color: #000 !important; /* Light mode input text */
 }
 
-.tool-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+.MuiOutlinedInput-input::placeholder,
+.MuiInputBase-input::placeholder,
+.MuiAutocomplete-input::placeholder {
+  color: #000 !important;
+  opacity: 0.8 !important;
 }
 
-.tool-card .card-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #333;
+.dark-mode .MuiInputLabel-root,
+.dark-mode .MuiFormLabel-root {
+  color: #fff !important; /* Dark mode labels */
 }
 
-.tool-card .card-text {
-  color: #444;
+.dark-mode .MuiOutlinedInput-input,
+.dark-mode .MuiSelect-select,
+.dark-mode .MuiAutocomplete-input {
+  color: #fff !important; /* Dark mode input text */
 }
 
-.tool-card .category-text {
-  font-size: 0.9rem;
-  color: #666;
-  margin-top: 0.5rem;
+.dark-mode .MuiOutlinedInput-input::placeholder,
+.dark-mode .MuiInputBase-input::placeholder,
+.dark-mode .MuiAutocomplete-input::placeholder {
+  color: #fff !important;
+  opacity: 0.8 !important;
 }
 
-.tool-card button {
-  background: linear-gradient(90deg, #84fab0 0%, #EDF25C 100%);
-  color: #0D0D0D;
-  border: none;
-  font-weight: 600;
-  padding: 8px 16px;
-  border-radius: 4px;
-  transition: background 0.3s ease;
+/* ---------- Dropdown Menus (Select + Autocomplete) ---------- */
+.MuiPaper-root.MuiAutocomplete-paper,
+.MuiPaper-root.MuiMenu-paper {
+  background-color: #fff !important;
+  color: #000 !important;
 }
 
-.tool-card button:hover {
-  background: linear-gradient(90deg, #8fd3f4 0%, #84fab0 100%);
+.dark-mode .MuiPaper-root.MuiAutocomplete-paper,
+.dark-mode .MuiPaper-root.MuiMenu-paper {
+  background-color: #1e1e1e !important;
+  color: #fff !important;
 }
 
-/* JSON block themes */
-.dark-code-block {
-  background-color: #1e1e1e;
-  color: #dcdcdc;
+/* Menu items */
+.MuiMenuItem-root,
+.MuiAutocomplete-option {
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-.light-code-block {
-  background-color: #f9f9f9;
-  color: #222;
+/* Light mode: hover/focus/selected with gradient */
+.MuiMenuItem-root.Mui-selected,
+.MuiMenuItem-root:hover,
+.MuiAutocomplete-option.Mui-focused,
+.MuiAutocomplete-option[aria-selected="true"] {
+  background: linear-gradient(90deg, #84fab0, #8fd3f4) !important;
+  color: #000 !important;
 }
 
-/* Code Blocks */
-.dark-code-block {
-  background-color: #1e1e1e;
-  color: #dcdcdc;
-}
-.light-code-block {
-  background-color: #f9f9f9;
-  color: #222;
-}
-
-/* File: src/styles/app.css */
-.calculator-container {
-  padding: 2rem;
-  max-width: 900px;
-  margin: auto;
+/* Dark mode: hover/focus/selected with gradient */
+.dark-mode .MuiMenuItem-root.Mui-selected,
+.dark-mode .MuiMenuItem-root:hover,
+.dark-mode .MuiAutocomplete-option.Mui-focused,
+.dark-mode .MuiAutocomplete-option[aria-selected="true"] {
+  background: linear-gradient(90deg, #ff9a9e, #fad0c4) !important;
+  color: #000 !important;
 }
 
-.fd-result {
-  background-color: #f0fff0;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-top: 2rem;
-  border-left: 6px solid green;
+/* ---------- Dropdown Checkmark / Selected Indicator ---------- */
+.MuiMenuItem-root.Mui-selected .MuiListItemIcon-root,
+.MuiAutocomplete-option[aria-selected="true"] .MuiListItemIcon-root {
+  color: #000 !important; /* Light mode checkmark */
 }
 
-/* Add to existing .dark-mode section */
-.dark-mode .rd-container {
-  background-color: #1e1e1e;
-  color: #dcdcdc;
-}
-.dark-mode .rd-paper {
-  background-color: #2c2c2c;
-  color: #dcdcdc;
-}
-.dark-mode .form-control:focus {
-  border-color: #61dafb;
-  box-shadow: 0 0 5px #61dafb;
-}
-.dark-mode .pie-chart {
-  filter: invert(1) hue-rotate(180deg); /* Adjust chart colors for dark mode */
-}
-
-/* Add focus state for toggle */
-.dark-mode .MuiSwitch-root:focus-within {
-  outline: 2px solid #61dafb;
-}
-
-/* Add to existing .dark-mode section */
-.dark-mode .rd-container {
-  background-color: #1e1e1e;
-  color: #dcdcdc;
-}
-.dark-mode .rd-paper {
-  background-color: #2c2c2c;
-  color: #dcdcdc;
-}
-.dark-mode .rd-results-section { /* Add this new rule for dark mode */
-  background-color: #2c2c2c;
-  color: #dcdcdc;
-}
-.dark-mode .form-control:focus {
-  border-color: #61dafb;
-  box-shadow: 0 0 5px #61dafb;
-}
-.dark-mode .pie-chart {
-  filter: invert(1) hue-rotate(180deg); /* Adjust chart colors for dark mode */
-}
-
-/* Add focus state for toggle */
-.dark-mode .MuiSwitch-root:focus-within {
-  outline: 2px solid #61dafb;
+.dark-mode .MuiMenuItem-root.Mui-selected .MuiListItemIcon-root,
+.dark-mode .MuiAutocomplete-option[aria-selected="true"] .MuiListItemIcon-root {
+  color: #fff !important; /* Dark mode checkmark */
 }
