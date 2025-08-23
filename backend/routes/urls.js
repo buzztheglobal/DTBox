@@ -26,7 +26,7 @@ router.get('/resolve/:shortCode', async (req, res) => {
       return res.status(404).json({ error: 'URL not found' });
     }
 
-    const fullUrl = `http://localhost:3000${result.rows[0].url}/control/room1?apiKey=mock-api-key-123`;
+    const fullUrl = `http://localhost:3000${result.rows[0].url}`;
     console.log(`[urls.js] Resolved URL: ${fullUrl}`);
     res.json({ url: fullUrl });
   } catch (err) {

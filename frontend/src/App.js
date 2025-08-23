@@ -1,6 +1,5 @@
-// src/App.js
 // File: /frontend/src/App.js
-import { Routes, Route, useParams, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
 import React, { useContext } from "react";
 
@@ -29,31 +28,13 @@ import DateCalculatorPage from "./pages/tools/DateCalculatorPage";
 import AnalyticsTracker from "./components/AnalyticsTracker";
 import QRCodeGeneratorPage from "./pages/tools/QRCodeGeneratorPage";
 import WebDiagnosticsPage from "./pages/tools/WebDiagnosticsPage";
-import TimerWorldClockPage from "./pages/tools/TimerWorldClockPage";
-
-import SurveyFeedbackToolsPage from "./pages/tools/SurveyFeedbackToolsPage";
-import SurveyBuilderPage from "./components/survey_feedback/admin/SurveyBuilderPage";
-import AdminDashboardPage from "./components/survey_feedback/admin/AdminDashboardPage";
-import FormViewPage from "./components/survey_feedback/FormViewPage";
-import UpdateFormPage from "./components/survey_feedback/admin/UpdateFormPage";
-
-import PollGalleryPage from "./pages/tools/PollGalleryPage";
-import PollSummaryPage from "./components/survey_feedback/PollSummaryPage";
-import PollViewPage from "./pages/tools/PollViewPage";
-
 import TimeZoneConverterPage from "./pages/tools/TimeZoneConverterPage";
 import FavoritesViewer from "./pages/tools/FavoritesViewer";
 
-// ✅ URL Shortener imports — using default exports
+// ✅ URL Shortener imports
 import UrlShortenerPage from "./pages/tools/UrlShortenerPage";
 import RedirectHandler from "./pages/tools/RedirectHandler";
 import UrlList from "./components/url_shortener/UrlList";
-//
-//
-const PollSummaryPageWrapper = () => {
-  const { id } = useParams();
-  return <PollSummaryPage pollId={id} />;
-};
 
 const ProtectedRoute = ({ children }) => {
   const { user } = useContext(AuthContext);
@@ -61,7 +42,6 @@ const ProtectedRoute = ({ children }) => {
 };
 
 function App() {
-  const { user } = useContext(AuthContext);
   return (
     <>
       <CssBaseline />
@@ -88,27 +68,8 @@ function App() {
           <Route path="/date-calculator" element={<DateCalculatorPage />} />
           <Route path="/qr-code-generator" element={<QRCodeGeneratorPage />} />
           <Route path="/Web-Diagnostics" element={<WebDiagnosticsPage />} />
-          <Route path="/Survey-Feedback-Tools" element={<SurveyFeedbackToolsPage />} />
 
-          {/* Admin Routes */}
-          <Route
-            path="/admin/survey-builder"
-            element={<ProtectedRoute><SurveyBuilderPage /></ProtectedRoute>}
-          />
-          <Route
-            path="/admin/dashboard"
-            element={<ProtectedRoute><AdminDashboardPage /></ProtectedRoute>}
-          />
-          <Route
-            path="/admin/update-form/:id"
-            element={<ProtectedRoute><UpdateFormPage /></ProtectedRoute>}
-          />
-
-          {/* Public Tools */}
-          <Route path="/form/:formId" element={<FormViewPage />} />
-          <Route path="/poll-gallery" element={<PollGalleryPage />} />
-          <Route path="/form/:pollId" element={<PollViewPage />} />
-          <Route path="/admin/poll/:id/summary" element={<PollSummaryPageWrapper />} />
+          {/* Removed SurveyBuilderPage, AdminDashboardPage, UpdateFormPage */}
 
           {/* Time Zone Converter */}
           <Route path="/time-zone-converter" element={<TimeZoneConverterPage />} />
@@ -128,4 +89,3 @@ function App() {
 }
 
 export default App;
-// C:\Users\gupta\Documents\DailyToolbox\frontend\src\App.js

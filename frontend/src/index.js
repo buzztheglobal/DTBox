@@ -6,8 +6,6 @@ import App from "./App";
 import ThemeContextProvider from "./ThemeContext";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
-import { SocketProvider } from "./context/SocketContext";
-
 import "./App.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -17,9 +15,7 @@ root.render(
     <ThemeContextProvider>
       <BrowserRouter>
         <AuthProvider>
-          <SocketProvider>  {/* ✅ Shared socket context for all pages */}
             <App />
-          </SocketProvider>
         </AuthProvider>
       </BrowserRouter>
     </ThemeContextProvider>
